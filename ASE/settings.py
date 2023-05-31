@@ -55,7 +55,8 @@ ROOT_URLCONF = 'ASE.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'HHPG/presentation/templates']
+        ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-import HHPG.views
+from HHPG.presentation.ui.index import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',HHPG.views.index),
+    path('', IndexView.test),
 ]
