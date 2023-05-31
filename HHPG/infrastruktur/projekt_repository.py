@@ -1,0 +1,62 @@
+from django.db.models import QuerySet
+from HHPG.domain.entity.projekt import Projekt
+from HHPG.domain.repository.projekt_repository import IProjektRepository
+
+
+class ProjektRepository(IProjektRepository):
+    def create(self, sender, instance, **kwargs) -> Projekt:
+        return Projekt.objects.create(**instance)
+
+    def save(self, sender, instance, **kwargs) -> None:
+        instance.save()
+
+    def delete(self, projekt_id: int) -> None:
+        Projekt.objects.filter(id=projekt_id).delete()
+
+    def get_by_id(self, projekt_id) -> Projekt:
+        return Projekt.objects.get(id=projekt_id)
+
+    def get_all(self) -> QuerySet:
+        return Projekt.objects.all()
+
+    def order_by(self, order: str) -> QuerySet:
+        return Projekt.objects.order_by(order)
+
+    def get_count(self, haushaltsposten_id: int) -> int:
+        return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id).count()
+
+    def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
+        return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id)
+
+    def get_all_by_name(self, name: str) -> QuerySet:
+        return Projekt.objects.filter(name=name)
+
+    def get_all_by_einnahmen(self, einnahmen: int) -> QuerySet:
+        return Projekt.objects.filter(einnahmen=einnahmen)
+
+    def update_haushaltsposten(self, projekt_id: int, haushaltsposten) -> None:
+        projekt = Projekt.objects.get(id=projekt_id)
+        projekt.haushaltsposten = haushaltsposten
+        projekt.save()
+
+    def get_haushaltsposten(self, projekt_id: int):
+        projekt = Projekt.objects.get(id=projekt_id)
+        return projekt.haushaltsposten
+
+    def update_name(self, projekt_id: int, name: str) -> None:
+        projekt = Projekt.objects.get(id=projekt_id)
+        projekt.name = name
+        projekt.save()
+
+    def get_name(self, projekt_id: int):
+        projekt = Projekt.objects.get(id=projekt_id)
+        return projekt.name
+
+    def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
+        projekt = Projekt.objects.get(id=projekt_id)
+        projekt.einnahmen = einnahmen
+        projekt.save()
+
+    def get_einnahmen(self, projekt_id: int):
+        projekt = Projekt.objects.get(id=projekt_id)
+        return projekt.einnahmen
