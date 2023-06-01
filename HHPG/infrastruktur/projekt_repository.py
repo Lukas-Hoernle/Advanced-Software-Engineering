@@ -2,13 +2,20 @@ from django.db.models import QuerySet
 from HHPG.domain.entity.projekt import Projekt
 from HHPG.domain.repository.projekt_repository import IProjektRepository
 
+from django.db.models import QuerySet
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class ProjektRepository(IProjektRepository):
+    @staticmethod
+    @receiver(post_save, sender=Projekt)
     def create(self, sender, instance, **kwargs) -> Projekt:
         return Projekt.objects.create(**instance)
 
     def save(self, sender, instance, **kwargs) -> None:
         instance.save()
+
 
     def delete(self, projekt_id: int) -> None:
         Projekt.objects.filter(id=projekt_id).delete()
