@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from django.db.models import QuerySet
 
 from HHPG.domain.entity.projekt import Projekt
-
+#todo: rework object model
 
 class IProjektRepository(ABC):
 
