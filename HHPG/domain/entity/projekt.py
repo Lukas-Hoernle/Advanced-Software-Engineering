@@ -1,14 +1,25 @@
-from django.contrib.auth.models import User
 from django.db import models
-
-from HHPG.domain.entity.haushaltsposten import Haushaltsposten
-
+from HHPG.domain.entity.aufwand import Aufwand
 
 class Projekt(models.Model):
-    haushaltsposten = models.ForeignKey(Haushaltsposten, on_delete=models.CASCADE)
     name = models.CharField(blank=False, null=False, max_length=255)
-    einnahmen = models.PositiveIntegerField(blank=False, null=False, default= 0)
-    ausgaben = models.PositiveIntegerField(blank=False, null=False, default= 0)
+    haushaltsposten = models.ForeignKey(Haushaltsposten, on_delete=models.CASCADE, null=False)
+    aufwand = models.ForeignKey(Aufwand, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.name} - Einnahmen: {self.einnahmen} - Ausgaben: {self.ausgaben}'
+        return self.name
+
+    def get_einnahmen(self):
+        if self.aufwand is not None:
+            return self.aufwand.einnahmen
+        return 0
+
+    def get_ausgaben(self):
+        if self.aufwand is not None:
+            return self.aufwand.ausgaben
+        return 0
+
+    def get_gewinn(self):
+        if self.aufwand is not None:
+            return self.aufwand.einnahmen - self.aufwand.ausgaben
+        return 0

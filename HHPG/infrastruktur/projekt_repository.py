@@ -16,7 +16,6 @@ class ProjektRepository(IProjektRepository):
     def save(self, sender, instance, **kwargs) -> None:
         instance.save()
 
-
     def delete(self, projekt_id: int) -> None:
         Projekt.objects.filter(id=projekt_id).delete()
 
@@ -39,7 +38,7 @@ class ProjektRepository(IProjektRepository):
         return Projekt.objects.filter(name=name)
 
     def get_all_by_einnahmen(self, einnahmen: int) -> QuerySet:
-        return Projekt.objects.filter(einnahmen=einnahmen)
+        return Projekt.objects.filter(aufwand__einnahmen=einnahmen)
 
     def update_haushaltsposten(self, projekt_id: int, haushaltsposten) -> None:
         projekt = Projekt.objects.get(id=projekt_id)
@@ -61,9 +60,30 @@ class ProjektRepository(IProjektRepository):
 
     def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
         projekt = Projekt.objects.get(id=projekt_id)
-        projekt.einnahmen = einnahmen
-        projekt.save()
+        if projekt.aufwand is not None:
+            projekt.aufwand.einnahmen = einnahmen
+            projekt.aufwand.save()
 
     def get_einnahmen(self, projekt_id: int):
         projekt = Projekt.objects.get(id=projekt_id)
-        return projekt.einnahmen
+        if projekt.aufwand is not None:
+            return projekt.aufwand.einnahmen
+        return 0
+
+    def update_ausgaben(self, projekt_id: int, ausgaben: int) -> None:
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            projekt.aufwand.ausgaben = ausgaben
+            projekt.aufwand.save()
+
+    def get_ausgaben(self, projekt_id: int) -> int:
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            return projekt.aufwand.ausgaben
+        return 0
+
+    def get_gewinn(self, projekt_id: int) -> int:
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            return projekt.aufwand.einnahmen - projekt.aufwand.ausgaben
+        return 0

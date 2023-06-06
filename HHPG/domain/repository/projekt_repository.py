@@ -1,72 +1,89 @@
-from abc import ABC, abstractmethod
+from django.db.models import QuerySet
+from HHPG.domain.entity.projekt import Projekt
+from HHPG.domain.repository.projekt_repository import IProjektRepository
 
 from django.db.models import QuerySet
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-from HHPG.domain.entity.projekt import Projekt
-#todo: rework object model
 
-class IProjektRepository(ABC):
+class ProjektRepository(IProjektRepository):
+    @staticmethod
+    @receiver(post_save, sender=Projekt)
+    def create(self, sender, instance, **kwargs) -> Projekt:
+        return Projekt.objects.create(**instance)
 
-    @abstractmethod
-    def create(sender, instance, **kwargs) -> Projekt:
-        raise NotImplementedError
-
-    @abstractmethod
     def save(self, sender, instance, **kwargs) -> None:
-        raise NotImplementedError
+        instance.save()
 
-    @abstractmethod
     def delete(self, projekt_id: int) -> None:
-        raise NotImplementedError
+        Projekt.objects.filter(id=projekt_id).delete()
 
-    @abstractmethod
     def get_by_id(self, projekt_id) -> Projekt:
-        raise NotImplementedError
+        return Projekt.objects.get(id=projekt_id)
 
-    @abstractmethod
     def get_all(self) -> QuerySet:
-        raise NotImplementedError
+        return Projekt.objects.all()
 
-    @abstractmethod
     def order_by(self, order: str) -> QuerySet:
-        raise NotImplementedError
+        return Projekt.objects.order_by(order)
 
-    @abstractmethod
     def get_count(self, haushaltsposten_id: int) -> int:
-        raise NotImplementedError
+        return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id).count()
 
-    @abstractmethod
     def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
-        raise NotImplementedError
+        return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id)
 
-    @abstractmethod
     def get_all_by_name(self, name: str) -> QuerySet:
-        raise NotImplementedError
+        return Projekt.objects.filter(name=name)
 
-    @abstractmethod
     def get_all_by_einnahmen(self, einnahmen: int) -> QuerySet:
-        raise NotImplementedError
+        return Projekt.objects.filter(aufwand__einnahmen=einnahmen)
 
-    @abstractmethod
     def update_haushaltsposten(self, projekt_id: int, haushaltsposten) -> None:
-        raise NotImplementedError
+        projekt = Projekt.objects.get(id=projekt_id)
+        projekt.haushaltsposten = haushaltsposten
+        projekt.save()
 
-    @abstractmethod
     def get_haushaltsposten(self, projekt_id: int):
-        raise NotImplementedError
+        projekt = Projekt.objects.get(id=projekt_id)
+        return projekt.haushaltsposten
 
-    @abstractmethod
     def update_name(self, projekt_id: int, name: str) -> None:
-        raise NotImplementedError
+        projekt = Projekt.objects.get(id=projekt_id)
+        projekt.name = name
+        projekt.save()
 
-    @abstractmethod
     def get_name(self, projekt_id: int):
-        raise NotImplementedError
+        projekt = Projekt.objects.get(id=projekt_id)
+        return projekt.name
 
-    @abstractmethod
     def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
-        raise NotImplementedError
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            projekt.aufwand.einnahmen = einnahmen
+            projekt.aufwand.save()
 
-    @abstractmethod
     def get_einnahmen(self, projekt_id: int):
-        raise NotImplementedError
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            return projekt.aufwand.einnahmen
+        return 0
+
+    def update_ausgaben(self, projekt_id: int, ausgaben: int) -> None:
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            projekt.aufwand.ausgaben = ausgaben
+            projekt.aufwand.save()
+
+    def get_ausgaben(self, projekt_id: int):
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            return projekt.aufwand.ausgaben
+        return 0
+
+    def get_gewinn(self, projekt_id: int):
+        projekt = Projekt.objects.get(id=projekt_id)
+        if projekt.aufwand is not None:
+            return projekt.aufwand.einnahmen - projekt.aufwand.ausgaben
+        return 0
