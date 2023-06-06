@@ -3,7 +3,7 @@ import unittest
 from django.conf import settings
 from django.test import TestCase
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dein_projekt.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HHPG.settings')
 import django
 
 django.setup()
