@@ -1,15 +1,20 @@
 import os
 import unittest
-from django.test import TestCase, override_settings
-from django.conf import settings
+
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dein_projekt.settings')
+
+django.setup()
+
+from django.test import TestCase
 from HHPG.domain.entity.projekt import Projekt
-from HHPG.domain.repository.projekt_repository import ProjektRepository
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ASE.settings")
-
-
-@override_settings(USE_TZ=False)
 class TestProjektRepository(TestCase):
+    def test_something(self):
+        # Test-Code hier
+        pass
+
     def setUp(self):
         super().setUp()
         settings.configure(
