@@ -8,41 +8,14 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HHPG.settings')
 django.setup()
 
 from django.test import TestCase
+from HHPG.repository.projekt_repository import ProjektRepository
 from HHPG.domain.entity.projekt import Projekt
 
 class TestProjektRepository(TestCase):
-    def setUp(self):
-        super().setUp()
-        settings.configure(
-            SECRET_KEY='test-secret-key',
-            DEBUG=True,
-            DATABASES={
-                'default': {
-                    'ENGINE': 'django.db.backends.sqlite3',
-                    'NAME': 'db.sqlite3',
-                }
-            },
-            INSTALLED_APPS=[
-                'django.contrib.admin',
-                'django.contrib.auth',
-                'django.contrib.contenttypes',
-                'django.contrib.sessions',
-                'django.contrib.messages',
-                'django.contrib.staticfiles',
-                'HHPG.apps.HhpgConfig',
-            ],
-            ROOT_URLCONF='ASE.urls',
-            TEMPLATES=[
-                {
-                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
-                    'APP_DIRS': True,
-                },
-            ],
-            STATIC_URL='/static/',
-            USE_I18N=True,
-            USE_TZ=True,
-        )
-        self.repository = ProjektRepository()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.repository = ProjektRepository()
 
     def test_create_projekt(self):
         projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
