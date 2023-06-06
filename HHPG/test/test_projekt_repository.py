@@ -1,15 +1,14 @@
 import os
 import unittest
-from django.conf import settings
-from django.test import TestCase
+
+import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HHPG.settings')
-import django
 
 django.setup()
 
+from django.test import TestCase
 from HHPG.domain.entity.projekt import Projekt
-from HHPG.domain.repository.projekt_repository import ProjektRepository
 
 class TestProjektRepository(TestCase):
     def setUp(self):
