@@ -1,7 +1,11 @@
+import os
+import unittest
 from django.test import TestCase, override_settings
 from django.conf import settings
 from HHPG.domain.entity.projekt import Projekt
 from HHPG.domain.repository.projekt_repository import ProjektRepository
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ASE.settings")
 
 
 @override_settings(USE_TZ=False)
@@ -74,3 +78,7 @@ class TestProjektRepository(TestCase):
         self.repository.delete(projekt.id)
         deleted_projekt = self.repository.get_by_id(projekt.id)
         self.assertIsNone(deleted_projekt)
+
+
+if __name__ == '__main__':
+    unittest.main()
