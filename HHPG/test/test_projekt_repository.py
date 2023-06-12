@@ -11,6 +11,7 @@ from django.test import TestCase
 from HHPG.repository.projekt_repository import ProjektRepository
 from HHPG.domain.entity.projekt import Projekt
 
+
 class TestProjektRepository(TestCase):
     @classmethod
     def setUpClass(cls):
@@ -43,7 +44,7 @@ class TestProjektRepository(TestCase):
 
     def test_update_projekt_ausgaben(self):
         projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        self.repository.update_aufwand(projekt.id, 800)
+        self.repository.update_ausgaben(projekt.id, 800)
         updated_projekt = self.repository.get_by_id(projekt.id)
         self.assertEqual(updated_projekt.ausgaben, 800)
 
