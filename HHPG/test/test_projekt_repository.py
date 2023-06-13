@@ -8,7 +8,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HHPG.settings')
 django.setup()
 
 from django.test import TestCase
-from HHPG.repository.projekt_repository import ProjektRepository
+from HHPG.infrastruktur.projekt_repository import ProjektRepository
 from HHPG.domain.entity.projekt import Projekt
 
 
