@@ -1,25 +1,39 @@
 import openpyxl
 
+class HaushaltsplanExcelBuilder:
+    def __init__(self):
+        self.workbook = openpyxl.Workbook()
+        self.worksheet = self.workbook.active
+        self.row_index = 2
+
+    def add_header(self):
+        self.worksheet['A1'] = 'Projekt Name'
+        self.worksheet['B1'] = 'Einnahmen'
+        self.worksheet['C1'] = 'Ausgaben'
+
+    def add_haushaltsposten(self, haushaltsposten):
+        self.worksheet.cell(row=self.row_index, column=1, value=haushaltsposten.name)
+        self.row_index += 1
+
+        for projekt in haushaltsposten.projekte:
+            self.worksheet.cell(row=self.row_index, column=2, value=projekt.einnahmen)
+            self.worksheet.cell(row=self.row_index, column=3, value=projekt.ausgaben)
+            self.row_index += 1
+
+    def get_workbook(self):
+        return self.workbook
+
+
 class HaushaltsplanExcelGenerator:
     def __init__(self, haushaltsplan):
         self.haushaltsplan = haushaltsplan
 
     def generate_excel(self, file_name):
-        workbook = openpyxl.Workbook()
-        worksheet = workbook.active
-
-        worksheet['A1'] = 'Projekt Name'
-        worksheet['B1'] = 'Einnahmen'
-        worksheet['C1'] = 'Ausgaben'
-
-        row_index = 2
+        builder = HaushaltsplanExcelBuilder()
+        builder.add_header()
 
         for haushaltsposten in self.haushaltsplan.haushaltsposten:
-            worksheet.cell(row=row_index, column=1, value=haushaltsposten.name)
+            builder.add_haushaltsposten(haushaltsposten)
 
-            for projekt in haushaltsposten.projekte:
-                worksheet.cell(row=row_index, column=2, value=projekt.einnahmen)
-                worksheet.cell(row=row_index, column=3, value=projekt.ausgaben)
-                row_index += 1
-
+        workbook = builder.get_workbook()
         workbook.save(file_name)
