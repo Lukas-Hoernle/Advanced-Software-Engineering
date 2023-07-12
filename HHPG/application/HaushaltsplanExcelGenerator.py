@@ -1,7 +1,7 @@
 import openpyxl
 
 class HaushaltsplanExcelGenerator:
-    def generate_excel_poorly(self, haushaltsplan, file_name):
+    def generate_excel(self, haushaltsplan, file_name):
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
 
