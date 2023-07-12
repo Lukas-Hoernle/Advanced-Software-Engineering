@@ -1,7 +1,10 @@
 import openpyxl
 
 class HaushaltsplanExcelGenerator:
-    def generate_excel(self, haushaltsplan, file_name):
+    def __init__(self, haushaltsplan):
+        self.haushaltsplan = haushaltsplan
+
+    def generate_excel(self, file_name):
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
 
@@ -11,7 +14,7 @@ class HaushaltsplanExcelGenerator:
 
         row_index = 2
 
-        for haushaltsposten in haushaltsplan.haushaltsposten:
+        for haushaltsposten in self.haushaltsplan.haushaltsposten:
             worksheet.cell(row=row_index, column=1, value=haushaltsposten.name)
 
             for projekt in haushaltsposten.projekte:
