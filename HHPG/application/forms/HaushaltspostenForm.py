@@ -6,14 +6,16 @@ from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 
 
 class HaushaltspostenForm(forms.ModelForm):
-    projekte = formset_factory(
-        ProjektForm,
-        extra=1,
-        min_num=1
-    )
 
     class Meta:
         model = Haushaltsposten
         fields = [
             'name'
         ]
+
+
+HaushaltspostenFormSet = formset_factory(
+   HaushaltspostenForm,
+    extra=1,
+    min_num=1
+)

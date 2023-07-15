@@ -20,11 +20,3 @@ ProjektFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
-
-AufwandFormSet = inlineformset_factory(
-    Projekt,
-    Aufwand,
-    fields=['einnahmen', 'ausgaben'],
-    extra=1,
-    can_delete=True
-)

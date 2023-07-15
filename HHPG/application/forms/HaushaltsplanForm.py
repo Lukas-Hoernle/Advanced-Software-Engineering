@@ -7,12 +7,6 @@ from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 
 
 class HaushaltsplanForm(forms.ModelForm):
-    haushaltsposten = formset_factory(
-        HaushaltspostenForm,
-        extra=1,
-        min_num=1
-    )
-
     class Meta:
         model = Haushaltsplan
         fields = [
@@ -22,3 +16,10 @@ class HaushaltsplanForm(forms.ModelForm):
             'autor',
             'studierendenzahl'
         ]
+
+
+haushaltsposten = formset_factory(
+    HaushaltsplanForm,
+    extra=1,
+    min_num=1
+)

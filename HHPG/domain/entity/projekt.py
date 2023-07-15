@@ -22,18 +22,3 @@ class Projekt(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_einnahmen(self):
-        if self.aufwand is not None:
-            return self.aufwand.einnahmen
-        return 0
-
-    def get_ausgaben(self):
-        if self.aufwand is not None:
-            return self.aufwand.ausgaben
-        return 0
-
-    def get_gewinn(self):
-        if self.aufwand is not None:
-            return self.aufwand.einnahmen - self.aufwand.ausgaben
-        return 0

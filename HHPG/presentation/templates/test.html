@@ -1,89 +1,69 @@
-<!-- create_haushaltsplan.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Create Haushaltsplan</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/django-formsetjs@1.2.0/dist/formset.min.js"></script>
+    <title>My Haushaltsplan Form</title>
 </head>
 <body>
-  <h1>Create Haushaltsplan</h1>
-  <form method="post">
-    {% csrf_token %}
+    <h1>Create Haushaltsplan</h1>
+
+    <!-- create_form.html -->
+<form method="post">
+  {% csrf_token %}
+
+  <!-- Haushaltsplan Form -->
+  {{ haushaltsplan_form.as_p }}
+
+  <!-- Haushaltsposten Formset -->
+  {% for form in haushaltsposten_formset %}
     {{ form.as_table }}
+    <hr>
+  {% endfor %}
 
-    {% for haushaltsposten_formset in form.haushaltsposten %}
-      {% for haushaltsposten_form in haushaltsposten_formset %}
-        {{ haushaltsposten_form.as_table }}
+  <!-- Projekt Formset -->
+  {% for form in projekt_formset %}
+    {{ form.as_table }}
+    <hr>
+  {% endfor %}
 
-        {% for projekt_formset in haushaltsposten_form.projekte %}
-          {% for projekt_form in projekt_formset %}
-            {{ projekt_form.as_table }}
-            {{ projekt_form.aufwand.as_table }}
-          {% endfor %}
-        {% endfor %}
+  <!-- Aufwand Formset -->
+  {% for form in aufwand_formset %}
+    {{ form.as_table }}
+    <hr>
+  {% endfor %}
 
-        <button type="button" class="add-projekt-btn">Add Projekt</button>
-      {% endfor %}
-    {% endfor %}
+  <input type="submit" value="Submit">
+</form>
 
-    <button type="button" class="add-haushaltsposten-btn">Add Haushaltsposten</button>
-    <button type="submit">Submit</button>
-  </form>
 
-  <script>
-    $(document).ready(function() {
-      // Handle dynamic addition of Haushaltsposten forms
-      $('.add-haushaltsposten-btn').click(function() {
-        var formIdx = $('.haushaltsposten-form').length;
-        var haushaltspostenForm = $('.haushaltsposten-form:first').clone();
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add new Haushaltsposten form
+            $('.add-haushaltsposten').click(function() {
+                var haushaltspostenForm = $('.haushaltsposten-form:last').clone(true);
+                haushaltspostenForm.find(':input').val('');
+                haushaltspostenForm.find('.projekt-form').remove();
+                haushaltspostenForm.find('.add-projekt').attr('disabled', false);
+                haushaltspostenForm.find('.add-aufwand').attr('disabled', true);
+                haushaltspostenForm.insertAfter('.haushaltsposten-form:last');
+            });
 
-        haushaltspostenForm.find(':input').each(function() {
-          var name = $(this).attr('name').replace(`form-${formIdx-1}-`, `form-${formIdx}-`);
-          var id = $(this).attr('id').replace(`id_form-${formIdx-1}-`, `id_form-${formIdx}-`);
+            // Add new Projekt form
+            $(document).on('click', '.add-projekt', function() {
+                var projektForm = $(this).closest('.haushaltsposten-form').find('.projekt-form:last').clone(true);
+                projektForm.find(':input').val('');
+                projektForm.find('.aufwand-form').remove();
+                projektForm.find('.add-aufwand').attr('disabled', false);
+                projektForm.insertAfter($(this).closest('.haushaltsposten-form').find('.projekt-form:last'));
+            });
 
-          $(this).attr('name', name);
-          $(this).attr('id', id);
-          $(this).val('');
+            // Add new Aufwand form
+            $(document).on('click', '.add-aufwand', function() {
+                var aufwandForm = $(this).closest('.projekt-form').find('.aufwand-form:last').clone(true);
+                aufwandForm.find(':input').val('');
+                aufwandForm.insertAfter($(this).closest('.projekt-form').find('.aufwand-form:last'));
+            });
         });
-
-        haushaltspostenForm.insertAfter($('.haushaltsposten-form:last'));
-      });
-
-      // Handle dynamic addition of Projekt forms
-      $(document).on('click', '.add-projekt-btn', function() {
-        var formIdx = $(this).closest('.haushaltsposten-form').find('.projekt-form').length;
-        var projektForm = $(this).closest('.haushaltsposten-form').find('.projekt-form:first').clone();
-
-        projektForm.find(':input').each(function() {
-          var name = $(this).attr('name').replace(`form-${formIdx-1}-`, `form-${formIdx}-`);
-          var id = $(this).attr('id').replace(`id_form-${formIdx-1}-`, `id_form-${formIdx}-`);
-
-          $(this).attr('name', name);
-          $(this).attr('id', id);
-          $(this).val('');
-        });
-
-        projektForm.insertAfter($(this).closest('.haushaltsposten-form').find('.projekt-form:last'));
-      });
-
-      // Initialize formsets
-      $('.haushaltsposten-formset').formset({
-        prefix: '{{ form.haushaltsposten.prefix }}',
-        addText: 'Add Haushaltsposten',
-        deleteText: 'Remove',
-        deleteCssClass: 'btn btn-danger',
-        added: function() {
-          $('.projekt-formset').formset({
-            prefix: '{{ form.haushaltsposten.prefix }}-__prefix__-projekte',
-            addText: 'Add Projekt',
-            deleteText: 'Remove',
-            deleteCssClass: 'btn btn-danger'
-          });
-        }
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
