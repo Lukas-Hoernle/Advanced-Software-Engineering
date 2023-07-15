@@ -1,9 +1,11 @@
 import openpyxl
 
+from HHPG.domain.entity import haushaltsplan
+
 
 class HaushaltsplanExcelGenerator:
 
-    def __init__(self, haushaltsplan):
+    def __init__(self, haushaltsplan: haushaltsplan):
         self.haushaltsplan = haushaltsplan
 
 
