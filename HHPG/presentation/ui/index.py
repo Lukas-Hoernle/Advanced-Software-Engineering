@@ -1,9 +1,7 @@
 from django.forms import inlineformset_factory
 
-from HHPG.application.forms.AufwandForm import AufwandFormSet
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
-from django.shortcuts import render, redirect
-from HHPG.application.forms.formfactories import HaushaltspostenFormSet, ProjektFormSet
+from django.shortcuts import render
 from HHPG.domain.entity.haushaltsplan import Haushaltsplan
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 from HHPG.domain.entity.projekt import Projekt
@@ -38,14 +36,13 @@ class IndexView:
                 haushaltsposten_formset.instance = haushaltsplan
                 haushaltsposten_formset.save()
                 projekt_formset.save()
-                # Handle form submission success
 
         else:
             haushaltsplan_form = HaushaltsplanForm()
             haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
             projekt_formset = ProjektFormSet(prefix='projekt')
 
-        return render(request, 'create_form.html', {
+        return render(request, 'test.html', {
             'haushaltsplan_form': haushaltsplan_form,
             'haushaltsposten_formset': haushaltsposten_formset,
             'projekt_formset': projekt_formset,

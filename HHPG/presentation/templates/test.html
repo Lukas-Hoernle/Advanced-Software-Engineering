@@ -6,64 +6,63 @@
 <body>
     <h1>Create Haushaltsplan</h1>
 
-    <!-- create_form.html -->
-<form method="post">
+    <form method="post">
   {% csrf_token %}
-
-  <!-- Haushaltsplan Form -->
   {{ haushaltsplan_form.as_p }}
+  {{ haushaltsposten_formset.management_form }}
+  {{ projekt_formset.management_form }}
 
-  <!-- Haushaltsposten Formset -->
-  {% for form in haushaltsposten_formset %}
-    {{ form.as_table }}
-    <hr>
-  {% endfor %}
+  <div id="haushaltsposten-formset">
+    {% for form in haushaltsposten_formset %}
+      {{ form.as_table }}
+      <div id="projekt-formset-{{ forloop.counter0 }}">
+        {{ form.projekt_set.management_form }}
+        {% for projekt_form in form.projekt_set %}
+          {{ projekt_form.as_table }}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
 
-  <!-- Projekt Formset -->
-  {% for form in projekt_formset %}
-    {{ form.as_table }}
-    <hr>
-  {% endfor %}
-
-  <!-- Aufwand Formset -->
-  {% for form in aufwand_formset %}
-    {{ form.as_table }}
-    <hr>
-  {% endfor %}
-
-  <input type="submit" value="Submit">
+  <button type="button" id="add-haushaltsposten">Add Haushaltsposten</button>
+  <button type="submit">Submit</button>
 </form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="application/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var haushaltspostenFormset = document.getElementById('haushaltsposten-formset');
+    var addButton = document.getElementById('add-haushaltsposten');
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Add new Haushaltsposten form
-            $('.add-haushaltsposten').click(function() {
-                var haushaltspostenForm = $('.haushaltsposten-form:last').clone(true);
-                haushaltspostenForm.find(':input').val('');
-                haushaltspostenForm.find('.projekt-form').remove();
-                haushaltspostenForm.find('.add-projekt').attr('disabled', false);
-                haushaltspostenForm.find('.add-aufwand').attr('disabled', true);
-                haushaltspostenForm.insertAfter('.haushaltsposten-form:last');
-            });
+    addButton.addEventListener('click', function() {
+      var totalForms = haushaltspostenFormset.children.length;
+      var emptyForm = haushaltspostenFormset.querySelector('.formset-empty');
+      var newForm = emptyForm.cloneNode(true);
 
-            // Add new Projekt form
-            $(document).on('click', '.add-projekt', function() {
-                var projektForm = $(this).closest('.haushaltsposten-form').find('.projekt-form:last').clone(true);
-                projektForm.find(':input').val('');
-                projektForm.find('.aufwand-form').remove();
-                projektForm.find('.add-aufwand').attr('disabled', false);
-                projektForm.insertAfter($(this).closest('.haushaltsposten-form').find('.projekt-form:last'));
-            });
+      newForm.classList.remove('formset-empty');
+      var inputs = newForm.querySelectorAll(':input');
+      inputs.forEach(function(input) {
+        var newId = input.id.replace(/__prefix__/g, totalForms);
+        var newName = input.name.replace(/__prefix__/g, totalForms);
 
-            // Add new Aufwand form
-            $(document).on('click', '.add-aufwand', function() {
-                var aufwandForm = $(this).closest('.projekt-form').find('.aufwand-form:last').clone(true);
-                aufwandForm.find(':input').val('');
-                aufwandForm.insertAfter($(this).closest('.projekt-form').find('.aufwand-form:last'));
-            });
-        });
-    </script>
+        input.id = newId;
+        input.name = newName;
+        input.value = '';
+      });
+
+      var formsetPrefixes = newForm.querySelectorAll('.formset-prefix');
+      formsetPrefixes.forEach(function(prefix) {
+        var oldPrefix = prefix.getAttribute('data-prefix');
+        var newPrefix = oldPrefix.replace(/__prefix__/g, totalForms);
+
+        prefix.setAttribute('data-prefix', newPrefix);
+      });
+
+      haushaltspostenFormset.appendChild(newForm);
+    });
+  });
+</script>
+
+
 </body>
 </html>
