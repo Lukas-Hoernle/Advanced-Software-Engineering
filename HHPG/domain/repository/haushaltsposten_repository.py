@@ -19,6 +19,7 @@ class IHaushaltspostenRepository(ABC):
     @abstractmethod
     def delete(self, haushaltsposten_id: int) -> None:
         raise NotImplementedError
+
     @abstractmethod
     def get_by_id(self, haushaltsposten_id: int) -> Haushaltsposten:
         raise NotImplementedError

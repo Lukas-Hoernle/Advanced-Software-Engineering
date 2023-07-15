@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 from django.contrib.auth.models import User
 from django.db.models import QuerySet
 
+from HHPG.domain.entity.haushaltsplan import Haushaltsplan
+
 
 class IHaushaltsplanRepository(ABC):
 

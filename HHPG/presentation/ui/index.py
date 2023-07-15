@@ -1,29 +1,20 @@
-from HHPG.infrastruktur.projekt_repository import ProjektRepository
+from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
 from django.shortcuts import render
 
 
 class IndexView:
     @classmethod
     def index(cls, request):
-        HaushaltspostenFormSet = formset_factory(
-            HaushaltspostenForm,
-            extra=1
-        )
-        ProjektFormSet = inlineformset_factory(
-            Haushaltsposten,
-            Projekt,
-            form=ProjektForm,
-            extra=1,
-            can_delete=False,
-            min_num=1
-        )
-
-        haushaltsplan_form = HaushaltsplanForm()
-        haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
+        if request.method == 'POST':
+            form = HaushaltsplanForm(request.POST)
+            if form.is_valid():
+                haushaltsplan = form.save()
+                # Do something with the created haushaltsplan object
+        else:
+            form = HaushaltsplanForm()
 
         context = {
-            'haushaltsplan_form': haushaltsplan_form,
-            'haushaltsposten_formset': haushaltsposten_formset
+            'form': form
         }
 
         return render(request, 'test.html', context)

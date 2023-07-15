@@ -20,5 +20,5 @@ from HHPG.presentation.ui.index import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.test),
+    path('', IndexView.index),
 ]
