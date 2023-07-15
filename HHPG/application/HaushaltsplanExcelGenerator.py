@@ -1,9 +1,11 @@
 import openpyxl
 
+from HHPG.domain.entity import haushaltsplan
+
 
 class HaushaltsplanExcelGenerator:
 
-    def __init__(self, haushaltsplan):
+    def __init__(self, haushaltsplan: haushaltsplan):
         self.haushaltsplan = haushaltsplan
 
 
@@ -18,7 +20,7 @@ class HaushaltsplanExcelGenerator:
 
         row_index = 2
 
-        haushaltsposten_list = self.haushaltsplan.haushaltsposten
+        haushaltsposten_list = self.haushaltsplan.haushaltsposten.ob
 
         for haushaltsposten in haushaltsposten_list:
             builder.set_haushaltsposten(haushaltsposten, row_index)
