@@ -20,7 +20,7 @@ class HaushaltsplanExcelGenerator:
 
         row_index = 2
 
-        haushaltsposten_list = self.haushaltsplan.haushaltsposten.ob
+        haushaltsposten_list = self.haushaltsplan.haushaltsposten
 
         for haushaltsposten in haushaltsposten_list:
             builder.set_haushaltsposten(haushaltsposten, row_index)
