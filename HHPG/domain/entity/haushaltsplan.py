@@ -23,9 +23,20 @@ class Haushaltsplan(models.Model):
         null=False,
         max_length=255
     )
-    startjahr = models.PositiveIntegerField(blank=False, null=False)
-    autor = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=None, null=True)
-    studierendenzahl = models.PositiveIntegerField(blank=False, null=False)
+    startjahr = models.PositiveIntegerField(
+        blank=False,
+        null=False
+    )
+    autor = models.ForeignKey(
+        User,
+        on_delete=models.SET_DEFAULT,
+        default=None,
+        null=True
+    )
+    studierendenzahl = models.PositiveIntegerField(
+        blank=False,
+        null=False
+    )
 
     def __str__(self):
         return self.name

@@ -3,14 +3,27 @@ from django.shortcuts import render
 
 
 class IndexView:
-    service = ProjektRepository()
-
     @classmethod
-    def test(cls, request):
-        dingens = cls.service.get_all()[0]
+    def index(cls, request):
+        HaushaltspostenFormSet = formset_factory(
+            HaushaltspostenForm,
+            extra=1
+        )
+        ProjektFormSet = inlineformset_factory(
+            Haushaltsposten,
+            Projekt,
+            form=ProjektForm,
+            extra=1,
+            can_delete=False,
+            min_num=1
+        )
+
+        haushaltsplan_form = HaushaltsplanForm()
+        haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
 
         context = {
-            'test': dingens
+            'haushaltsplan_form': haushaltsplan_form,
+            'haushaltsposten_formset': haushaltsposten_formset
         }
 
-        return render(request, 'HHPG/test.html', context)
+        return render(request, 'test.html', context)

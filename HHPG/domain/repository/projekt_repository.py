@@ -23,36 +23,31 @@ class ProjektRepository(IProjektRepository):
         return Projekt.objects.get(id=projekt_id)
 
     def get_all(self) -> QuerySet:
-        return Projekt.objects.all()
+        raise NotImplementedError
 
     def order_by(self, order: str) -> QuerySet:
-        return Projekt.objects.order_by(order)
+        raise NotImplementedError
 
     def get_count(self, haushaltsposten_id: int) -> int:
-        return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id).count()
+        raise NotImplementedError
 
     def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
-        return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id)
+        raise NotImplementedError
 
     def get_all_by_name(self, name: str) -> QuerySet:
-        return Projekt.objects.filter(name=name)
+        raise NotImplementedError
 
     def get_all_by_einnahmen(self, einnahmen: int) -> QuerySet:
-        return Projekt.objects.filter(aufwand__einnahmen=einnahmen)
+        raise NotImplementedError
 
     def update_haushaltsposten(self, projekt_id: int, haushaltsposten) -> None:
-        projekt = Projekt.objects.get(id=projekt_id)
-        projekt.haushaltsposten = haushaltsposten
-        projekt.save()
+        raise NotImplementedError
 
     def get_haushaltsposten(self, projekt_id: int):
-        projekt = Projekt.objects.get(id=projekt_id)
-        return projekt.haushaltsposten
+        raise NotImplementedError
 
     def update_name(self, projekt_id: int, name: str) -> None:
-        projekt = Projekt.objects.get(id=projekt_id)
-        projekt.name = name
-        projekt.save()
+        raise NotImplementedError
 
     def get_name(self, projekt_id: int):
         projekt = Projekt.objects.get(id=projekt_id)
