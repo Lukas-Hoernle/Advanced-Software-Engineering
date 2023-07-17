@@ -1,5 +1,55 @@
 from django.shortcuts import render
 
+class HaushaltsplanView:
+    def __init__(self, haushaltsplan_form, haushaltsposten_formset, projekt_formset):
+        self.haushaltsplan_form = haushaltsplan_form
+        self.haushaltsposten_formset = haushaltsposten_formset
+        self.projekt_formset = projekt_formset
+
+    def handle_post_request(self):
+        haushaltsplan = self.haushaltsplan_form.save()
+        haushaltsposten_list = []
+
+        for haushaltsposten_form in self.haushaltsposten_formset:
+            haushaltsposten = haushaltsposten_form.save(commit=False)
+            haushaltsposten.haushaltsplan = haushaltsplan
+            haushaltsposten.save()
+            projekt_list = []
+
+            for projekt_form in self.projekt_formset:
+                projekt = projekt_form.save(commit=False)
+                projekt.haushaltsposten = haushaltsposten
+
+                einnahmen = 0
+                ausgaben = 0
+                aufwand = projekt.aufwand
+
+                if aufwand:
+                    einnahmen = aufwand.einnahmen
+                    ausgaben = aufwand.ausgaben
+
+                projekt.einnahmen = einnahmen
+                projekt.ausgaben = ausgaben
+                projekt.save()
+                projekt_list.append(projekt)
+
+            haushaltsposten.projekte.set(projekt_list)
+            haushaltsposten_list.append(haushaltsposten)
+
+        haushaltsplan.haushaltsposten.set(haushaltsposten_list)
+        excel_generator = HaushaltsplanExcelGenerator(haushaltsplan)
+        excel_generator.generate_excel('haushaltsplan.xlsx')
+        return render(request, 'success.html')
+
+    def handle_get_request(self):
+        context = {
+            'haushaltsplan_form': self.haushaltsplan_form,
+            'haushaltsposten_formset': self.haushaltsposten_formset,
+            'projekt_formset': self.projekt_formset,
+        }
+
+        return render(request, 'create_haushaltsplan.html', context)
+
 def create_haushaltsplan(request):
     if request.method == 'POST':
         haushaltsplan_form = HaushaltsplanForm(request.POST)
@@ -7,49 +57,13 @@ def create_haushaltsplan(request):
         projekt_formset = ProjektFormSet(request.POST, prefix='projekt')
 
         if haushaltsplan_form.is_valid() and haushaltsposten_formset.is_valid() and projekt_formset.is_valid():
-            haushaltsplan = haushaltsplan_form.save()
-            haushaltsposten_list = []
-
-            for haushaltsposten_form in haushaltsposten_formset:
-                haushaltsposten = haushaltsposten_form.save(commit=False)
-                haushaltsposten.haushaltsplan = haushaltsplan
-                haushaltsposten.save()
-                projekt_list = []
-
-                for projekt_form in projekt_formset:
-                    projekt = projekt_form.save(commit=False)
-                    projekt.haushaltsposten = haushaltsposten
-
-                    einnahmen = 0
-                    ausgaben = 0
-                    aufwand = projekt.aufwand
-
-                    if aufwand:
-                        einnahmen = aufwand.einnahmen
-                        ausgaben = aufwand.ausgaben
-
-                    projekt.einnahmen = einnahmen
-                    projekt.ausgaben = ausgaben
-                    projekt.save()
-                    projekt_list.append(projekt)
-
-                haushaltsposten.projekte.set(projekt_list)
-                haushaltsposten_list.append(haushaltsposten)
-
-            haushaltsplan.haushaltsposten.set(haushaltsposten_list)
-            excel_generator = HaushaltsplanExcelGenerator(haushaltsplan)
-            excel_generator.generate_excel('haushaltsplan.xlsx')
-            return render(request, 'success.html')
+            view = HaushaltsplanView(haushaltsplan_form, haushaltsposten_formset, projekt_formset)
+            return view.handle_post_request()
 
     else:
         haushaltsplan_form = HaushaltsplanForm()
         haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
         projekt_formset = ProjektFormSet(prefix='projekt')
 
-    context = {
-        'haushaltsplan_form': haushaltsplan_form,
-        'haushaltsposten_formset': haushaltsposten_formset,
-        'projekt_formset': projekt_formset,
-    }
-
-    return render(request, 'create_haushaltsplan.html', context)
+    view = HaushaltsplanView(haushaltsplan_form, haushaltsposten_formset, projekt_formset)
+    return view.handle_get_request()
