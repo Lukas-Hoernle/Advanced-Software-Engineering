@@ -1,10 +1,9 @@
 from django.forms import inlineformset_factory
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import render
 
 from HHPG.application.forms.AufwandForm import AufwandForm
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
-from django.shortcuts import render
-
 from HHPG.application.forms.ProjektForm import ProjektForm
 from HHPG.application.forms.formfactories import HaushaltspostenFormSet, HaushaltsplanFormSet
 from HHPG.domain.entity.haushaltsplan import Haushaltsplan
@@ -20,12 +19,15 @@ class IndexView:
             haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
             projekt_formset = ProjektForm(prefix='projekt')
             aufwand_formset = AufwandForm(prefix='aufwand')
-            return render(request, 'test.html', {
+
+            template_data = {
                 'haushaltsplan_formset': haushaltsplan_formset,
                 'haushaltsposten_formset': haushaltsposten_formset,
                 'projekt_formset': projekt_formset,
                 'aufwand_formset': aufwand_formset
-            })
+            }
+
+            return cls.render_template('index.html', template_data)
         else:
             haushaltsplan_formset = HaushaltsplanFormSet(request.POST, prefix='haushaltsplan')
             if not haushaltsplan_formset.is_valid():
@@ -43,7 +45,7 @@ class IndexView:
 
             haushaltsposten_instance = haushaltsposten_formset.save()
             projekt_formset = ProjektForm(request.POST, instance=haushaltsposten_instance,
-                                             prefix='projekt')
+                                          prefix='projekt')
             if not projekt_formset.is_valid():
                 return HttpResponseBadRequest("Invalid projekt form")
 
@@ -55,3 +57,7 @@ class IndexView:
 
             aufwand_instance = aufwand_formset.save()
             return HttpResponse("Data saved successfully!")
+
+    @staticmethod
+    def render_template(template_name, context):
+        return f"Rendered template: {template_name} with context: {context}"
