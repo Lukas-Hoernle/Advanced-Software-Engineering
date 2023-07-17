@@ -20,7 +20,7 @@ class IndexView:
             haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
             projekt_formset = ProjektForm(prefix='projekt')
             aufwand_formset = AufwandForm(prefix='aufwand')
-            return render(request, 'test3t.html', {
+            return render(request, 'test.html', {
                 'haushaltsplan_formset': haushaltsplan_formset,
                 'haushaltsposten_formset': haushaltsposten_formset,
                 'projekt_formset': projekt_formset,
