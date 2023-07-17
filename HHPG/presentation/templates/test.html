@@ -37,64 +37,84 @@
                         {% endfor %}
                     </div>
 
-
                     <button type="button" class="add-projekt-btn">Add Projekt</button>
                 {% endif %}
             </div>
         {% endfor %}
     </div>
 
-
     <button type="button" id="add-haushaltsposten-btn">Add Haushaltsposten</button>
 
     <button type="submit">Submit</button>
 </form>
 
-<script>
-    // Function to update the form's management form data
+<script defer>
     function updateManagementForm() {
-        var totalFormsInput = document.getElementById("id_haushaltsposten_set-TOTAL_FORMS");
-        var haushaltspostenForms = document.querySelectorAll(".haushaltsposten-form");
+        const totalFormsInput = document.getElementById("id_haushaltsposten_set-TOTAL_FORMS");
+        const haushaltspostenForms = document.querySelectorAll(".haushaltsposten-form");
 
         totalFormsInput.value = haushaltspostenForms.length;
     }
 
-    // Function to add a new Projekt form
     function addProjektForm(element) {
-        var parentForm = element.closest('.haushaltsposten-form');
-        var projektContainer = parentForm.querySelector('.projekt-container');
-        var lastProjektForm = projektContainer.lastElementChild;
-        var newProjektForm = lastProjektForm.cloneNode(true);
+        let total_count = element.parentElement.querySelector('[id*="TOTAL_FORMS"]')
+        total_count.value = parseInt(total_count.value) + 1;
 
-        // Clear the input values in the cloned form
-        var inputs = newProjektForm.querySelectorAll('input');
-        inputs.forEach(function(input) {
-            input.value = '';
+        let projekte = element.parentElement.querySelector(".projekt-container")
+
+        let projekt = projekte.firstElementChild.cloneNode(true)
+
+        const text = projekt.innerHTML;
+        const regex_inner = /projekt_set-(\d+)-/g;
+
+        projekt.innerHTML = text.replace(regex_inner, function(match, prefix, number, suffix) {
+            let incrementedNumber = parseInt(number) + 1;
+            return prefix + incrementedNumber + suffix;
         });
 
-        projektContainer.appendChild(newProjektForm);
-
-        // Update management form data
-        updateManagementForm();
+        projekte.appendChild(projekt);
     }
 
-    // Function to add a new Haushaltsposten form
+
+    function add_total_forms_value() {
+        const totalFormsInput = document.querySelector('#id_haushaltsposten_set-TOTAL_FORMS');
+        const totalFormsValue = parseInt(totalFormsInput.value);
+        totalFormsInput.value = totalFormsValue + 1;
+        return totalFormsValue;
+    }
+
+    function clone_last_form() {
+        // Get the container element
+        const container = document.getElementById('haushaltsposten-container');
+        const lastElement = container.lastElementChild.cloneNode(true);
+
+        const regex = /_set-(\d+)-/g;
+        const html = lastElement.innerHTML;
+        lastElement.innerHTML = html.replace(regex, function (match, number) {
+            const incrementedNumber = parseInt(number) + 1;
+            return "_set-" + incrementedNumber + "-";
+        });
+
+        const projektContainer = lastElement.querySelector('.projekt-container');
+        const projektForms = projektContainer.getElementsByClassName('projekt-form');
+        while (projektForms.length > 1) {
+            projektContainer.removeChild(projektContainer.lastElementChild);
+        }
+
+        const text = projektContainer.innerHTML;
+        const regex_inner = /projekt_set-(\d+)-/g;
+
+        projektContainer.innerHTML = text.replace(regex_inner, () => "_set-0-");
+
+        container.appendChild(lastElement);
+    }
+
+
     function addHaushaltspostenForm() {
-        var haushaltspostenContainer = document.getElementById('haushaltsposten-container');
-        var lastHaushaltspostenForm = haushaltspostenContainer.lastElementChild;
-        var newHaushaltspostenForm = lastHaushaltspostenForm.cloneNode(true);
-
-        // Clear the input values in the cloned form
-        var inputs = newHaushaltspostenForm.querySelectorAll('input');
-        inputs.forEach(function(input) {
-            input.value = '';
-        });
-
-        haushaltspostenContainer.appendChild(newHaushaltspostenForm);
-
-        // Update management form data
-        updateManagementForm();
+        add_total_forms_value();
+        clone_last_form();
     }
+
 
     // Add event listener for the "Add Projekt" button
     document.addEventListener('click', function (event) {
