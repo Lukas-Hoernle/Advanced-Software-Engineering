@@ -1,5 +1,4 @@
 from django.db import models
-from HHPG.domain.entity.aufwand import Aufwand
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 
 
@@ -13,11 +12,6 @@ class Projekt(models.Model):
         Haushaltsposten,
         on_delete=models.CASCADE,
         null=False
-    )
-    aufwand = models.ForeignKey(
-        Aufwand,
-        on_delete=models.CASCADE,
-        null=True
     )
 
     def __str__(self):
