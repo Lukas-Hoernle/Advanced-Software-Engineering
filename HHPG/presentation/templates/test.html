@@ -1,68 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Haushaltsplan Form</title>
-</head>
-<body>
-    <h1>Create Haushaltsplan</h1>
+from django.shortcuts import render
 
-    <form method="post">
-  {% csrf_token %}
-  {{ haushaltsplan_form.as_p }}
-  {{ haushaltsposten_formset.management_form }}
-  {{ projekt_formset.management_form }}
+def create_haushaltsplan(request):
+    if request.method == 'POST':
+        haushaltsplan_form = HaushaltsplanForm(request.POST)
+        haushaltsposten_formset = HaushaltspostenFormSet(request.POST, prefix='haushaltsposten')
+        projekt_formset = ProjektFormSet(request.POST, prefix='projekt')
 
-  <div id="haushaltsposten-formset">
-    {% for form in haushaltsposten_formset %}
-      {{ form.as_table }}
-      <div id="projekt-formset-{{ forloop.counter0 }}">
-        {{ form.projekt_set.management_form }}
-        {% for projekt_form in form.projekt_set %}
-          {{ projekt_form.as_table }}
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
+        if haushaltsplan_form.is_valid() and haushaltsposten_formset.is_valid() and projekt_formset.is_valid():
+            haushaltsplan = haushaltsplan_form.save()
 
-  <button type="button" id="add-haushaltsposten">Add Haushaltsposten</button>
-  <button type="submit">Submit</button>
-</form>
+            haushaltsposten_list = []
+            for haushaltsposten_form in haushaltsposten_formset:
+                haushaltsposten = haushaltsposten_form.save(commit=False)
+                haushaltsposten.haushaltsplan = haushaltsplan
+                haushaltsposten.save()
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="application/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    var haushaltspostenFormset = document.getElementById('haushaltsposten-formset');
-    var addButton = document.getElementById('add-haushaltsposten');
+                projekt_list = []
+                for projekt_form in projekt_formset:
+                    projekt = projekt_form.save(commit=False)
+                    projekt.haushaltsposten = haushaltsposten
 
-    addButton.addEventListener('click', function() {
-      var totalForms = haushaltspostenFormset.children.length;
-      var emptyForm = haushaltspostenFormset.querySelector('.formset-empty');
-      var newForm = emptyForm.cloneNode(true);
+                    einnahmen = 0
+                    ausgaben = 0
 
-      newForm.classList.remove('formset-empty');
-      var inputs = newForm.querySelectorAll(':input');
-      inputs.forEach(function(input) {
-        var newId = input.id.replace(/__prefix__/g, totalForms);
-        var newName = input.name.replace(/__prefix__/g, totalForms);
+                    aufwand = projekt.aufwand
+                    if aufwand:
+                        einnahmen = aufwand.einnahmen
+                        ausgaben = aufwand.ausgaben
 
-        input.id = newId;
-        input.name = newName;
-        input.value = '';
-      });
+                    projekt.einnahmen = einnahmen
+                    projekt.ausgaben = ausgaben
 
-      var formsetPrefixes = newForm.querySelectorAll('.formset-prefix');
-      formsetPrefixes.forEach(function(prefix) {
-        var oldPrefix = prefix.getAttribute('data-prefix');
-        var newPrefix = oldPrefix.replace(/__prefix__/g, totalForms);
+                    projekt.save()
+                    projekt_list.append(projekt)
 
-        prefix.setAttribute('data-prefix', newPrefix);
-      });
+                haushaltsposten.projekte.set(projekt_list)
+                haushaltsposten_list.append(haushaltsposten)
 
-      haushaltspostenFormset.appendChild(newForm);
-    });
-  });
-</script>
+            haushaltsplan.haushaltsposten.set(haushaltsposten_list)
 
+            excel_generator = HaushaltsplanExcelGenerator(haushaltsplan)
+            excel_generator.generate_excel('haushaltsplan.xlsx')
 
-</body>
-</html>
+            return render(request, 'success.html')
+
+    else:
+        haushaltsplan_form = HaushaltsplanForm()
+        haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
+        projekt_formset = ProjektFormSet(prefix='projekt')
+
+    context = {
+        'haushaltsplan_form': haushaltsplan_form,
+        'haushaltsposten_formset': haushaltsposten_formset,
+        'projekt_formset': projekt_formset,
+    }
+
+    return render(request, 'create_haushaltsplan.html', context)
