@@ -18,7 +18,6 @@
 <form method="post" action="{% url 'home' %}">
     {% csrf_token %}
 
-    <!-- Haushaltsplan Formset -->
     <div class="formset">
         {{ haushaltsplan_formset.management_form }}
         {% for haushaltsplan_form in haushaltsplan_formset.forms %}
@@ -42,7 +41,6 @@
                                         {{ projekt_form.name.label_tag }}
                                         {{ projekt_form.name }}
 
-                                        <!-- Aufwand Formset -->
                                         <div class="formset">
                                             {{ aufwand_formset.management_form }}
                                             {% for aufwand_form in projekt_form.aufwand_set.forms %}
