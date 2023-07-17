@@ -6,6 +6,7 @@
 <body>
 <form id="haushaltsplan-form" method="post">
     {% csrf_token %}
+    <!-- Haushaltsplan form -->
     {{ haushaltsplan_form.as_table }}
 
     {{ formset.management_form }}
@@ -37,18 +38,21 @@
                         {% endfor %}
                     </div>
 
+                    <!-- Add Projekt button -->
                     <button type="button" class="add-projekt-btn">Add Projekt</button>
                 {% endif %}
             </div>
         {% endfor %}
     </div>
 
+    <!-- Add Haushaltsposten button -->
     <button type="button" id="add-haushaltsposten-btn">Add Haushaltsposten</button>
 
     <button type="submit">Submit</button>
 </form>
 
 <script defer>
+    // Function to update the form's management form data
     function updateManagementForm() {
         const totalFormsInput = document.getElementById("id_haushaltsposten_set-TOTAL_FORMS");
         const haushaltspostenForms = document.querySelectorAll(".haushaltsposten-form");
@@ -61,6 +65,7 @@
         total_count.value = parseInt(total_count.value) + 1;
 
         let projekte = element.parentElement.querySelector(".projekt-container")
+        console.log(projekte)
 
         let projekt = projekte.firstElementChild.cloneNode(true)
 
@@ -77,6 +82,7 @@
 
 
     function add_total_forms_value() {
+        // Increment the value of "id_haushaltsposten_set-TOTAL_FORMS"
         const totalFormsInput = document.querySelector('#id_haushaltsposten_set-TOTAL_FORMS');
         const totalFormsValue = parseInt(totalFormsInput.value);
         totalFormsInput.value = totalFormsValue + 1;
@@ -86,8 +92,11 @@
     function clone_last_form() {
         // Get the container element
         const container = document.getElementById('haushaltsposten-container');
+
+        // Clone the last element
         const lastElement = container.lastElementChild.cloneNode(true);
 
+        // Increment text occurrences of "_set-(number)-" by one
         const regex = /_set-(\d+)-/g;
         const html = lastElement.innerHTML;
         lastElement.innerHTML = html.replace(regex, function (match, number) {
@@ -95,17 +104,20 @@
             return "_set-" + incrementedNumber + "-";
         });
 
+        // Remove all "projekt-form" from the "projekt-container" except one
         const projektContainer = lastElement.querySelector('.projekt-container');
         const projektForms = projektContainer.getElementsByClassName('projekt-form');
         while (projektForms.length > 1) {
             projektContainer.removeChild(projektContainer.lastElementChild);
         }
 
+        // Replace the string "projekt_set-(number)-" with "projekt_set-0-"
         const text = projektContainer.innerHTML;
         const regex_inner = /projekt_set-(\d+)-/g;
 
         projektContainer.innerHTML = text.replace(regex_inner, () => "_set-0-");
 
+        // Append the cloned element to the container
         container.appendChild(lastElement);
     }
 
