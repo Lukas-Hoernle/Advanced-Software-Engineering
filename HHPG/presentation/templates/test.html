@@ -7,62 +7,62 @@
     <h1>Create Haushaltsplan</h1>
 
     <form method="post">
-  {% csrf_token %}
-  {{ haushaltsplan_form.as_p }}
-  {{ haushaltsposten_formset.management_form }}
-  {{ projekt_formset.management_form }}
+        {% csrf_token %}
+        {{ haushaltsplan_form.as_p }}
+        {{ haushaltsposten_formset.management_form }}
+        {{ projekt_formset.management_form }}
 
-  <div id="haushaltsposten-formset">
-    {% for form in haushaltsposten_formset %}
-      {{ form.as_table }}
-      <div id="projekt-formset-{{ forloop.counter0 }}">
-        {{ form.projekt_set.management_form }}
-        {% for projekt_form in form.projekt_set %}
-          {{ projekt_form.as_table }}
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
+        <div id="haushaltsposten-formset">
+            {% for form in haushaltsposten_formset %}
+                {{ form.as_table }}
+                <div id="projekt-formset-{{ forloop.counter0 }}">
+                    {{ form.projekt_set.management_form }}
+                    {% for projekt_form in form.projekt_set %}
+                        {{ projekt_form.as_table }}
+                        <input type="number" name="projekt-{{ forloop.parentloop.counter0 }}-einnahmen">
+                        <input type="number" name="projekt-{{ forloop.parentloop.counter0 }}-ausgaben">
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
 
-  <button type="button" id="add-haushaltsposten">Add Haushaltsposten</button>
-  <button type="submit">Submit</button>
-</form>
+        <button type="button" id="add-haushaltsposten">Add Haushaltsposten</button>
+        <button type="submit">Submit</button>
+    </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="application/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    var haushaltspostenFormset = document.getElementById('haushaltsposten-formset');
-    var addButton = document.getElementById('add-haushaltsposten');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="application/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var haushaltspostenFormset = document.getElementById('haushaltsposten-formset');
+            var addButton = document.getElementById('add-haushaltsposten');
 
-    addButton.addEventListener('click', function() {
-      var totalForms = haushaltspostenFormset.children.length;
-      var emptyForm = haushaltspostenFormset.querySelector('.formset-empty');
-      var newForm = emptyForm.cloneNode(true);
+            addButton.addEventListener('click', function() {
+                var totalForms = haushaltspostenFormset.children.length;
+                var emptyForm = haushaltspostenFormset.querySelector('.formset-empty');
+                var newForm = emptyForm.cloneNode(true);
 
-      newForm.classList.remove('formset-empty');
-      var inputs = newForm.querySelectorAll(':input');
-      inputs.forEach(function(input) {
-        var newId = input.id.replace(/__prefix__/g, totalForms);
-        var newName = input.name.replace(/__prefix__/g, totalForms);
+                newForm.classList.remove('formset-empty');
+                var inputs = newForm.querySelectorAll(':input');
+                inputs.forEach(function(input) {
+                    var newId = input.id.replace(/__prefix__/g, totalForms);
+                    var newName = input.name.replace(/__prefix__/g, totalForms);
 
-        input.id = newId;
-        input.name = newName;
-        input.value = '';
-      });
+                    input.id = newId;
+                    input.name = newName;
+                    input.value = '';
+                });
 
-      var formsetPrefixes = newForm.querySelectorAll('.formset-prefix');
-      formsetPrefixes.forEach(function(prefix) {
-        var oldPrefix = prefix.getAttribute('data-prefix');
-        var newPrefix = oldPrefix.replace(/__prefix__/g, totalForms);
+                var formsetPrefixes = newForm.querySelectorAll('.formset-prefix');
+                formsetPrefixes.forEach(function(prefix) {
+                    var oldPrefix = prefix.getAttribute('data-prefix');
+                    var newPrefix = oldPrefix.replace(/__prefix__/g, totalForms);
 
-        prefix.setAttribute('data-prefix', newPrefix);
-      });
+                    prefix.setAttribute('data-prefix', newPrefix);
+                });
 
-      haushaltspostenFormset.appendChild(newForm);
-    });
-  });
-</script>
-
-
+                haushaltspostenFormset.appendChild(newForm);
+            });
+        });
+    </script>
 </body>
 </html>
