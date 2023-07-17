@@ -21,6 +21,27 @@ class BaseHaushaltspostenFormSet(BaseInlineFormSet):
                 ProjektFormSet.get_default_prefix())
         )
 
+    def is_valid(self):
+        result = super(BaseHaushaltspostenFormSet, self).is_valid()
+
+        if self.is_bound:
+            for form in self.forms:
+                if hasattr(form, 'nested'):
+                    result = result and form.nested.is_valid()
+
+        return result
+
+    def save(self, commit=True):
+
+        result = super(BaseHaushaltspostenFormSet, self).save(commit=commit)
+
+        for form in self.forms:
+            if hasattr(form, 'nested'):
+                if not self._should_delete_form(form):
+                    form.nested.save(commit=commit)
+
+        return result
+
 
 class BaseProjektFormSet(BaseInlineFormSet):
     def add_fields(self, form, index):
@@ -36,6 +57,27 @@ class BaseProjektFormSet(BaseInlineFormSet):
                 AufwandFormSet.get_default_prefix())
         )
 
+        def is_valid(self):
+            result = super(BaseProjektFormSet, self).is_valid()
+
+            if self.is_bound:
+                for form in self.forms:
+                    if hasattr(form, 'nested'):
+                        result = result and form.nested.is_valid()
+
+            return result
+
+    def save(self, commit=True):
+
+        result = super(BaseProjektFormSet, self).save(commit=commit)
+
+        for form in self.forms:
+            if hasattr(form, 'nested'):
+                if not self._should_delete_form(form):
+                    form.nested.save(commit=commit)
+
+        return result
+
 
 HaushaltspostenFormSet = inlineformset_factory(
     Haushaltsplan,
@@ -44,7 +86,7 @@ HaushaltspostenFormSet = inlineformset_factory(
     fields=[
         'posten_name'
     ],
-    extra=1,
+    extra=2,
 )
 
 ProjektFormSet = inlineformset_factory(
@@ -54,7 +96,7 @@ ProjektFormSet = inlineformset_factory(
     fields=[
         'projekt_name'
     ],
-    extra=1,
+    extra=3,
     can_delete=False
 )
 
@@ -63,5 +105,6 @@ AufwandFormSet = inlineformset_factory(
     Aufwand,
     form=AufwandForm,
     extra=1,
+    max_num=1,
     can_delete=False
 )
