@@ -1,68 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Haushaltsplan Form</title>
-</head>
-<body>
-    <h1>Create Haushaltsplan</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ haushaltsplan_form.as_p }}
-        {{ haushaltsposten_formset.management_form }}
-        {{ projekt_formset.management_form }}
-
-        <div id="haushaltsposten-formset">
-            {% for form in haushaltsposten_formset %}
-                {{ form.as_table }}
-                <div id="projekt-formset-{{ forloop.counter0 }}">
-                    {{ form.projekt_set.management_form }}
-                    {% for projekt_form in form.projekt_set %}
-                        {{ projekt_form.as_table }}
-                        <input type="number" name="projekt-{{ forloop.parentloop.counter0 }}-einnahmen">
-                        <input type="number" name="projekt-{{ forloop.parentloop.counter0 }}-ausgaben">
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
-
-        <button type="button" id="add-haushaltsposten">Add Haushaltsposten</button>
-        <button type="submit">Submit</button>
-    </form>
-
+    <title>Nested Formsets</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="application/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            var haushaltspostenFormset = document.getElementById('haushaltsposten-formset');
-            var addButton = document.getElementById('add-haushaltsposten');
-
-            addButton.addEventListener('click', function() {
-                var totalForms = haushaltspostenFormset.children.length;
-                var emptyForm = haushaltspostenFormset.querySelector('.formset-empty');
-                var newForm = emptyForm.cloneNode(true);
-
-                newForm.classList.remove('formset-empty');
-                var inputs = newForm.querySelectorAll(':input');
-                inputs.forEach(function(input) {
-                    var newId = input.id.replace(/__prefix__/g, totalForms);
-                    var newName = input.name.replace(/__prefix__/g, totalForms);
-
-                    input.id = newId;
-                    input.name = newName;
-                    input.value = '';
-                });
-
-                var formsetPrefixes = newForm.querySelectorAll('.formset-prefix');
-                formsetPrefixes.forEach(function(prefix) {
-                    var oldPrefix = prefix.getAttribute('data-prefix');
-                    var newPrefix = oldPrefix.replace(/__prefix__/g, totalForms);
-
-                    prefix.setAttribute('data-prefix', newPrefix);
-                });
-
-                haushaltspostenFormset.appendChild(newForm);
+    <script>
+        $(document).ready(function() {
+            $(".add-formset").click(function() {
+                var formset = $(this).closest(".formset");
+                var newForm = formset.find(".formset-form:last").clone();
+                newForm.find(":input").val("").removeAttr("checked").removeAttr("selected");
+                formset.append(newForm);
             });
         });
     </script>
+</head>
+<body>
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+
+    <!-- Haushaltsplan Formset -->
+    <div class="formset">
+        {{ haushaltsplan_formset.management_form }}
+        {% for haushaltsplan_form in haushaltsplan_formset.forms %}
+            <div class="formset-form">
+                {{ haushaltsplan_form.name.label_tag }}
+                {{ haushaltsplan_form.name }}
+
+                <!-- Haushaltsposten Formset -->
+                <div class="formset">
+                    {{ haushaltsposten_formset.management_form }}
+                    {% for haushaltsposten_form in haushaltsposten_formset.forms %}
+                        <div class="formset-form">
+                            {{ haushaltsposten_form.name.label_tag }}
+                            {{ haushaltsposten_form.name }}
+
+                            <!-- Projekt Formset -->
+                            <div class="formset">
+                                {{ projekt_formset.management_form }}
+                                {% for projekt_form in projekt_formset.forms %}
+                                    <div class="formset-form">
+                                        {{ projekt_form.name.label_tag }}
+                                        {{ projekt_form.name }}
+
+                                        <!-- Aufwand Formset -->
+                                        <div class="formset">
+                                            {{ aufwand_formset.management_form }}
+                                            {% for aufwand_form in projekt_form.aufwand_set.forms %}
+                                                <div class="formset-form">
+                                                    {{ aufwand_form.einnahmen.label_tag }}
+                                                    {{ aufwand_form.einnahmen }}
+                                                    {{ aufwand_form.ausgaben.label_tag }}
+                                                    {{ aufwand_form.ausgaben }}
+                                                </div>
+                                            {% endfor %}
+                                            <button type="button" class="add-formset">Add Aufwand</button>
+                                        </div>
+
+                                    </div>
+                                    <button type="button" class="add-formset">Add Projekt</button>
+                                {% endfor %}
+                                <button type="button" class="add-formset">Add Posten</button>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <button type="button" class="add-formset">Add Haushaltsplan</button>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    $(".formset").each(function() {
+        var addButton = '<button type="button" class="add-formset">Add ' + $(this).find('.formset-form:first').data('name') + '</button>';
+        $(this).append(addButton);
+    });
+</script>
 </body>
 </html>
