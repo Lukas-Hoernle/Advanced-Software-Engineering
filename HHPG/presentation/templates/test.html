@@ -1,39 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nested Formsets</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".add-formset").click(function () {
-                var formset = $(this).closest(".formset");
-                var newForm = formset.find(".formset-form:last").clone();
-                newForm.find(":input").val("").removeAttr("checked").removeAttr("selected");
-                formset.append(newForm);
-            });
-        });
-    </script>
+    <title>Haushaltsplan</title>
 </head>
 <body>
-<form method="post" action="{% url 'home' %}">
+<form id="haushaltsplan-form" method="post">
     {% csrf_token %}
-    {{ haushaltsplan_form.as_p }}
+    {{ haushaltsplan_form.as_table }}
 
-    <table>
-        {{ formset.management_form }}
-        {% for form in formset %}
-            {{ form.as_table }}
+    {{ formset.management_form }}
+    {{ formset.non_form_errors }}
+
+    <div id="haushaltsposten-container">
+        {% for child_form in formset.forms %}
+            <div class="haushaltsposten-form">
+                {{ child_form.as_table }}
+
+                {% if child_form.nested %}
+                    {{ child_form.nested.management_form }}
+                    {{ child_form.nested.non_form_errors }}
+
+                    <div class="projekt-container">
+                        {% for nested_form in child_form.nested.forms %}
+                            <div class="projekt-form">
+                                {{ nested_form.as_table }}
+
+                                {% if nested_form.nested %}
+                                    {{ nested_form.nested.management_form }}
+                                    {{ nested_form.nested.non_form_errors }}
+
+                                    {% for very_nested_form in nested_form.nested.forms %}
+                                        {{ very_nested_form.as_table }}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+                    <button type="button" class="add-projekt-btn">Add Projekt</button>
+                {% endif %}
+            </div>
         {% endfor %}
-    </table>
+    </div>
 
-    <button type="submit">Save</button>
+
+    <button type="button" id="add-haushaltsposten-btn">Add Haushaltsposten</button>
+
+    <button type="submit">Submit</button>
 </form>
 
-
 <script>
-    $(".formset").each(function () {
-        var addButton = '<button type="button" class="add-formset">Add ' + $(this).find('.formset-form:first').data('name') + '</button>';
-        $(this).append(addButton);
+    // Function to update the form's management form data
+    function updateManagementForm() {
+        var totalFormsInput = document.getElementById("id_haushaltsposten_set-TOTAL_FORMS");
+        var haushaltspostenForms = document.querySelectorAll(".haushaltsposten-form");
+
+        totalFormsInput.value = haushaltspostenForms.length;
+    }
+
+    // Function to add a new Projekt form
+    function addProjektForm(element) {
+        var parentForm = element.closest('.haushaltsposten-form');
+        var projektContainer = parentForm.querySelector('.projekt-container');
+        var lastProjektForm = projektContainer.lastElementChild;
+        var newProjektForm = lastProjektForm.cloneNode(true);
+
+        // Clear the input values in the cloned form
+        var inputs = newProjektForm.querySelectorAll('input');
+        inputs.forEach(function(input) {
+            input.value = '';
+        });
+
+        projektContainer.appendChild(newProjektForm);
+
+        // Update management form data
+        updateManagementForm();
+    }
+
+    // Function to add a new Haushaltsposten form
+    function addHaushaltspostenForm() {
+        var haushaltspostenContainer = document.getElementById('haushaltsposten-container');
+        var lastHaushaltspostenForm = haushaltspostenContainer.lastElementChild;
+        var newHaushaltspostenForm = lastHaushaltspostenForm.cloneNode(true);
+
+        // Clear the input values in the cloned form
+        var inputs = newHaushaltspostenForm.querySelectorAll('input');
+        inputs.forEach(function(input) {
+            input.value = '';
+        });
+
+        haushaltspostenContainer.appendChild(newHaushaltspostenForm);
+
+        // Update management form data
+        updateManagementForm();
+    }
+
+    // Add event listener for the "Add Projekt" button
+    document.addEventListener('click', function (event) {
+        if (event.target.matches('.add-projekt-btn')) {
+            addProjektForm(event.target);
+        }
+    });
+
+    // Add event listener for the "Add Haushaltsposten" button
+    document.getElementById('add-haushaltsposten-btn').addEventListener('click', function () {
+        addHaushaltspostenForm();
     });
 </script>
 </body>
