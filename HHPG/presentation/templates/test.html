@@ -1,100 +1,68 @@
-from django.shortcuts import render
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Haushaltsplan Form</title>
+</head>
+<body>
+    <h1>Create Haushaltsplan</h1>
 
-# Abstract Factory Pattern
-class FormFactory:
-    def create_haushaltsplan_form(self, data=None):
-        pass
+    <form method="post">
+  {% csrf_token %}
+  {{ haushaltsplan_form.as_p }}
+  {{ haushaltsposten_formset.management_form }}
+  {{ projekt_formset.management_form }}
 
-    def create_haushaltsposten_formset(self, data=None, prefix=None):
-        pass
+  <div id="haushaltsposten-formset">
+    {% for form in haushaltsposten_formset %}
+      {{ form.as_table }}
+      <div id="projekt-formset-{{ forloop.counter0 }}">
+        {{ form.projekt_set.management_form }}
+        {% for projekt_form in form.projekt_set %}
+          {{ projekt_form.as_table }}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
 
-    def create_projekt_formset(self, data=None, prefix=None):
-        pass
+  <button type="button" id="add-haushaltsposten">Add Haushaltsposten</button>
+  <button type="submit">Submit</button>
+</form>
 
-class DefaultFormFactory(FormFactory):
-    def create_haushaltsplan_form(self, data=None):
-        return HaushaltsplanForm(data=data)
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="application/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var haushaltspostenFormset = document.getElementById('haushaltsposten-formset');
+    var addButton = document.getElementById('add-haushaltsposten');
 
-    def create_haushaltsposten_formset(self, data=None, prefix=None):
-        return HaushaltspostenFormSet(data=data, prefix=prefix)
+    addButton.addEventListener('click', function() {
+      var totalForms = haushaltspostenFormset.children.length;
+      var emptyForm = haushaltspostenFormset.querySelector('.formset-empty');
+      var newForm = emptyForm.cloneNode(true);
 
-    def create_projekt_formset(self, data=None, prefix=None):
-        return ProjektFormSet(data=data, prefix=prefix)
+      newForm.classList.remove('formset-empty');
+      var inputs = newForm.querySelectorAll(':input');
+      inputs.forEach(function(input) {
+        var newId = input.id.replace(/__prefix__/g, totalForms);
+        var newName = input.name.replace(/__prefix__/g, totalForms);
 
-# Strategy Pattern
-class HaushaltsplanStrategy:
-    def handle_post_request(self, haushaltsplan, haushaltsposten_list):
-        pass
+        input.id = newId;
+        input.name = newName;
+        input.value = '';
+      });
 
-class ExcelExportStrategy(HaushaltsplanStrategy):
-    def handle_post_request(self, haushaltsplan, haushaltsposten_list):
-        excel_generator = HaushaltsplanExcelGenerator(haushaltsplan)
-        excel_generator.generate_excel('haushaltsplan.xlsx')
-        return render(request, 'success.html')
+      var formsetPrefixes = newForm.querySelectorAll('.formset-prefix');
+      formsetPrefixes.forEach(function(prefix) {
+        var oldPrefix = prefix.getAttribute('data-prefix');
+        var newPrefix = oldPrefix.replace(/__prefix__/g, totalForms);
 
-class HaushaltsplanView:
-    def __init__(self, form_factory):
-        self.form_factory = form_factory
+        prefix.setAttribute('data-prefix', newPrefix);
+      });
 
-    def handle_post_request(self, request):
-        haushaltsplan_form = self.form_factory.create_haushaltsplan_form(request.POST)
-        haushaltsposten_formset = self.form_factory.create_haushaltsposten_formset(request.POST, prefix='haushaltsposten')
-        projekt_formset = self.form_factory.create_projekt_formset(request.POST, prefix='projekt')
+      haushaltspostenFormset.appendChild(newForm);
+    });
+  });
+</script>
 
-        if haushaltsplan_form.is_valid() and haushaltsposten_formset.is_valid() and projekt_formset.is_valid():
-            haushaltsplan = haushaltsplan_form.save()
-            haushaltsposten_list = []
 
-            for haushaltsposten_form in haushaltsposten_formset:
-                haushaltsposten = haushaltsposten_form.save(commit=False)
-                haushaltsposten.haushaltsplan = haushaltsplan
-                haushaltsposten.save()
-                projekt_list = []
-
-                for projekt_form in projekt_formset:
-                    projekt = projekt_form.save(commit=False)
-                    projekt.haushaltsposten = haushaltsposten
-
-                    einnahmen = 0
-                    ausgaben = 0
-                    aufwand = projekt.aufwand
-
-                    if aufwand:
-                        einnahmen = aufwand.einnahmen
-                        ausgaben = aufwand.ausgaben
-
-                    projekt.einnahmen = einnahmen
-                    projekt.ausgaben = ausgaben
-                    projekt.save()
-                    projekt_list.append(projekt)
-
-                haushaltsposten.projekte.set(projekt_list)
-                haushaltsposten_list.append(haushaltsposten)
-
-            haushaltsplan.haushaltsposten.set(haushaltsposten_list)
-
-            # Strategy Pattern
-            strategy = ExcelExportStrategy()
-            return strategy.handle_post_request(haushaltsplan, haushaltsposten_list)
-
-    def handle_get_request(self, request):
-        haushaltsplan_form = self.form_factory.create_haushaltsplan_form()
-        haushaltsposten_formset = self.form_factory.create_haushaltsposten_formset(prefix='haushaltsposten')
-        projekt_formset = self.form_factory.create_projekt_formset(prefix='projekt')
-
-        context = {
-            'haushaltsplan_form': haushaltsplan_form,
-            'haushaltsposten_formset': haushaltsposten_formset,
-            'projekt_formset': projekt_formset,
-        }
-
-        return render(request, 'create_haushaltsplan.html', context)
-
-def create_haushaltsplan(request):
-    form_factory = DefaultFormFactory()
-    view = HaushaltsplanView(form_factory)
-
-    if request.method == 'POST':
-        return view.handle_post_request(request)
-    else:
-        return view.handle_get_request(request)
+</body>
+</html>
