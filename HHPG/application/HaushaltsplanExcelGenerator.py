@@ -86,7 +86,7 @@ class ExcelBuilder:
         self.worksheet.cell(
             row=self.row_index,
             column=1,
-            value=self.haushaltsposten.name
+            value=self.haushaltsposten.projekt_name
         )
 
 
