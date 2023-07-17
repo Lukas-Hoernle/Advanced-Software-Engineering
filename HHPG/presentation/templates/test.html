@@ -51,8 +51,11 @@ def create_haushaltsplan(request):
 
     context = {
         'haushaltsplan_form': haushaltsplan_form,
+
         'haushaltsposten_formset': haushaltsposten_formset,
+
         'projekt_formset': projekt_formset,
+
     }
 
     return render(request, 'create_haushaltsplan.html', context)
