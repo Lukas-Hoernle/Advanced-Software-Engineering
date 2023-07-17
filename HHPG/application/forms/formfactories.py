@@ -11,7 +11,9 @@ from HHPG.domain.entity.projekt import Projekt
 HaushaltsplanFormSet = inlineformset_factory(
     Haushaltsplan,
     Haushaltsposten,
-    HaushaltspostenForm,
+    fields=(
+        'name',
+    ),
     extra=1,
     min_num=1,
 )
@@ -19,7 +21,20 @@ HaushaltsplanFormSet = inlineformset_factory(
 HaushaltspostenFormSet = inlineformset_factory(
     Haushaltsposten,
     Projekt,
-    ProjektForm,
+    fields=(
+        'name',
+    ),
+    extra=1,
+    min_num=1,
+)
+
+ProjektFormSet = inlineformset_factory(
+    Projekt,
+    Aufwand,
+    fields=(
+        'einnahmen',
+        'ausgaben',
+    ),
     extra=1,
     min_num=1,
 )

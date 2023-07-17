@@ -6,6 +6,5 @@ class ProjektForm(forms.ModelForm):
     class Meta:
         model = Projekt
         fields = [
-            'name',
-            'aufwand'
+            'name'
         ]
