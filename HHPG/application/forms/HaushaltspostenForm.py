@@ -8,5 +8,5 @@ class HaushaltspostenForm(forms.ModelForm):
     class Meta:
         model = Haushaltsposten
         fields = [
-            'name'
+            'posten_name'
         ]

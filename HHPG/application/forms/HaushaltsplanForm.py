@@ -7,10 +7,10 @@ class HaushaltsplanForm(forms.ModelForm):
     class Meta:
         model = Haushaltsplan
         fields = [
-            'name',
+            'plan_name',
             'standort',
             'startjahr',
-            'autor',
+            'author',
             'studierendenzahl'
         ]
 

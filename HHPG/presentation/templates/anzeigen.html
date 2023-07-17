@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>plan_name: {{ haushaltsplan.plan_name }}</title>
+</head>
+<body>
+
+<ul>
+    <li>
+        plan_name: {{ haushaltsplan.plan_name }}
+    </li>
+    {% for haushaltsposten in haushaltsplan.haushaltsposten_liste %}
+        <li>haushaltsposten: {{ haushaltsposten }}</li>
+        <ul>
+            {% for projekt in haushaltsposten.projekte %}
+                <li>projekt: {{ projekt }}</li>
+                <ul>
+                    {% for aufwand in projekt.aufwand %}
+                        <li>aufwand: {{ aufwand }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

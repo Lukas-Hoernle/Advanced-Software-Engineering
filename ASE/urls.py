@@ -20,5 +20,6 @@ from HHPG.presentation.ui.index import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.index),
+    path('', IndexView.index, name="home"),
+    path('anzeige/<int:haushaltsplan_id>/', IndexView.anzeige, name="anzeige")
 ]

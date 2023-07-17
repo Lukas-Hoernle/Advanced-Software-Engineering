@@ -21,7 +21,7 @@ class TestProjektRepository(TestCase):
     def test_create_projekt(self):
         projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
         self.assertIsInstance(projekt, Projekt)
-        self.assertEqual(projekt.name, "Testprojekt")
+        self.assertEqual(projekt.projekt_name, "Testprojekt")
         self.assertEqual(projekt.einnahmen, 1000)
         self.assertEqual(projekt.ausgaben, 500)
 
@@ -34,7 +34,7 @@ class TestProjektRepository(TestCase):
         projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
         self.repository.update_name(projekt.id, "Updated Projekt")
         updated_projekt = self.repository.get_by_id(projekt.id)
-        self.assertEqual(updated_projekt.name, "Updated Projekt")
+        self.assertEqual(updated_projekt.projekt_name, "Updated Projekt")
 
     def test_update_projekt_einnahmen(self):
         projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
