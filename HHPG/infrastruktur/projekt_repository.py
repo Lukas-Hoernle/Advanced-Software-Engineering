@@ -6,6 +6,8 @@ from django.db.models import QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from HHPG.infrastruktur.aufwand_repository import AufwandRepository
+
 
 class ProjektRepository(IProjektRepository):
     @staticmethod
@@ -33,6 +35,13 @@ class ProjektRepository(IProjektRepository):
 
     def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
         return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id)
+
+    def get_all_by_haushaltsposten_including_children(self, haushaltsposten_id: int) -> QuerySet:
+        projekt_liste = self.get_all_by_haushaltsposten(haushaltsposten_id=haushaltsposten_id)
+        for projekt in projekt_liste:
+            projekt.aufwand = AufwandRepository().get_all_by_projekt(projekt.id)
+
+        return projekt_liste
 
     def get_all_by_name(self, name: str) -> QuerySet:
         return Projekt.objects.filter(name=name)
