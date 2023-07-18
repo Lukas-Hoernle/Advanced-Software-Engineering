@@ -30,12 +30,12 @@ class HaushaltsplanRepository(IHaushaltsplanRepository):
 
     def update_name(self, haushaltsplan_id: int, name: str) -> None:
         haushaltsplan = Haushaltsplan.objects.get(id=haushaltsplan_id)
-        haushaltsplan.projekt_name = name
+        haushaltsplan.plan_name = name
         haushaltsplan.save()
 
     def get_name(self, haushaltsplan_id: int) -> str:
         haushaltsplan = Haushaltsplan.objects.get(id=haushaltsplan_id)
-        return haushaltsplan.projekt_name
+        return haushaltsplan.plan_name
 
     def update_standort(self, haushaltsplan_id: int, standort: str) -> None:
         haushaltsplan = Haushaltsplan.objects.get(id=haushaltsplan_id)
