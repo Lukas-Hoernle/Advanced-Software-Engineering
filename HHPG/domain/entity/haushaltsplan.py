@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-
 class Haushaltsplan(models.Model):
     plan_name = models.CharField(blank=False, null=False, max_length=255)
     standort = models.CharField(
