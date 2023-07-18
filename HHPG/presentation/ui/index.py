@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
-from HHPG.application.forms.formfactories import HaushaltspostenFormSet, ProjektFormSet, AufwandFormSet
+from HHPG.application.forms.formfactories import HaushaltspostenFormSet
 from HHPG.domain.entity.aufwand import Aufwand
-from HHPG.domain.entity.haushaltsplan import Haushaltsplan
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 from HHPG.domain.entity.projekt import Projekt
 from HHPG.infrastruktur.haushaltsplan_repository import HaushaltsplanRepository
@@ -34,15 +33,9 @@ class IndexView:
             'formset': formset,
         })
 
-
     @classmethod
     def anzeige(cls, request, haushaltsplan_id):
-        haushaltsplan = Haushaltsplan.objects.get(id=haushaltsplan_id)
-        haushaltsplan.haushaltsposten_liste = Haushaltsposten.objects.filter(haushaltsplan_id=haushaltsplan.id)
-        for haushaltsposten in haushaltsplan.haushaltsposten_liste:
-            haushaltsposten.projekte = Projekt.objects.filter(haushaltsposten_id=haushaltsposten.id)
-            for projekt in haushaltsposten.projekte:
-                projekt.aufwand = Aufwand.objects.filter(projekt_id=projekt.id)
+        haushaltsplan = cls.haushaltsplan_repository.get_by_id_including_children(haushaltsplan_id=haushaltsplan_id)
 
         context = {
             'haushaltsplan': haushaltsplan,
