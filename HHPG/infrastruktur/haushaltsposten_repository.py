@@ -39,4 +39,4 @@ class HaushaltspostenRepository(IHaushaltspostenRepository):
 
     def get_name(self, haushaltsposten_id: int) -> str:
         haushaltsposten = Haushaltsposten.objects.get(id=haushaltsposten_id)
-        return haushaltsposten.projekt_name
+        return haushaltsposten.posten_name
