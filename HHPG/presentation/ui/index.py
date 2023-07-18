@@ -6,9 +6,16 @@ from HHPG.domain.entity.aufwand import Aufwand
 from HHPG.domain.entity.haushaltsplan import Haushaltsplan
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 from HHPG.domain.entity.projekt import Projekt
+from HHPG.infrastruktur.haushaltsplan_repository import HaushaltsplanRepository
+from HHPG.infrastruktur.haushaltsposten_repository import HaushaltspostenRepository
+from HHPG.infrastruktur.projekt_repository import ProjektRepository
 
 
 class IndexView:
+    haushaltsplan_repository = HaushaltsplanRepository()
+    haushaltsposten_repository = HaushaltspostenRepository()
+    projekt_repository = ProjektRepository()
+
     @classmethod
     def index(cls, request):
         if request.method == 'POST':
@@ -47,5 +54,4 @@ class IndexView:
     def generate_xl(cls, request, haushaltsplan_id):
         # stuff
         # save excel in folder / file idk
-        return #file path to excel
-
+        return  # file path to excel
