@@ -21,7 +21,8 @@ class Haushaltsplan(models.Model):
         ],
         blank=False,
         null=False,
-        max_length=255
+        max_length=255,
+        default='Karlsruhe'
     )
     startjahr = models.PositiveIntegerField(
         blank=False,
