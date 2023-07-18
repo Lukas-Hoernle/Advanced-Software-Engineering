@@ -1,5 +1,6 @@
 from django.db.models import QuerySet
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
+from .projekt_repository import ProjektRepository
 from ..domain.entity.haushaltsplan import Haushaltsplan
 from ..domain.repository.haushaltsposten_repository import IHaushaltspostenRepository
 
@@ -16,6 +17,14 @@ class HaushaltspostenRepository(IHaushaltspostenRepository):
 
     def get_by_id(self, haushaltsposten_id: int) -> Haushaltsposten:
         return Haushaltsposten.objects.get(id=haushaltsposten_id)
+
+    def get_all_by_haushaltsplan_including_children(self, haushaltsplan: Haushaltsplan) -> QuerySet:
+        haushaltsposten_liste = self.get_all_by_haushaltsplan(haushaltsplan=haushaltsplan)
+        for haushaltsposten in haushaltsposten_liste:
+            haushaltsposten.projekte = ProjektRepository().get_all_by_haushaltsposten_including_children(
+                haushaltsposten_id=haushaltsposten.id)
+
+        return haushaltsposten_liste
 
     def get_all(self) -> QuerySet:
         return Haushaltsposten.objects.all()
