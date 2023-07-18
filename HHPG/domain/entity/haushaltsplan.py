@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Haushaltsplan(models.Model):
-    name = models.CharField(blank=False, null=False, max_length=255)
+    plan_name = models.CharField(blank=False, null=False, max_length=255)
     standort = models.CharField(
         choices=[
             ('Heidenheim', 'Heidenheim'),
@@ -27,7 +27,7 @@ class Haushaltsplan(models.Model):
         blank=False,
         null=False
     )
-    autor = models.ForeignKey(
+    author = models.ForeignKey(
         User,
         on_delete=models.SET_DEFAULT,
         default=None,
@@ -39,4 +39,4 @@ class Haushaltsplan(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.plan_name

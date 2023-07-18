@@ -1,11 +1,8 @@
-from django.forms import inlineformset_factory
-from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from HHPG.application.forms.AufwandForm import AufwandForm
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
-from HHPG.application.forms.ProjektForm import ProjektForm
-from HHPG.application.forms.formfactories import HaushaltspostenFormSet, HaushaltsplanFormSet
+from HHPG.application.forms.formfactories import HaushaltspostenFormSet, ProjektFormSet, AufwandFormSet
+from HHPG.domain.entity.aufwand import Aufwand
 from HHPG.domain.entity.haushaltsplan import Haushaltsplan
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 from HHPG.domain.entity.projekt import Projekt
@@ -14,50 +11,41 @@ from HHPG.domain.entity.projekt import Projekt
 class IndexView:
     @classmethod
     def index(cls, request):
-        if request.method != 'POST':
-            haushaltsplan_formset = HaushaltsplanFormSet(prefix='haushaltsplan')
-            haushaltsposten_formset = HaushaltspostenFormSet(prefix='haushaltsposten')
-            projekt_formset = ProjektForm(prefix='projekt')
-            aufwand_formset = AufwandForm(prefix='aufwand')
-
-            template_data = {
-                'haushaltsplan_formset': haushaltsplan_formset,
-                'haushaltsposten_formset': haushaltsposten_formset,
-                'projekt_formset': projekt_formset,
-                'aufwand_formset': aufwand_formset
-            }
-
-            return cls.render_template('index.html', template_data)
+        if request.method == 'POST':
+            haushaltsplan_form = HaushaltsplanForm(request.POST)
+            formset = HaushaltspostenFormSet(request.POST, instance=haushaltsplan_form.instance)
+            if haushaltsplan_form.is_valid() and formset.is_valid():
+                haushaltsplan = haushaltsplan_form.save()
+                formset.save()
+                return redirect('anzeige', haushaltsplan.id)
         else:
-            haushaltsplan_formset = HaushaltsplanFormSet(request.POST, prefix='haushaltsplan')
-            if not haushaltsplan_formset.is_valid():
-                return HttpResponseBadRequest("Invalid haushaltsplan form")
+            haushaltsplan_form = HaushaltsplanForm()
+            formset = HaushaltspostenFormSet()
 
-            haushaltsplan_instance = haushaltsplan_formset.save()
-            haushaltsposten_formset = HaushaltspostenFormSet(
-                request.POST,
-                instance=haushaltsplan_instance,
-                prefix='haushaltsposten'
-            )
+        return render(request, 'test.html', {
+            'haushaltsplan_form': haushaltsplan_form,
+            'formset': formset,
+        })
 
-            if not haushaltsposten_formset.is_valid():
-                return HttpResponseBadRequest("Invalid haushaltsposten form")
 
-            haushaltsposten_instance = haushaltsposten_formset.save()
-            projekt_formset = ProjektForm(request.POST, instance=haushaltsposten_instance,
-                                          prefix='projekt')
-            if not projekt_formset.is_valid():
-                return HttpResponseBadRequest("Invalid projekt form")
+    @classmethod
+    def anzeige(cls, request, haushaltsplan_id):
+        haushaltsplan = Haushaltsplan.objects.get(id=haushaltsplan_id)
+        haushaltsplan.haushaltsposten_liste = Haushaltsposten.objects.filter(haushaltsplan_id=haushaltsplan.id)
+        for haushaltsposten in haushaltsplan.haushaltsposten_liste:
+            haushaltsposten.projekte = Projekt.objects.filter(haushaltsposten_id=haushaltsposten.id)
+            for projekt in haushaltsposten.projekte:
+                projekt.aufwand = Aufwand.objects.filter(projekt_id=projekt.id)
 
-            projekt_instance = projekt_formset.save()
-            aufwand_formset = AufwandForm(request.POST, instance=projekt_instance, prefix='aufwand')
+        context = {
+            'haushaltsplan': haushaltsplan,
+        }
 
-            if not aufwand_formset.is_valid():
-                return HttpResponseBadRequest("Invalid aufwand form")
+        return render(request, 'anzeigen.html', context)
 
-            aufwand_instance = aufwand_formset.save()
-            return HttpResponse("Data saved successfully!")
+    @classmethod
+    def generate_xl(cls, request, haushaltsplan_id):
+        # stuff
+        # save excel in folder / file idk
+        return #file path to excel
 
-    @staticmethod
-    def render_template(template_name, context):
-        return f"Rendered template: {template_name} with context: {context}"

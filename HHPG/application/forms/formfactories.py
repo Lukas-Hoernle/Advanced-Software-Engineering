@@ -1,6 +1,9 @@
+from django import forms
 from django.forms import inlineformset_factory, BaseInlineFormSet
 
 from HHPG.application.forms.AufwandForm import AufwandForm
+from HHPG.application.forms.HaushaltspostenForm import HaushaltspostenForm
+from HHPG.application.forms.ProjektForm import ProjektForm
 from HHPG.domain.entity.aufwand import Aufwand
 from HHPG.domain.entity.haushaltsplan import Haushaltsplan
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
@@ -82,21 +85,24 @@ class BaseProjektFormSet(BaseInlineFormSet):
 HaushaltspostenFormSet = inlineformset_factory(
     Haushaltsplan,
     Haushaltsposten,
+    form=HaushaltspostenForm,
     formset=BaseHaushaltspostenFormSet,
     fields=[
-        'posten_name'
+        'posten_name',
     ],
-    extra=2,
+    extra=1,
+    can_delete=False
 )
 
 ProjektFormSet = inlineformset_factory(
     Haushaltsposten,
     Projekt,
+    form=ProjektForm,
     formset=BaseProjektFormSet,
     fields=[
-        'projekt_name'
+        'projekt_name',
     ],
-    extra=3,
+    extra=1,
     can_delete=False
 )
 

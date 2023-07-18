@@ -34,9 +34,9 @@ class HaushaltspostenRepository(IHaushaltspostenRepository):
 
     def update_name(self, haushaltsposten_id: int, name: str) -> None:
         haushaltsposten = Haushaltsposten.objects.get(id=haushaltsposten_id)
-        haushaltsposten.name = name
+        haushaltsposten.projekt_name = name
         haushaltsposten.save()
 
     def get_name(self, haushaltsposten_id: int) -> str:
         haushaltsposten = Haushaltsposten.objects.get(id=haushaltsposten_id)
-        return haushaltsposten.name
+        return haushaltsposten.projekt_name

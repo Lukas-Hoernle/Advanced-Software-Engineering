@@ -51,12 +51,12 @@ class ProjektRepository(IProjektRepository):
 
     def update_name(self, projekt_id: int, name: str) -> None:
         projekt = Projekt.objects.get(id=projekt_id)
-        projekt.name = name
+        projekt.projekt_name = name
         projekt.save()
 
     def get_name(self, projekt_id: int):
         projekt = Projekt.objects.get(id=projekt_id)
-        return projekt.name
+        return projekt.projekt_name
 
     def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
         projekt = Projekt.objects.get(id=projekt_id)
