@@ -6,47 +6,37 @@
    - 1.3 Aufbau der Arbeit
 
 ## 2. Theoretische Grundlagen
-   - 2.1 Domain Driven Design
-      - 2.1.1 Konzepte und Prinzipien des DDD
-      - 2.1.2 Ubiquitous Language
-      - 2.1.3 Taktische Muster des DDD
-   - 2.2 Clean Architecture
-      - 2.2.1 Grundprinzipien der Clean Architecture
-      - 2.2.2 Schichten und Abhängigkeiten
-   - 2.3 Programming Principles
-      - 2.3.1 SOLID-Prinzipien
-      - 2.3.2 GRASP-Prinzipien (insbesondere Kopplung/Kohäsion)
-      - 2.3.3 DRY (Don't Repeat Yourself)
+   - 2.1 Domain Driven Design (Verwendung begründen)
+   - 2.2 Clean Architecture (Verwendung begründen)
+   - 2.3 Programming Principles (Verwendung begründen)
 
-## 3. Analyse und Design
-   - 3.1 Anforderungsanalyse
-   - 3.2 Architekturdesign
-      - 3.2.1 Schichtarchitekturplanung und Begründung
-      - 3.2.2 Entwurf der Domain-Schicht
-      - 3.2.3 Entwurf der Infrastruktur-Schicht
-   - 3.3 Design Patterns
-      - 3.3.1 Auswahl und Begründung des Entwurfsmusters
-      - 3.3.2 UML-Diagramme vorher/nachher
+## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
+   - 3.1 Beschreibung des Projektkontexts
+   - 3.2 Integration der erlernten Konzepte und Prinzipien
+   - 3.3 Herausforderungen und Lösungsansätze
 
-## 4. Implementierung
-   - 4.1 Umsetzung der Schichtenarchitektur
-   - 4.2 Implementierung der Domain-Logik
-   - 4.3 Einbindung von externen Datenquellen
-   - 4.4 Unit Testing
-      - 4.4.1 Entwicklung von Unit-Tests
-      - 4.4.2 Verwendung von Mock-Objekten
-      - 4.4.3 ATRIP-Regeln für effektive Tests
+## 4. Analyse und Design
+   - 4.1 Anforderungsanalyse
+   - 4.2 Architekturdesign
+      - 4.2.1 Schichtarchitekturplanung und Begründung
+      - 4.2.2 Entwurf der Domain-Schicht
+      - 4.2.3 Entwurf der Infrastruktur-Schicht
+   - 4.3 Design Patterns
+      - 4.3.1 Auswahl und Begründung des Entwurfsmusters
+      - 4.3.2 Observer Pattern (Einsatz und Begründung)
+      - 4.3.3 Factory Pattern (Einsatz und Begründung)
 
-## 5. Refactoring und Qualitätssicherung
-   - 5.1 Identifikation von Code Smells
-   - 5.2 Durchführung von Refactoring-Maßnahmen
-   - 5.3 Begründung der angewendeten Refactorings
-   - 5.4 Code-Qualität und Code Reviews
+## 5. Implementierung
+   - 5.1 Umsetzung der Schichtenarchitektur
+   - 5.2 Implementierung der Domain-Logik
+   - 5.3 Einbindung von externen Datenquellen
+   - 5.4 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
 
-## 6. Praxisprojekt: Haushaltsplangenerator
-   - 6.1 Beschreibung des Projektkontexts
-   - 6.2 Integration der erlernten Konzepte und Prinzipien
-   - 6.3 Herausforderungen und Lösungsansätze
+## 6. Refactoring und Qualitätssicherung
+   - 6.1 Identifikation von Code Smells
+   - 6.2 Durchführung von Refactoring-Maßnahmen
+   - 6.3 Begründung der angewendeten Refactorings
+   - 6.4 Code-Qualität und Code Reviews
 
 ## 7. Zusammenfassung und Ausblick
    - 7.1 Zusammenfassung der Ergebnisse
