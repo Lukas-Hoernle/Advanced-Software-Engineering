@@ -22,9 +22,8 @@
       - 4.2.2 Entwurf der Domain-Schicht
       - 4.2.3 Entwurf der Infrastruktur-Schicht
    - 4.3 Design Patterns
-      - 4.3.1 Auswahl und Begründung des Entwurfsmusters
-      - 4.3.2 Observer Pattern (Einsatz und Begründung)
-      - 4.3.3 Factory Pattern (Einsatz und Begründung)
+      - 4.3.1 Observer Pattern (Einsatz und Begründung)
+      - 4.3.2 Factory Pattern (Einsatz und Begründung)
 
 ## 5. Implementierung
    - 5.1 Umsetzung der Schichtenarchitektur
