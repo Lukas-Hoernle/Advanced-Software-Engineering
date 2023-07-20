@@ -43,9 +43,6 @@ In der Infrastruktur-Schicht werden technische Details und die Datenbankanbindun
 
 Im Haushaltsplangenerator wurden verschiedene Design Patterns angewendet, um bestimmte Probleme zu lösen und die Softwarestruktur zu verbessern.
 
-[//]: # (todo actual Auflistung)
-
-
 #### 4.3.1 Strategy Pattern
 
 Das Strategy Pattern wird im Haushaltsplangenerator verwendet, um verschiedene Strategien für die Verarbeitung von Haushaltsplänen und Haushaltsposten zu implementieren. Es ermöglicht die flexible Auswahl einer bestimmten Strategie zur Laufzeit, je nachdem, welche Aktion vom Benutzer ausgelöst wird.
