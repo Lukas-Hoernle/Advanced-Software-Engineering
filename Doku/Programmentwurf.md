@@ -3,11 +3,11 @@
 
 ### 3.1 Beschreibung des Projektkontexts
 
-Der "Haushaltsplangenerator" ist ein Praxisprojekt, das entwickelt wurde, um eine leistungsfähige und anwenderfreundliche Softwarelösung zu schaffen. Ziel ist es, Organisationen und Gremien bei der effizienten Erstellung und Verwaltung von Haushaltsplänen zu unterstützen. Die Verwaltung von Haushaltsplänen ist oft eine komplexe Aufgabe, die sorgfältige Planung und Berücksichtigung verschiedener Gremien und Projekte erfordert.
+Der "Haushaltsplangenerator" ist ein Praxisprojekt, das entwickelt wurde, um eine leistungsfähige und anwenderfreundliche Softwarelösung zu schaffen. Ziel ist es, Organisationen und Gremien in der DHBW bei der effizienten Erstellung und Verwaltung von Haushaltsplänen zu unterstützen. Die Verwaltung von Haushaltsplänen ist oft eine komplexe Aufgabe, die sorgfältige Planung und Berücksichtigung verschiedener Gremien und Projekte erfordert.
 
-Die Aufgabenstellung des Projekts bestand darin, eine intuitiv bedienbare Benutzeroberfläche zu entwickeln, die es den Benutzern ermöglicht, Haushaltspläne zu erstellen und Projekte effizient zu verwalten. Dabei sollte die Genauigkeit und Transparenz der Budgetierung erhöht werden, um eine fundierte Entscheidungsfindung zu ermöglichen.
+Die Aufgabenstellung des Projektsprimär darin ein Backend zu entwickelln, das es ermöglicht diese zu generieren und eine Alternative zu Excel bietet. Zusätzlich wurde eine bedienbare Benutzeroberfläche entwickelt, die es den Benutzern ermöglicht, Haushaltspläne zu erstellen und Projekte zu verwalten. Die Oberfläche ist jedoch noch ausbaufähig, da es sich beim umschriebenen Projekt um einen Prototypen handelt. 
 
-Die Zielgruppe des "Haushaltsplangenerators" umfasst staatliche Organisationen, Non-Profit-Organisationen, Bildungseinrichtungen und Unternehmen, die regelmäßig komplexe Haushaltspläne erstellen müssen. Die Software kann flexibel an die spezifischen Anforderungen und Strukturen der einzelnen Organisationen angepasst werden.
+Die Zielgruppe des "Haushaltsplangenerators" umfasst Gremien der DHBW. Im akt uellen Prototypen ist er lediglich für Studierendenvertretungen der verschiedenen Standorte geeignet. Das Projekt kann allerdings für weitere Gremien sowie überregionale Arbeitskreise erweitert werden. 
 
 ### 3.2 Integration der erlernten Konzepte und Prinzipien
 
