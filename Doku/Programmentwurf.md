@@ -88,6 +88,7 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 
    ### 2.2 Clean Architecture 
 ### 2.3 Programming Principles
+[//]: # (ToDO: statts generische Erklärung so anpassen, dass es die zugehörigen Stellen inm HHPG erklärt.)
 
 In der Entwicklung des "Haushaltsplangenerators" wurden verschiedene grundlegende Programmierprinzipien angewendet, um eine saubere, wartbare und erweiterbare Codebasis zu gewährleisten. Diese Prinzipien sind bewährte Richtlinien, die helfen, qualitativ hochwertigen Code zu schreiben und Softwareprobleme effizient zu lösen.
 
