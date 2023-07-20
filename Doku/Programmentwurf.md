@@ -46,6 +46,30 @@ Der angestrebte Prototyp des "Haushaltsplangenerators" dient als Grundlage für 
 
    - 1.4 Aufbau der Arbeit
 
+Die vorliegende Arbeit gliedert sich in die folgenden Abschnitte:
+
+1. Einleitung: Hier wird die Motivation und der Kontext des Projekts "Haushaltsplangenerator" erläutert.
+
+2. Grundlagen:
+   - Domain Driven Design: Analyse der Ubiquitous Language und Verwendung taktischer Muster des DDD.
+   - Clean Architecture: Planung einer Schichtarchitektur und Umsetzung von mindestens zwei Schichten.
+   - Programming Principles: Analyse und Begründung von SOLID, GRASP und DRY.
+   - Unit Tests: Umsetzung von mindestens 10 Unit Tests unter Beachtung der ATRIP Regeln und Einsatz von Mocks.
+   - Refactoring: Identifikation von Code Smells und Durchführung von mindestens 2 Refactorings.
+
+3. Entwurfsmuster:
+   - Einsatz des Observer Patterns und Factory Patterns, Begründung und UML-Darstellung.
+
+4. Techstack: Erklärung der Entscheidung für Django und Python als technologische Basis des Prototyps.
+
+5. Implementierung: Beschreibung der Umsetzung des "Haushaltsplangenerators" unter Berücksichtigung des gewählten Techstacks.
+
+6. Evaluation und Ausblick: Bewertung der erreichten Ziele und Ausblick auf mögliche Erweiterungen oder Verbesserungen.
+
+7. Fazit: Zusammenfassung der Arbeit und Reflexion über den Entwicklungsprozess und die Ergebnisse.
+
+Im Rahmen dieser Gliederung wird das Projekt "Haushaltsplangenerator" von der Motivation über die theoretischen Grundlagen bis hin zur praktischen Umsetzung und Evaluation detailliert behandelt.
+
 ## 2. Theoretische Grundlagen
    - 2.1 Domain Driven Design (Verwendung begründen)
    - 2.2 Clean Architecture (Verwendung begründen)
