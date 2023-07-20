@@ -15,9 +15,8 @@ Dieser Prototyp dient nicht nur als Lösung für meine persönliche Herausforder
 
 Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als Grundlage für zukünftige Entwicklungen und Verfeinerungen festgelegt. Die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems wird nicht nur meine Arbeitsabläufe optimieren, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessern.
 
-
-   - 1.2 Zielsetzung
-   - 1.3 Aufbau der Arbeit
+   - 1.3 Zielsetzung
+   - 1.4 Aufbau der Arbeit
 
 ## 2. Theoretische Grundlagen
    - 2.1 Domain Driven Design (Verwendung begründen)
