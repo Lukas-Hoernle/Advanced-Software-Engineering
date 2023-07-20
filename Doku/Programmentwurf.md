@@ -80,13 +80,14 @@ Bei der Anwendung von Domain Driven Design wurde zuerst eine umfassende Analyse 
 
 Im Rahmen der Umsetzung des Haushaltsplangenerators wurden verschiedene taktische Muster von DDD eingesetzt, um die Softwarestruktur zu optimieren und die Komplexität zu reduzieren:
 
-- Value Objects wurden genutzt, um bestimmte Eigenschaften wie Preise, Budgets und Datumswerte als unveränderliche Wertobjekte darzustellen. Beispielsweise wurden Value Objects bei Aufwand-Objekten verwendet, um den Aufwand für eine Veranstaltung in Stunden und Minuten zu repräsentieren.
+- Value Objects wurden genutzt, um bestimmte Eigenschaften wie Preise, Budgets und Datumswerte als unveränderliche Wertobjekte darzustellen. Beispielsweise wurden Value Objects bei Aufwand-Objekten verwendet, um den Aufwand für eine Veranstaltung in Stunden und Minuten als Value Object zu repräsentieren. (Beispielcode: [Aufwand Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/HHPG/domain/repository/aufwand_repository.py))
 
 - Entities repräsentigen identifizierbare und veränderbare Objekte im System. Im Haushaltsplangenerator wurden beispielsweise Veranstaltungen als Entities modelliert, da sie eindeutig identifizierbar und in der Lage sind, ihren Zustand zu ändern.
 
 - Repositories stellen Schnittstellen zur Persistenzschicht dar und ermöglichen den Zugriff auf die Datenbank. Durch die Verwendung von Repositories wurde eine saubere Trennung zwischen Domänenlogik und Datenzugriff erreicht.
 
 Die bewusste Anwendung von Domain Driven Design trug maßgeblich dazu bei, den Haushaltsplangenerator auf die spezifischen Bedürfnisse der Studierendenvertretung zuzuschneiden und eine flexible, benutzerorientierte Lösung für die Haushaltsplanung zu schaffen.
+
 
 
    ### 2.2 Clean Architecture 
