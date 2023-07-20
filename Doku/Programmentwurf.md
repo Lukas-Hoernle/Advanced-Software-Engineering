@@ -100,7 +100,7 @@ Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind 
 
 5. Controller: Ein Controller ist ein zentraler Punkt, der für die Koordination und Steuerung der Interaktionen zwischen verschiedenen Klassen verantwortlich ist.
 
-6. Polymorphism: Durch die Anwendung von Polymorphismus können verschiedene Objekte einer abstrakten Klasse auf einheitliche Weise behandelt werden, was die Flexibilität und Erweiterbarkeit des Codes erhöht.
+6. Polymorphism: Im aktuellen Use Case des "Haushaltsplangenerators" wurden keine eigen erstellten Klassen erstellt, die mehrere eigen erstellte Unterklassen haben, da der Use Case dafür nicht besonders geeignet war. Jedoch bietet das Prinzip des Polymorphismus die Möglichkeit, bei einer möglichen zukünftigen Erweiterung für Haushaltspläne anderer Gremien beispielsweise Haushaltsposten und Geschäftsposten als Unterklasse von "Posten" zu implementieren. Dies ermöglicht eine einheitliche Behandlung verschiedener Posten-Typen und erhöht die Flexibilität und Erweiterbarkeit der Software.
 
 7. Pure Fabrication: Wenn keine natürliche Klasse für eine Verantwortung existiert, kann eine künstliche oder "pure fabrication" Klasse erstellt werden, um diese Verantwortung zu übernehmen.
 
