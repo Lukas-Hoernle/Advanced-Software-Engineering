@@ -87,7 +87,43 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 - Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
 
    ### 2.2 Clean Architecture 
-   ### 2.3 Programming Principles 
+### 2.3 Programming Principles
+
+In der Entwicklung des "Haushaltsplangenerators" wurden verschiedene grundlegende Programmierprinzipien angewendet, um eine saubere, wartbare und erweiterbare Codebasis zu gewährleisten. Diese Prinzipien sind bewährte Richtlinien, die helfen, qualitativ hochwertigen Code zu schreiben und Softwareprobleme effizient zu lösen.
+
+#### SOLID-Prinzipien
+
+Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abzielen, die Abhängigkeiten zwischen Klassen zu minimieren und die Flexibilität des Codes zu erhöhen. Im "Haushaltsplangenerator" haben wir diese Prinzipien konsequent angewendet, um die Wartbarkeit und Erweiterbarkeit der Software zu verbessern.
+
+1. Single Responsibility Principle (SRP): Jede Klasse sollte nur eine einzige Verantwortung haben und nur für eine spezifische Aufgabe zuständig sein. Dies ermöglicht eine bessere Modularisierung und erleichtert die Wartung des Codes.
+
+2. Open/Closed Principle (OCP): Softwareentitäten sollten offen für Erweiterungen, aber geschlossen für Modifikationen sein. Durch Verwendung von Schnittstellen und abstrakten Klassen können neue Funktionen hinzugefügt werden, ohne den bestehenden Code zu ändern.
+
+3. Liskov Substitution Principle (LSP): Objekte einer abgeleiteten Klasse sollten in einem Programm anstelle von Objekten der Basisklasse verwendet werden können, ohne dass die Funktionalität des Programms beeinträchtigt wird. Dies fördert die Interoperabilität und Austauschbarkeit von Klassen.
+
+4. Interface Segregation Principle (ISP): Klienten sollten nicht von Schnittstellen abhängen, die sie nicht nutzen. Durch die Aufteilung von großen Schnittstellen in spezifischere Teile wird die Kopplung reduziert.
+
+5. Dependency Inversion Principle (DIP): Abhängigkeiten sollten auf abstrakte Klassen und Schnittstellen anstatt auf konkrete Implementierungen basieren. Dadurch wird die Flexibilität des Codes erhöht und die Abhängigkeiten können leichter ausgetauscht werden.
+
+#### GRASP-Prinzipien
+
+Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind ein Satz von Entwurfsrichtlinien, die helfen, die Verantwortlichkeiten und Zusammenhänge zwischen Klassen zu definieren. Im "Haushaltsplangenerator" haben wir die GRASP-Prinzipien angewendet, um eine klare und effiziente Strukturierung des Codes zu erreichen.
+
+1. Creator: Objekte sollten nur dann Verantwortung für die Erstellung von anderen Objekten übernehmen, wenn sie eine logische Beziehung zu diesen Objekten haben.
+
+2. Information Expert: Eine Verantwortlichkeit sollte einem Objekt zugewiesen werden, das über die notwendigen Informationen verfügt, um diese Verantwortung zu erfüllen.
+
+3. Low Coupling: Klassen sollten möglichst unabhängig voneinander sein, um die Flexibilität und Wartbarkeit des Codes zu erhöhen.
+
+4. High Cohesion: Klassen sollten eng zusammenhängende Funktionen haben und nur solche Methoden und Eigenschaften enthalten, die für die Erfüllung ihrer Verantwortlichkeiten relevant sind.
+
+5. Controller: Ein Controller ist ein zentraler Punkt, der für die Koordination und Steuerung der Interaktionen zwischen verschiedenen Klassen verantwortlich ist.
+
+6. Polymorphism: Durch die Anwendung von Polymorphismus können verschiedene Objekte einer abstrakten Klasse auf einheitliche Weise behandelt werden, was die Flexibilität und Erweiterbarkeit des Codes erhöht.
+
+7. Pure Fabrication: Wenn keine natürliche Klasse für eine Verantwortung existiert, kann eine künstliche oder "pure fabrication" Klasse erstellt werden, um diese Verantwortung zu übernehmen.
+
+Durch die Anwendung der SOLID- und GRASP-Prinzipien haben wir im "Haushaltsplangenerator" eine saubere und gut strukturierte Codebasis geschaffen, die leicht erweiterbar, wartbar und effizient ist. Diese Prinzipien bilden eine solide Grundlage für die Weiterentwicklung und Verbesserung der Software.
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
    ### 3.1 Beschreibung des Projektkontexts
