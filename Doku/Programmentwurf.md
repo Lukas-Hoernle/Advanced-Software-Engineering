@@ -90,9 +90,22 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
    ### 2.3 Programming Principles 
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
-   ### 3.1 Beschreibung des Projektkontexts
-   ### 3.2 Integration der erlernten Konzepte und Prinzipien
-   ### 3.3 Herausforderungen und Lösungsansätze
+
+### 3.1 Beschreibung des Projektkontexts
+- Einführung in den Hintergrund des Praxisprojekts "Haushaltsplangenerator"
+- Erklärung der Aufgabenstellung und des Zwecks der Software
+- Beschreibung der Zielgruppe und des Anwendungsbereichs
+
+### 3.2 Integration der erlernten Konzepte und Prinzipien
+- Darlegung, wie die im vorherigen Kapitel (2. Theoretische Grundlagen) beschriebenen Konzepte wie Domain Driven Design, Clean Architecture und Programming Principles im Projekt umgesetzt wurden
+- Erklärung, wie die Anwendung der Konzepte zur Verbesserung der Softwarearchitektur und Codequalität beigetragen hat
+- Diskussion, welche Vorteile die Verwendung der Konzepte mit sich gebracht hat und wie sie dazu beitragen, die Projektziele zu erreichen
+
+### 3.3 Herausforderungen und Lösungsansätze
+- Analyse der Herausforderungen, die während der Entwicklung des Haushaltsplangenerators aufgetreten sind
+- Beschreibung der Lösungsansätze, die angewendet wurden, um diese Herausforderungen zu bewältigen
+- Reflexion über die Ergebnisse der Lösungsansätze und Diskussion, wie sie zur Verbesserung des Projekts beigetragen haben
+
 
 ## 4. Analyse und Design
    ### 4.1 Anforderungsanalyse
