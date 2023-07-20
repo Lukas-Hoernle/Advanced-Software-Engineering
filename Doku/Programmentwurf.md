@@ -1,10 +1,17 @@
-
 ## 6. Refactoring und Qualitätssicherung
 
 ### 6.1 Identifikation von Code Smells
-- Erläuterung des Prozesses zur Identifikation von Code Smells im Haushaltsplangenerator-Projekt
-- Beschreibung der gängigsten Code Smells, die während der Entwicklung aufgedeckt wurden
-- Diskussion über die Auswirkungen von Code Smells auf die Codequalität und Wartbarkeit der Software
+
+Die Identifikation von Code Smells im Haushaltsplangenerator-Projekt wurde während der gesamten Entwicklungsphase kontinuierlich durchgeführt. Dabei wurde besonders auf die Einhaltung der Coding-Standards und bewährter Entwurfsprinzipien geachtet. Zudem wurden statische Code-Analysewerkzeuge verwendet, um potenzielle Probleme zu erkennen.
+
+Die gängigsten Code Smells, die während der Entwicklung aufgedeckt wurden, waren:
+
+1. Lange Methoden: Einige Methoden waren zu umfangreich und enthielten zu viele Verantwortlichkeiten, was die Lesbarkeit erschwerte und die Wartbarkeit beeinträchtigte.
+2. Hohe Komplexität: Bestimmte Codeabschnitte wiesen eine hohe zyklomatische Komplexität auf, was die Verständlichkeit erschwerte und die Anfälligkeit für Fehler erhöhte.
+3. Doppelte Codierung: Wiederholter Code führte zu einer Redundanz und erschwerte das spätere Refactoring und die Wartung des Codes.
+4. Unklare Benennung: Ungenau benannte Variablen, Funktionen oder Klassen machten den Code schwer zu verstehen und führten zu Verwirrung.
+
+Diese Code Smells hatten negative Auswirkungen auf die Codequalität und die Wartbarkeit der Software. Die Lesbarkeit des Codes wurde beeinträchtigt, was zu längeren Entwicklungszeiten und erhöhtem Zeitaufwand für Fehlerbehebungen führte. Zudem wurde die Erweiterbarkeit des Systems erschwert, da sich Änderungen an unklarem oder doppeltem Code auf mehrere Stellen im Code auswirken konnten.
 
 ### 6.2 Durchführung von Refactoring-Maßnahmen
 - Vorstellung der durchgeführten Refactoring-Maßnahmen im Haushaltsplangenerator-Projekt
