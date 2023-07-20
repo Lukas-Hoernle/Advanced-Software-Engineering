@@ -2,7 +2,7 @@
 
 ### 6.1 Identifikation von Code Smells
 
-Die Identifikation von Code Smells im Haushaltsplangenerator-Projekt wurde während der gesamten Entwicklungsphase kontinuierlich durchgeführt. Dabei wurde besonders auf die Einhaltung der Coding-Standards und bewährter Entwurfsprinzipien geachtet. Zudem wurden statische Code-Analysewerkzeuge verwendet, um potenzielle Probleme zu erkennen. Das Projekt wurde mithilfe von SonarCloud regelmäßig auf Probleme geprüft. SonarCloud bietet eine benutzerfreundliche Oberfläche und hilft beim Entdecken von Code Smells.
+Die Identifikation von Code Smells im Haushaltsplangenerator-Projekt wurde während der gesamten Entwicklungsphase kontinuierlich durchgeführt. Dabei wurde besonders auf die Einhaltung der Coding-Standards und bewährter Entwurfsprinzipien geachtet. Die QUalitätskontroille fand manuell statt, da SonarCloud große Probleme mit der Nutzung des Frameworks Django hatte. 
 
 Die gängigsten Code Smells, die während der Entwicklung aufgedeckt wurden, waren:
 
