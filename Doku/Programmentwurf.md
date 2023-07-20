@@ -14,9 +14,13 @@ Die gängigsten Code Smells, die während der Entwicklung aufgedeckt wurden, war
 Diese Code Smells hatten negative Auswirkungen auf die Codequalität und die Wartbarkeit der Software. Die Lesbarkeit des Codes wurde beeinträchtigt, was zu längeren Entwicklungszeiten und erhöhtem Zeitaufwand für Fehlerbehebungen führte. Zudem wurde die Erweiterbarkeit des Systems erschwert, da sich Änderungen an unklarem oder doppeltem Code auf mehrere Stellen im Code auswirken konnten.
 
 ### 6.2 Durchführung von Refactoring-Maßnahmen
-- Vorstellung der durchgeführten Refactoring-Maßnahmen im Haushaltsplangenerator-Projekt
-- Beschreibung der konkreten Änderungen und Verbesserungen, die während des Refactorings vorgenommen wurden
-- Erklärung, wie das Refactoring dazu beigetragen hat, den Code zu verbessern und die Lesbarkeit zu erhöhen
+
+Um die Code Smells zu beseitigen und die Codequalität zu verbessern, wurden umfangreiche Refactoring-Maßnahmen durchgeführt. Dabei wurden die folgenden Schritte unternommen:
+
+1. Aufteilung langer Methoden: Lange Methoden wurden in kleinere, besser lesbare Methoden unterteilt. Dadurch wurden die Verantwortlichkeiten klarer strukturiert und die Lesbarkeit erhöht.
+2. Reduzierung der Komplexität: Komplexe Codeabschnitte wurden überarbeitet und in einfachere, besser verständliche Strukturen umgewandelt. Dies reduzierte die Anfälligkeit für Fehler und erleichterte das Verständnis des Codes.
+3. Eliminierung doppelter Codierung: Doppelter Code wurde in separate Funktionen oder Klassen extrahiert und an einer zentralen Stelle zusammengeführt. Dadurch wurde die Wartbarkeit erhöht und Redundanzen wurden vermieden.
+4. Verbesserung der Benennung: Variablen, Funktionen und Klassen wurden präziser benannt, um ihre Funktion und Bedeutung klarer zu kommunizieren.
 
 ### 6.3 Begründung der angewendeten Refactorings
 - Begründung für die Auswahl der spezifischen Refactoring-Maßnahmen im Haushaltsplangenerator-Projekt
