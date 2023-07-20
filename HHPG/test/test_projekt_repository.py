@@ -1,6 +1,48 @@
-from django.db.models import QuerySet
+import os
+import unittest
+from unittest.mock import Mock, patch
+
+import django
+from django.test import TestCase
+from HHPG.infrastruktur.projekt_repository import ProjektRepository
 from HHPG.domain.entity.projekt import Projekt
-from HHPG.domain.repository.i_projekt_repository import IProjektRepository
+
+
+class TestProjektRepository(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.repository = ProjektRepository()
+
+    def test_create_projekt(self):
+        # Create a mock implementation of the ProjektRepository
+        mock_repo = Mock()
+        mock_repo.create.return_value = Projekt(id=1, name="Testprojekt", einnahmen=1000, ausgaben=500)
+
+        with patch('HHPG.infrastruktur.projekt_repository.ProjektRepository', return_value=mock_repo):
+            projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
+
+        self.assertIsInstance(projekt, Projekt)
+        self.assertEqual(projekt.projekt_name, "Testprojekt")
+        self.assertEqual(projekt.einnahmen, 1000)
+        self.assertEqual(projekt.ausgaben, 500)
+        # Ensure that the create method was called with the correct parameters
+        mock_repo.create.assert_called_once_with(name="Testprojekt", einnahmen=1000, ausgaben=500)
+
+    def test_get_projekt_by_id(self):
+        # Create a mock implementation of the ProjektRepository
+        mock_repo = Mock()
+        mock_projekt = Projekt(id=1, name="Testprojekt", einnahmen=1000, ausgaben=500)
+        mock_repo.create.return_value = mock_projekt
+        mock_repo.get_by_id.return_value = mock_projekt
+
+        with patch('HHPG.infrastruktur.projekt_repository.ProjektRepository', return_value=mock_repo):
+            projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
+            retrieved_projekt = self.repository.get_by_id(projekt.id)
+
+        self.assertEqual(retrieved_projekt, projekt)
+        # Ensure that the get_by_id method was called with the correct parameter
+        mock_repo.get_by_id.assert_called_once_with(projekt.id)
 
 class ProjektRepository(IProjektRepository):
     def create(self, name: str, einnahmen: int, ausgaben: int) -> Projekt:
