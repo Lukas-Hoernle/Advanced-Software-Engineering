@@ -24,22 +24,17 @@ Die Domain-Logik des Haushaltsplangenerators wurde detailliert umgesetzt. Die En
 Die Geschäftsregeln und -logik wurden in den entsprechenden Klassen der Domain-Schicht umgesetzt. 
 
 Die saubere Trennung zwischen der Domain-Schicht und anderen Schichten erleichterte das Testen der Geschäftslogik und trug zur Entkopplung des Codes bei.
-
-### 5.3 Einbindung von externen Datenquellen
-
-Während der Implementierung wurden keine externe Datenquellen in den Haushaltsplangenerator eingebunden.
  
-### 5.4 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
+### 5.3 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
 
 Unit Tests wurden als zentrales Element für die Qualitätssicherung und Fehlererkennung in der Software eingesetzt. Für jede Schicht wurden separate Tests geschrieben, um sicherzustellen, dass die einzelnen Komponenten korrekt funktionieren.
 
 Die Unit Tests deckten verschiedene Testfälle ab, einschließlich positiver und negativer Szenarien. Sie halfen dabei, Fehler frühzeitig zu erkennen und die Softwarequalität zu verbessern.
 
-Mocks wurden in den Unit Tests verwendet, um externe Abhängigkeiten zu isolieren und die Tests unabhängig von externen Ressourcen auszuführen. Dies trug dazu bei, die Testgeschwindigkeit zu erhöhen und die Tests besser zu kontrollieren.
-
 Der Einsatz von Unit Tests hatte einen positiven Einfluss auf die Gesamtqualität des Projekts, da die Entwickler mehr Vertrauen in den Code hatten und Änderungen mit größerer Sicherheit vornehmen konnten. Obwohl das Schreiben von Unit Tests zusätzlichen Aufwand erforderte, zahlte es sich durch die Reduzierung von Fehlern und die einfachere Wartung langfristig aus.
 
 Die Implementierung von Unit Tests hat jedoch auch die Entwicklungszeit etwas verlängert. Es war wichtig, einen angemessenen Aufwand für die Testabdeckung festzulegen, um den richtigen Kompromiss zwischen Qualitätssicherung und Entwicklungseffizienz zu finden.
+Tests können im Folder HHPG/test gefunden werden. 
 
 ## 6. Refactoring und Qualitätssicherung
    ### 6.1 Identifikation von Code Smells
