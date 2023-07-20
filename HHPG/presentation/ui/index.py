@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from HHPG.application.HaushaltsplanExcelGenerator import HaushaltsplanExcelGenerator
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
 from HHPG.application.forms.formfactories import HaushaltspostenFormSet
 from HHPG.domain.entity.aufwand import Aufwand
@@ -37,6 +38,7 @@ class IndexView:
     def anzeige(cls, request, haushaltsplan_id):
         haushaltsplan = cls.haushaltsplan_repository.get_by_id_including_children(haushaltsplan_id=haushaltsplan_id)
 
+        HaushaltsplanExcelGenerator(haushaltsplan=haushaltsplan).generate_excel("testing.xls")
         context = {
             'haushaltsplan': haushaltsplan,
         }

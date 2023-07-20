@@ -8,7 +8,7 @@ from django.dispatch import receiver
 
 
 class IProjektRepository(ABC):
-
+    @abstractmethod
     def create(self, sender, instance, created, **kwargs) -> Projekt:
         raise NotImplementedError
 
