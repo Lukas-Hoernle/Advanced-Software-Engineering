@@ -24,6 +24,14 @@ class HaushaltsplanExcelGenerator:
 
         row_index = 2
 
+        builder.set_haushaltsplan(
+            self.haushaltsplan,
+            row_index
+        )
+        builder.write_haushaltsplan()
+
+        row_index = 10
+
         haushaltsposten_list = self.haushaltsplan.haushaltsposten_liste
 
         for haushaltsposten in haushaltsposten_list:
@@ -42,7 +50,6 @@ class HaushaltsplanExcelGenerator:
                     row_index
                 )
                 builder.write_projekt()
-                row_index += 1
 
         workbook.save(file_name)
 
@@ -71,6 +78,72 @@ class ExcelBuilder:
                 column=col,
                 value=header
             )
+
+
+    def set_haushaltsplan(
+            self,
+            haushaltsplan,
+            row_index
+    ):
+        self.haushaltsplan = haushaltsplan
+        self.row_index = row_index
+
+
+    def write_haushaltsplan(self):
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Name:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.plan_name
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Standort:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.standort
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Ersteller:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.author.username
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Startjahr:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.startjahr
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Studierendenanzahl:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.studierendenzahl
+        )
 
 
     def set_haushaltsposten(
@@ -102,6 +175,11 @@ class ExcelBuilder:
     def write_projekt(self):
         self.worksheet.cell(
             row=self.row_index,
+            column=1,
+            value=self.projekt.projekt_name
+        )
+        self.worksheet.cell(
+            row=self.row_index,
             column=2,
             value=self.projekt.aufwand.einnahmen
         )
@@ -110,4 +188,5 @@ class ExcelBuilder:
             column=3,
             value=self.projekt.aufwand.ausgaben
         )
+        self.row_index += 1
 
