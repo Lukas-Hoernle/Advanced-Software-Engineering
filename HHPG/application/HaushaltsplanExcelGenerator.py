@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import openpyxl
 
 from HHPG.domain.entity import haushaltsplan
@@ -8,8 +10,10 @@ class HaushaltsplanExcelGenerator:
     def __init__(self, haushaltsplan: haushaltsplan):
         self.haushaltsplan = haushaltsplan
 
+    def generate_excel(self, file_name=None):
+        if file_name is None:
+            file_name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S.xls')
 
-    def generate_excel(self, file_name):
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
 
@@ -64,10 +68,8 @@ class ExcelBuilder:
         self.projekt = None
         self.row_index = None
 
-
     def set_headers(self, *headers):
         self.headers = headers
-
 
     def write_headers(self):
         for col, header in enumerate(
@@ -80,7 +82,6 @@ class ExcelBuilder:
                 value=header
             )
 
-
     def set_haushaltsplan(
             self,
             haushaltsplan,
@@ -88,7 +89,6 @@ class ExcelBuilder:
     ):
         self.haushaltsplan = haushaltsplan
         self.row_index = row_index
-
 
     def write_haushaltsplan(self):
         self.worksheet.cell(
@@ -146,7 +146,6 @@ class ExcelBuilder:
             value=self.haushaltsplan.studierendenzahl
         )
 
-
     def set_haushaltsposten(
             self,
             haushaltsposten,
@@ -155,14 +154,12 @@ class ExcelBuilder:
         self.haushaltsposten = haushaltsposten
         self.row_index = row_index
 
-
     def write_haushaltsposten(self):
         self.worksheet.cell(
             row=self.row_index,
             column=1,
             value=self.haushaltsposten.posten_name
         )
-
 
     def set_projekt(
             self,
@@ -171,7 +168,6 @@ class ExcelBuilder:
     ):
         self.projekt = projekt
         self.row_index = row_index
-
 
     def write_projekt(self):
         self.worksheet.cell(
@@ -189,4 +185,3 @@ class ExcelBuilder:
             column=3,
             value=self.projekt.aufwand.ausgaben
         )
-
