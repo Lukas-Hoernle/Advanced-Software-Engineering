@@ -86,9 +86,8 @@ Im Rahmen der Umsetzung des Haushaltsplangenerators wurden verschiedene taktisch
 
 - Repositories stellen Schnittstellen zur Persistenzschicht dar und ermöglichen den Zugriff auf die Datenbank. Durch die Verwendung von Repositories wurde eine saubere Trennung zwischen Domänenlogik und Datenzugriff erreicht.
 
-- Domain Services wurden eingesetzt, um komplexe Geschäftslogik aus der Domäne zu extrahieren und in speziellen Services zu kapseln. Dies ermöglichte eine bessere Wiederverwendbarkeit und Testbarkeit der Logik.
-
 Die bewusste Anwendung von Domain Driven Design trug maßgeblich dazu bei, den Haushaltsplangenerator auf die spezifischen Bedürfnisse der Studierendenvertretung zuzuschneiden und eine flexible, benutzerorientierte Lösung für die Haushaltsplanung zu schaffen.
+
 
    ### 2.2 Clean Architecture 
    ### 2.3 Programming Principles 
