@@ -1,7 +1,7 @@
 # Inhaltsverzeichnis
 
 ## 1. Einleitung
-   - 1.1 Motivation
+   ### 1.1 Motivation
 
 Die vorliegende Arbeit fokussiert sich auf die Entwicklung eines Prototyps für den "Haushaltsplangenerator", der im Rahmen der Vorlesung "Advanced Software Engineering" entstanden ist. Die Idee für den Haushaltsplan entstand aus der Notwendigkeit, als "Finanzer der Studierendenvertretung" innerhalb der Dualen Hochschule Baden-Württemberg regelmäßig Haushaltspläne zu erstellen und dem Studierendenparlament vorzustellen.
 
@@ -16,7 +16,7 @@ Dieser Prototyp dient nicht nur als Lösung für meine persönliche Herausforder
 Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als Grundlage für zukünftige Entwicklungen und Verfeinerungen festgelegt. Die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems wird nicht nur meine Arbeitsabläufe optimieren, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessern.
 Ob dieses Projekt jedoch weitergeführt wird, ist zum aktuellen Zeitpunkt unklar.
 
-  - 1.2 Tech Stack
+  ### 1.2 Tech Stack
 
 Ursprünglich war ein Projekt mit Java und Angular angesetzt, um den "Haushaltsplangenerator" zu entwickeln. Allerdings stieß ich während der Implementierungsphase auf Schwierigkeiten, die sich aus Zeitproblemen ergaben, die durch das Nachholen von Klausuren aufgrund eines Armbruchs entstanden waren. Gleichzeitig schreibe ich aktuell meine Bachelorarbeit, was meine Ressourcen zusätzlich einschränkte und die Entwicklung mit diesem Techstack erschwerte.
 
@@ -30,7 +30,7 @@ Trotz dieser Herausforderung ermöglichte der gewählte Techstack mit Django den
 
 Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als grundlegende Grundlage für zukünftige Entwicklungen und Verfeinerungen festgelegt. Die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems wird nicht nur meine Arbeitsabläufe optimieren, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessern.
 
-   - 1.3 Zielsetzung
+   ### 1.3 Zielsetzung
 
 Das Hauptziel des Projekts "Haushaltsplangenerator" ist es, eine effiziente Automatisierung für die Studierendenvertretung (StuV) Karlsruhe zu entwickeln, um bisher manuell erstellte Anträge für Veranstaltungen und Haushaltspläne zu optimieren. Die Automatisierung soll Excel-Tabellen für Veranstaltungen und Haushaltspläne generieren, basierend auf den Eingaben des Nutzers, und dadurch das Erstellen erleichtern und den Einstieg für zukünftige Finanzer ermöglichen.
 
@@ -44,47 +44,71 @@ Das Projekt nutzt den Django-Stack, um eine flexible und effiziente Webanwendung
 
 Der angestrebte Prototyp des "Haushaltsplangenerators" dient als Grundlage für zukünftige Entwicklungen und Verfeinerungen. Die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems wird nicht nur die Arbeitsabläufe optimieren, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessern.
 
-   - 1.4 Aufbau der Arbeit
+   ### 1.4 Aufbau der Arbeit
+
+Die vorliegende Arbeit gliedert sich in die folgenden Abschnitte:
+
+1. Einleitung: Hier wird die Motivation und der Kontext des Projekts "Haushaltsplangenerator" erläutert.
+
+2. Grundlagen:
+   - Domain Driven Design: Analyse der Ubiquitous Language und Verwendung taktischer Muster des DDD.
+   - Clean Architecture: Planung einer Schichtarchitektur und Umsetzung von mindestens zwei Schichten.
+   - Programming Principles: Analyse und Begründung von SOLID, GRASP und DRY.
+   - Unit Tests: Umsetzung von mindestens 10 Unit Tests unter Beachtung der ATRIP Regeln und Einsatz von Mocks.
+   - Refactoring: Identifikation von Code Smells und Durchführung von mindestens 2 Refactorings.
+
+3. Entwurfsmuster:
+   - Einsatz des Observer Patterns und Factory Patterns, Begründung und UML-Darstellung.
+
+4. Techstack: Erklärung der Entscheidung für Django und Python als technologische Basis des Prototyps.
+
+5. Implementierung: Beschreibung der Umsetzung des "Haushaltsplangenerators" unter Berücksichtigung des gewählten Techstacks.
+
+6. Evaluation und Ausblick: Bewertung der erreichten Ziele und Ausblick auf mögliche Erweiterungen oder Verbesserungen.
+
+7. Fazit: Zusammenfassung der Arbeit und Reflexion über den Entwicklungsprozess und die Ergebnisse.
+
+Im Rahmen dieser Gliederung wird das Projekt "Haushaltsplangenerator" von der Motivation über die theoretischen Grundlagen bis hin zur praktischen Umsetzung und Evaluation detailliert behandelt.
 
 ## 2. Theoretische Grundlagen
-   - 2.1 Domain Driven Design (Verwendung begründen)
-   - 2.2 Clean Architecture (Verwendung begründen)
-   - 2.3 Programming Principles (Verwendung begründen)
+   ### 2.1 Domain Driven Design (Verwendung begründen)
+   ### 2.2 Clean Architecture (Verwendung begründen)
+   ### 2.3 Programming Principles (Verwendung begründen)
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
-   - 3.1 Beschreibung des Projektkontexts
-   - 3.2 Integration der erlernten Konzepte und Prinzipien
-   - 3.3 Herausforderungen und Lösungsansätze
+   ### 3.1 Beschreibung des Projektkontexts
+   ### 3.2 Integration der erlernten Konzepte und Prinzipien
+   ### 3.3 Herausforderungen und Lösungsansätze
 
 ## 4. Analyse und Design
-   - 4.1 Anforderungsanalyse
-   - 4.2 Architekturdesign
-      - 4.2.1 Schichtarchitekturplanung und Begründung
-      - 4.2.2 Entwurf der Domain-Schicht
-      - 4.2.3 Entwurf der Infrastruktur-Schicht
-   - 4.3 Design Patterns
-      - 4.3.1 Observer Pattern (Einsatz und Begründung)
-      - 4.3.2 Factory Pattern (Einsatz und Begründung)
+   ### 4.1 Anforderungsanalyse
+   ### 4.2 Architekturdesign
+   #### 4.2.1 Schichtarchitekturplanung und Begründung
+   #### 4.2.2 Entwurf der Domain-Schicht
+   #### 4.2.3 Entwurf der Infrastruktur-Schicht
+   ### 4.3 Design Patterns
+   #### 4.3.1 Observer Pattern (Einsatz und Begründung)
+   #### 4.3.2 Factory Pattern (Einsatz und Begründung)
 
 ## 5. Implementierung
-   - 5.1 Umsetzung der Schichtenarchitektur
-   - 5.2 Implementierung der Domain-Logik
-   - 5.3 Einbindung von externen Datenquellen
-   - 5.4 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
+   ### 5.1 Umsetzung der Schichtenarchitektur
+   ### 5.2 Implementierung der Domain-Logik
+   ### 5.3 Einbindung von externen Datenquellen
+   ### 5.4 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
 
 ## 6. Refactoring und Qualitätssicherung
-   - 6.1 Identifikation von Code Smells
-   - 6.2 Durchführung von Refactoring-Maßnahmen
-   - 6.3 Begründung der angewendeten Refactorings
-   - 6.4 Code-Qualität und Code Reviews
+   ### 6.1 Identifikation von Code Smells
+   ### 6.2 Durchführung von Refactoring-Maßnahmen
+   ### 6.3 Begründung der angewendeten Refactorings
+   ### 6.4 Code-Qualität und Code Reviews
 
 ## 7. Zusammenfassung und Ausblick
-   - 7.1 Zusammenfassung der Ergebnisse
-   - 7.2 Ausblick und mögliche Erweiterungen
+   ### 7.1 Zusammenfassung der Ergebnisse
+   ### 7.2 Ausblick und mögliche Erweiterungen
 
 ## 8. Literaturverzeichnis
 
 ## 9. Anhang
-   - 9.1 Glossar
-   - 9.2 Quellcodebeispiele
-   - 9.3 Testfallbeschreibungen
+   ### 9.1 Glossar
+   ### 9.2 Quellcodebeispiele
+   ### 9.3 Testfallbeschreibungen
