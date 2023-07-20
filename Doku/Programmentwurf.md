@@ -93,7 +93,7 @@ In der Entwicklung des "Haushaltsplangenerators" wurden verschiedene grundlegend
 
 Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abzielen, die Abhängigkeiten zwischen Klassen zu minimieren und die Flexibilität des Codes zu erhöhen. Im "Haushaltsplangenerator" haben wir diese Prinzipien konsequent angewendet, um die Wartbarkeit und Erweiterbarkeit der Software zu verbessern.
 
-1. Single Responsibility Principle (SRP): Jede Klasse sollte nur eine einzige Verantwortung haben und nur für eine spezifische Aufgabe zuständig sein. Dies ermöglicht eine bessere Modularisierung und erleichtert die Wartung des Codes.
+1. Single Responsibility Principle (SRP): Jede Klasse sollte nur eine einzige Verantwortung haben und nur für eine spezifische Aufgabe zuständig sein. Im "Haushaltsplangenerator" ist beispielsweise die Klasse "Haushaltsposten" ausschließlich für die Speicherung und Kategorisierung von Projekten zuständig. Sie übernimmt nicht die direkte Speicherung von Ausgaben oder Einnahmen, sondern konzentriert sich nur auf ihre spezifische Aufgabe der Verwaltung von Projekten.
 
 2. Open/Closed Principle (OCP): Softwareentitäten sollten offen für Erweiterungen, aber geschlossen für Modifikationen sein. Durch Verwendung von Schnittstellen und abstrakten Klassen können neue Funktionen hinzugefügt werden, ohne den bestehenden Code zu ändern.
 
