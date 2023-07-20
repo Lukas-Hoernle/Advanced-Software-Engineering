@@ -15,6 +15,7 @@ class ProjektRepository(IProjektRepository):
     def create(sender, instance, created, **kwargs) -> Projekt | None:
         if created:
             return None
+
         return Projekt.objects.create(**instance)
 
     def save(self, sender, instance, **kwargs) -> None:
@@ -41,7 +42,7 @@ class ProjektRepository(IProjektRepository):
     def get_all_by_haushaltsposten_including_children(self, haushaltsposten_id: int) -> QuerySet:
         projekt_liste = self.get_all_by_haushaltsposten(haushaltsposten_id=haushaltsposten_id)
         for projekt in projekt_liste:
-            projekt.aufwand = AufwandRepository().get_all_by_projekt(projekt.id)
+            projekt.aufwand = AufwandRepository().get_for_projekt(projekt.id)
 
         return projekt_liste
 
