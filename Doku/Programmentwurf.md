@@ -84,7 +84,7 @@ class ExcelBuilder:
         self.projekt = None
 ```
 
-### 6.3 Erklärung der Änderungen im Refactoring:
+### Erklärung der Änderungen im Refactoring:
 
 1. Im ursprünglichen Code wurde die Methode `generate_excel_poorly` direkt in der Klasse `HaushaltsplanExcelGenerator` definiert, was zu einer übermäßig langen Methode führte. Im refaktorierten Code wurde die Methode in `generate_excel` umbenannt und in eine separate Klasse verschoben, um die Verantwortlichkeiten klarer zu trennen und die Lesbarkeit zu verbessern.
 
@@ -93,6 +93,9 @@ class ExcelBuilder:
 3. Ein Builder-Pattern wurde eingeführt, um die Erstellung der Excel-Datei zu strukturieren und die Verantwortlichkeiten klarer zu verteilen. Die Klasse `ExcelBuilder` kümmert sich um das Schreiben der Daten in das Excel-Dokument und ermöglicht eine sauberere Implementierung der `generate_excel`-Methode.
 
 Durch diese Refactoring-Maßnahmen wurde der Code verbessert, ohne dass funktionale Änderungen eingeführt wurden. Die Struktur des Codes wurde klarer und lesbarer gestaltet, und die Nutzung von optimierten Datenbankabfragen trug zur Performance-Optimierung bei. Der Refactoring-Prozess half dabei, die Codequalität zu erhöhen und die Wartbarkeit des Haushaltsplangenerators zu verbessern.
+
+Die Refactoring-Maßnahmen wurden im Commit [17d99c0](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/commit/17d99c028741bbf41664ee435aa132f23b1dc510) durchgeführt.
+
 ### 6.4 Code-Qualität 
 
 Die allgemeine Code-Qualität des Haushaltsplangenerator-Projekts wurde durch die durchgeführten Refactoring-Maßnahmen erheblich verbessert. Die Beseitigung von Code Smells führte zu einem saubereren, besser strukturierten Code, der leichter zu warten und zu erweitern ist.
