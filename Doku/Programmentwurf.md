@@ -2,51 +2,101 @@
 
 ### 6.1 Identifikation von Code Smells
 
-Die Identifikation von Code Smells im Haushaltsplangenerator-Projekt wurde während der gesamten Entwicklungsphase kontinuierlich durchgeführt. Dabei wurde besonders auf die Einhaltung der Coding-Standards und bewährter Entwurfsprinzipien geachtet. Zudem wurden statische Code-Analysewerkzeuge verwendet, um potenzielle Probleme zu erkennen.
+Die Identifikation von Code Smells im Haushaltsplangenerator-Projekt wurde während der gesamten Entwicklungsphase kontinuierlich durchgeführt. Dabei wurde besonders auf die Einhaltung der Coding-Standards und bewährter Entwurfsprinzipien geachtet. Zudem wurden statische Code-Analysewerkzeuge verwendet, um potenzielle Probleme zu erkennen. Das Projekt wurde mithilfe von SonarCloud regelmäßig auf Probleme geprüft. SonarCloud bietet eine benutzerfreundliche Oberfläche und hilft beim Entdecken von Code Smells.
 
 Die gängigsten Code Smells, die während der Entwicklung aufgedeckt wurden, waren:
 
 1. Lange Methoden: Einige Methoden waren zu umfangreich und enthielten zu viele Verantwortlichkeiten, was die Lesbarkeit erschwerte und die Wartbarkeit beeinträchtigte.
-2. Hohe Komplexität: Bestimmte Codeabschnitte wiesen eine hohe zyklomatische Komplexität auf, was die Verständlichkeit erschwerte und die Anfälligkeit für Fehler erhöhte.
-3. Doppelte Codierung: Wiederholter Code führte zu einer Redundanz und erschwerte das spätere Refactoring und die Wartung des Codes.
-4. Unklare Benennung: Ungenau benannte Variablen, Funktionen oder Klassen machten den Code schwer zu verstehen und führten zu Verwirrung.
-
-Diese Code Smells hatten negative Auswirkungen auf die Codequalität und die Wartbarkeit der Software. Die Lesbarkeit des Codes wurde beeinträchtigt, was zu längeren Entwicklungszeiten und erhöhtem Zeitaufwand für Fehlerbehebungen führte. Zudem wurde die Erweiterbarkeit des Systems erschwert, da sich Änderungen an unklarem oder doppeltem Code auf mehrere Stellen im Code auswirken konnten.
+2. Hohe Komplexität: Bestimmte Codeabschnitte wiesen eine hohe zyklomatische Komplexität auf, was die Verständlichkeit erschwerte und die Anfälligkeit für Fehler erhöhte. Dies war meistens darauf zurückzuführen, dass mehr Zeilen eingefügt wurden, um die Zeilenmindestanzahl zu schaffen.
 
 ### 6.2 Durchführung von Refactoring-Maßnahmen
 
-Um die Code Smells zu beseitigen und die Codequalität zu verbessern, wurden umfangreiche Refactoring-Maßnahmen durchgeführt. Dabei wurden die folgenden Schritte unternommen:
+Um die Code Smells zu beseitigen und die Codequalität zu verbessern, wurden umfangreiche Refactoring-Maßnahmen durchgeführt. Im Folgenden wird ein konkretes Beispiel dargestellt:
 
-1. Aufteilung langer Methoden: Lange Methoden wurden in kleinere, besser lesbare Methoden unterteilt. Dadurch wurden die Verantwortlichkeiten klarer strukturiert und die Lesbarkeit erhöht.
-2. Reduzierung der Komplexität: Komplexe Codeabschnitte wurden überarbeitet und in einfachere, besser verständliche Strukturen umgewandelt. Dies reduzierte die Anfälligkeit für Fehler und erleichterte das Verständnis des Codes.
-3. Eliminierung doppelter Codierung: Doppelter Code wurde in separate Funktionen oder Klassen extrahiert und an einer zentralen Stelle zusammengeführt. Dadurch wurde die Wartbarkeit erhöht und Redundanzen wurden vermieden.
-4. Verbesserung der Benennung: Variablen, Funktionen und Klassen wurden präziser benannt, um ihre Funktion und Bedeutung klarer zu kommunizieren.
+Vor dem Refactoring:
+```python
+import openpyxl
 
-### 6.3 Begründung der angewendeten Refactorings
-[//]: # (Begründung des spezifischen Refactorings)
+class HaushaltsplanExcelGenerator:
+    def generate_excel_poorly(self, haushaltsplan, file_name):
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
 
-Die Refactoring-Maßnahmen wurden gezielt durchgeführt, um kritische Code Smells zu beheben, die die Codequalität und Wartbarkeit beeinträchtigten. Längere Methoden wurden aufgeteilt, hohe Komplexität reduziert, und doppelter Code wurde eliminiert.
+        worksheet['A1'] = 'Projekt Name'
+        worksheet['B1'] = 'Einnahmen'
+        worksheet['C1'] = 'Ausgaben'
 
-Die positiven Auswirkungen waren:
-- Verbesserte Lesbarkeit und Verständlichkeit des Codes.
-- Geringeres Fehlerpotenzial und robustere Codebasis.
-- Erhöhte Wartbarkeit und leichtere Weiterentwicklung.
-- Beschleunigte Entwicklung durch effizientere Arbeitsabläufe.
+        row_index = 2
 
-Die Refactorings führten zu einer nachhaltigen und skalierbaren Software mit besserer Codequalität und Wartbarkeit. Code Reviews und gute Entwurfsprinzipien unterstützten den Prozess der Codepflege und -verbesserung.
-Die positiven Auswirkungen waren:
-- Verbesserte Lesbarkeit und Verständlichkeit des Codes.
-- Geringeres Fehlerpotenzial und robustere Codebasis.
-- Erhöhte Wartbarkeit und leichtere Weiterentwicklung.
-- Beschleunigte Entwicklung durch effizientere Arbeitsabläufe.
+        for haushaltsposten in haushaltsplan.haushaltsposten:
+            worksheet.cell(row=row_index, column=1, value=haushaltsposten.name)
 
-Die Refactorings führten zu einer nachhaltigen und skalierbaren Software mit besserer Codequalität und Wartbarkeit. Code Reviews und gute Entwurfsprinzipien unterstützten den Prozess der Codepflege und -verbesserung.
+            for projekt in haushaltsposten.projekte:
+                worksheet.cell(row=row_index, column=2, value=projekt.einnahmen)
+                worksheet.cell(row=row_index, column=3, value=projekt.ausgaben)
+                row_index += 1
 
-### 6.4 Code-Qualität und Code Reviews
+        workbook.save(file_name)
+```
+
+Nach dem Refactoring:
+```python
+import openpyxl
+
+from HHPG.domain.entity import haushaltsplan
+
+
+class HaushaltsplanExcelGenerator:
+    def __init__(self, haushaltsplan: haushaltsplan):
+        self.haushaltsplan = haushaltsplan
+
+    def generate_excel(self, file_name):
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+
+        worksheet['A1'] = 'Projekt Name'
+        worksheet['B1'] = 'Einnahmen'
+        worksheet['C1'] = 'Ausgaben'
+
+        row_index = 2
+
+        haushaltsposten_list = self.haushaltsplan.haushaltsposten.objects.all()
+
+        for haushaltsposten in haushaltsposten_list:
+            builder = ExcelBuilder(worksheet)
+            builder.set_haushaltsposten(haushaltsposten, row_index)
+            builder.write_haushaltsposten()
+            row_index += 1
+            projekte_list = haushaltsposten.projekte.all()
+            for projekt in projekte_list:
+                builder.set_projekt(projekt, row_index)
+                builder.write_projekt()
+                row_index += 1
+
+        workbook.save(file_name)
+
+
+class ExcelBuilder:
+    def __init__(self, worksheet):
+        self.worksheet = worksheet
+        self.headers = []
+        self.haushaltsposten = None
+        self.projekt = None
+```
+
+### 6.3 Erklärung der Änderungen im Refactoring:
+
+1. Im ursprünglichen Code wurde die Methode `generate_excel_poorly` direkt in der Klasse `HaushaltsplanExcelGenerator` definiert, was zu einer übermäßig langen Methode führte. Im refaktorierten Code wurde die Methode in `generate_excel` umbenannt und in eine separate Klasse verschoben, um die Verantwortlichkeiten klarer zu trennen und die Lesbarkeit zu verbessern.
+
+2. Die Nutzung von `haushaltsplan.haushaltsposten` und `haushaltsposten.projekte` im ursprünglichen Code legt nahe, dass es sich dabei um QuerySets handelt, die auf Datenbankabfragen hinweisen. Im refaktorierten Code wurden diese Abfragen durch `.objects.all()` ersetzt, um die Datenbankabfragen zu optimieren und die Performanz zu verbessern.
+
+3. Ein Builder-Pattern wurde eingeführt, um die Erstellung der Excel-Datei zu strukturieren und die Verantwortlichkeiten klarer zu verteilen. Die Klasse `ExcelBuilder` kümmert sich um das Schreiben der Daten in das Excel-Dokument und ermöglicht eine sauberere Implementierung der `generate_excel`-Methode.
+
+Durch diese Refactoring-Maßnahmen wurde der Code verbessert, ohne dass funktionale Änderungen eingeführt wurden. Die Struktur des Codes wurde klarer und lesbarer gestaltet, und die Nutzung von optimierten Datenbankabfragen trug zur Performance-Optimierung bei. Der Refactoring-Prozess half dabei, die Codequalität zu erhöhen und die Wartbarkeit des Haushaltsplangenerators zu verbessern.
+### 6.4 Code-Qualität 
 
 Die allgemeine Code-Qualität des Haushaltsplangenerator-Projekts wurde durch die durchgeführten Refactoring-Maßnahmen erheblich verbessert. Die Beseitigung von Code Smells führte zu einem saubereren, besser strukturierten Code, der leichter zu warten und zu erweitern ist.
 
-Während des Refactoring und der Qualitätssicherung traten auch Herausforderungen auf. Die Anpassung bestehender Funktionen und Tests an die neuen Strukturen kann zeitaufwändig sein und erfordert eine sorgfältige Planung. Es war wichtig, die Auswirkungen von Refactorings auf andere Teile des Codes zu berücksichtigen und sicherzustellen, dass keine Funktionalität beeinträchtigt wurde. Dennoch haben diese Bemühungen dazu beigetragen, die langfristige Qualität und Wartbarkeit des Haushaltsplangenerators zu gewährleisten.
 
 ## 7. Zusammenfassung und Ausblick
    ### 7.1 Zusammenfassung der Ergebnisse
