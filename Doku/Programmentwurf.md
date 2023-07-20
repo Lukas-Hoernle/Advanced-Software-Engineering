@@ -7,7 +7,7 @@ Die zuvor geplante Schichtenarchitektur (siehe Kapitel 4.2.1) wurde während der
 
 #### Interaktion der Schichten
 
-Die Schichten interagieren miteinander über klar definierte Schnittstellen. Die Präsentationsschicht kommuniziert mit der Anwendungsschicht, indem sie die Anwendungslogik aufruft, um Aktionen des Benutzers zu verarbeiten. Die Anwendungsschicht greift wiederum auf die Domain-Schicht zu, um die Geschäftslogik und -regeln umzusetzen. Die Domain-Schicht enthält die Entities, Value Objects und Repositories, die das Kerngeschäft des Haushaltsplangenerators ausmachen. Die Infrastruktur-Schicht kümmert sich um technische Details wie Datenbankanbindung und externe Datenquellen.
+Die Schichten interagieren miteinander über klar definierte Schnittstellen. Ein Beispiel hierfür ist die Datei "HHPG/domain/repository/aufwand_repository.py" Die Präsentationsschicht kommuniziert mit der Anwendungsschicht, indem sie die Anwendungslogik aufruft, um Aktionen des Benutzers zu verarbeiten. Die Anwendungsschicht greift wiederum auf die Domain-Schicht zu, um die Geschäftslogik und -regeln umzusetzen. Die Domain-Schicht enthält die Entities und Repositories des Haushaltsplangenerators. Die Infrastruktur-Schicht kümmert sich um technische Details wie Datenbankanbindung und externe Datenquellen.
 
 Durch diese klare Trennung der Verantwortlichkeiten ist die Architektur gut strukturiert und erleichtert die Wartbarkeit und Erweiterbarkeit des Haushaltsplangenerators.
 
@@ -15,24 +15,20 @@ Durch diese klare Trennung der Verantwortlichkeiten ist die Architektur gut stru
 
 Die Schichtenarchitektur bietet mehrere Vorteile während der Implementierung. Die klare Trennung der Verantwortlichkeiten ermöglicht es, einzelne Schichten unabhängig voneinander zu entwickeln und zu testen. Dadurch wird der Code besser strukturiert und leichter verständlich. Änderungen in einer Schicht haben weniger Auswirkungen auf andere Schichten, was die Wartbarkeit erhöht.
 
-Die Herausforderungen der Schichtenarchitektur bestehen darin, die Kommunikation zwischen den Schichten effizient zu gestalten. Der Overhead durch die Verwendung von Schnittstellen kann in manchen Fällen die Leistung beeinträchtigen. Es ist wichtig, die Schnittstellen sorgfältig zu gestalten, um die Performance zu optimieren.
+Die Herausforderungen der Schichtenarchitektur bestehen darin, die Kommunikation zwischen den Schichten effizient zu gestalten. Der Overhead durch die Verwendung von Schnittstellen kann in manchen Fällen die Leistung beeinträchtigen. Es ist wichtig, die Schnittstellen sorgfältig zu gestalten, um die Performance zu optimieren. Beispiele hierfür können in der Infrastruktur-schicht des Projektes gefunden werden. 
 
 ### 5.2 Implementierung der Domain-Logik
 
-Die Domain-Logik des Haushaltsplangenerators wurde detailliert umgesetzt. Die Entities repräsentieren die Hauptobjekte des Systems wie Haushaltspläne, Haushaltsposten und Projekte. Value Objects wurden verwendet, um unveränderliche Werte wie Datumsbereiche darzustellen. Repositories bieten eine Schnittstelle zur Datenbank und ermöglichen den Zugriff auf die Entities.
+Die Domain-Logik des Haushaltsplangenerators wurde detailliert umgesetzt. Die Entities repräsentieren die Hauptobjekte des Systems wie Haushaltspläne, Haushaltsposten und Projekte. Repositories bieten eine Schnittstelle zur Datenbank und ermöglichen den Zugriff auf die Entities.
 
-Die Geschäftsregeln und -logik wurden in den entsprechenden Klassen der Domain-Schicht umgesetzt. Beispielsweise wurden Validierungen in den Entities implementiert, um sicherzustellen, dass nur korrekte Daten gespeichert werden. Die Verarbeitung von Geschäftsregeln erfolgte in den entsprechenden Services der Anwendungsschicht.
+Die Geschäftsregeln und -logik wurden in den entsprechenden Klassen der Domain-Schicht umgesetzt. 
 
 Die saubere Trennung zwischen der Domain-Schicht und anderen Schichten erleichterte das Testen der Geschäftslogik und trug zur Entkopplung des Codes bei.
 
 ### 5.3 Einbindung von externen Datenquellen
 
-Während der Implementierung wurden externe Datenquellen in den Haushaltsplangenerator eingebunden. Dazu gehörten zum Beispiel APIs zur Abfrage von Währungskursen oder Datenbanken zur Speicherung von Benutzerinformationen.
-
-Die Integration externer Datenquellen erfolgte über entsprechende Schnittstellen und Adapter. Externe Daten wurden abgerufen, verarbeitet und in das interne Format des Haushaltsplangenerators umgewandelt, um eine nahtlose Interaktion zu gewährleisten.
-
-Herausforderungen bei der Einbindung externer Datenquellen bestanden in der Handhabung von Fehlern und Ausfällen dieser Quellen. Es war wichtig, robuste Mechanismen zu implementieren, um mit unerwarteten Situationen umgehen zu können und die Stabilität der Anwendung zu gewährleisten.
-
+Während der Implementierung wurden keine externe Datenquellen in den Haushaltsplangenerator eingebunden.
+ 
 ### 5.4 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
 
 Unit Tests wurden als zentrales Element für die Qualitätssicherung und Fehlererkennung in der Software eingesetzt. Für jede Schicht wurden separate Tests geschrieben, um sicherzustellen, dass die einzelnen Komponenten korrekt funktionieren.
