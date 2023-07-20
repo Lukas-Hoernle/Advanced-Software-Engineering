@@ -90,13 +90,14 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 In der Entwicklung des "Haushaltsplangenerators" wurden verschiedene grundlegende Programmierprinzipien angewendet, um eine saubere, wartbare und erweiterbare Codebasis zu gewährleisten. Diese Prinzipien sind bewährte Richtlinien, die helfen, qualitativ hochwertigen Code zu schreiben und Softwareprobleme effizient zu lösen.
 
 #### SOLID-Prinzipien
+
 Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abzielen, die Abhängigkeiten zwischen Klassen zu minimieren und die Flexibilität des Codes zu erhöhen. Im "Haushaltsplangenerator" haben wir diese Prinzipien konsequent angewendet, um die Wartbarkeit und Erweiterbarkeit der Software zu verbessern.
 
 1. Single Responsibility Principle (SRP): Jede Klasse sollte nur eine einzige Verantwortung haben und nur für eine spezifische Aufgabe zuständig sein. Im "Haushaltsplangenerator" ist beispielsweise die Klasse "Haushaltsposten" ausschließlich für die Speicherung und Kategorisierung von Projekten zuständig. Sie übernimmt nicht die direkte Speicherung von Ausgaben oder Einnahmen, sondern konzentriert sich nur auf ihre spezifische Aufgabe der Verwaltung von Projekten.
 
 2. Open/Closed Principle (OCP): Softwareentitäten sollten offen für Erweiterungen, aber geschlossen für Modifikationen sein. Im "Haushaltsplangenerator" sind die Klassen "Haushaltsposten" und "Projekt" in sich geschlossen, aber sie können in anderen Plänen genutzt werden, falls das Projekt auf standortübergreifende Planstrukturen erweitert wird. Die Aufteilung in viele eigenständige Klassen ermöglicht es uns, die Software offen für Erweiterungen zu halten, ohne den bestehenden Code zu ändern.
 
-3. Liskov Substitution Principle (LSP): Objekte einer abgeleiteten Klasse sollten in einem Programm anstelle von Objekten der Basisklasse verwendet werden können, ohne dass die Funktionalität des Programms beeinträchtigt wird. Dies fördert die Interoperabilität und Austauschbarkeit von Klassen.
+3. Liskov Substitution Principle (LSP): Im "Haushaltsplangenerator" können Ausgaben und Einnahmen verändert werden, ohne Änderungen im darüber liegenden Projekt oder im darüber liegenden Haushaltsposten vorzunehmen. Dies bedeutet, dass die Klassen, die die Ausgaben und Einnahmen nutzen, problemlos mit anderen Subtypen von Ausgaben und Einnahmen arbeiten können, ohne dass dies die Funktionalität der Software beeinträchtigt. Dadurch wird die Interoperabilität und Austauschbarkeit von Klassen gefördert.
 
 4. Interface Segregation Principle (ISP): Klienten sollten nicht von Schnittstellen abhängen, die sie nicht nutzen. Durch die Aufteilung von großen Schnittstellen in spezifischere Teile wird die Kopplung reduziert.
 
