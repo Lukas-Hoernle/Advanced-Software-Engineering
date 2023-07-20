@@ -8,10 +8,8 @@ from django.dispatch import receiver
 
 
 class IProjektRepository(ABC):
-    @staticmethod
-    @abstractmethod
-    @receiver(post_save, sender=Projekt)
-    def create(self, sender, instance, **kwargs) -> Projekt:
+
+    def create(self, sender, instance, created, **kwargs) -> Projekt:
         raise NotImplementedError
 
     @abstractmethod
