@@ -32,13 +32,11 @@ Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als gr
 
    - 1.3 Zielsetzung
 
-Das Hauptziel des Projekts "Haushaltsplangenerator" ist es, eine effiziente Automatisierung für die Studierendenvertretung (StuV) Karlsruhe zu entwickeln, um bisher manuell erstellte Anträge für Veranstaltungen und Haushaltspläne zu optimieren. Die Automatisierung soll Excel-Tabellen für Veranstaltungen und Haushaltspläne generieren, basierend auf den Eingaben des Nutzers, und dadurch den Arbeitsaufwand erheblich reduzieren.
+Das Hauptziel des Projekts "Haushaltsplangenerator" ist es, eine effiziente Automatisierung für die Studierendenvertretung (StuV) Karlsruhe zu entwickeln, um bisher manuell erstellte Anträge für Veranstaltungen und Haushaltspläne zu optimieren. Die Automatisierung soll Excel-Tabellen für Veranstaltungen und Haushaltspläne generieren, basierend auf den Eingaben des Nutzers, und dadurch das Erstellen erleichtern und den Einstieg für zukünftige Finanzer ermöglichen.
 
 Die Zielsetzung des Projekts ist durch die Herausforderungen bei der manuellen Erstellung von Anträgen entstanden. Es wurde erkannt, dass die Verwaltung und Analyse komplexer finanzieller Informationen in Excel-Tabellen zeitaufwändig und fehleranfällig ist. Um diesen Prozess zu optimieren, soll der Haushaltsplangenerator eine angenehme und benutzerfreundliche Webanwendung bieten, die den gesamten Prozess der Haushaltsplanung vereinfacht.
 
-Für Veranstaltungen werden relevante Informationen wie Veranstaltungsname, Verantwortlicher, Kategorien und Einkäufe vom Nutzer angegeben. Die Anwendung soll daraufhin automatisch eine Berechnung des Gewinns/Verlusts durchführen und eine übersichtliche Auflistung generieren. Durch diese Automatisierung wird der Antragsprozess beschleunigt und ein zeitsparender Versand der Anträge ermöglicht.
-
-Im Bereich der Haushaltspläne können Benutzer neue Haushaltspläne (HHPs) anlegen und benennen. Zudem sollen verschiedene Haushaltsposten in festgelegten Kategorien Geldbeträge zugewiesen bekommen können. Ebenso ist es möglich, Einkäufe zu einer Veranstaltung hinzuzufügen und diese entsprechend zu beschreiben.
+Benutzer können neue Haushaltspläne (HHPs) anlegen. Zudem sollen verschiedene Haushaltsposten und Projekte Geldbeträge zugewiesen bekommen können.
 
 Ein weiteres wichtiges Ziel ist die Implementierung einer Warnfunktion, die erscheint, wenn die Budgetplanung im Haushaltsplan das Gesamtbudget übersteigt oder unterschreitet. Dadurch wird eine effektive Kontrolle der Finanzen gewährleistet und mögliche Unstimmigkeiten oder Budgetüberschreitungen frühzeitig erkannt.
 
