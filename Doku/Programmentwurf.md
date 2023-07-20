@@ -101,7 +101,7 @@ Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abz
 
 4. Interface Segregation Principle (ISP): Im "Haushaltsplangenerator" kann das gleiche Beispiel wie beim Liskov Substitution Principle angewendet werden, um es zu veranschaulichen. Clienten, die Projekte ändern, benötigen dafür nicht die Klasse "Haushaltsplan". Die Trennung von großen Schnittstellen in spezifischere Teile reduziert die Kopplung und erhöht die Flexibilität des Codes.
 
-5. Dependency Inversion Principle (DIP): Abhängigkeiten sollten auf abstrakte Klassen und Schnittstellen anstatt auf konkrete Implementierungen basieren. Dadurch wird die Flexibilität des Codes erhöht und die Abhängigkeiten können leichter ausgetauscht werden.
+5. Dependency Inversion Principle (DIP): Im "Haushaltsplangenerator" werden Abhängigkeiten zwischen den Klassen "Haushaltsplan", "Haushaltsposten", "Projekt" und "Aufwand" nur auf die Klasse als Objekt-Ebene eingebunden und nicht auf die spezielle Implementierungsebene. Beispielsweise greift das Projekt nicht auf die spezielle Implementierung der Werteberechnung und der Einnahmen/Ausgaben-Felder im Aufwand zu, sondern es referenziert lediglich den Aufwand selbst. Dadurch bleibt die Flexibilität des Codes erhalten und Abhängigkeiten können leichter ausgetauscht werden.
 
 #### GRASP-Prinzipien
 
