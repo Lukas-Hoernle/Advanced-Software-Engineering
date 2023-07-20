@@ -86,8 +86,6 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 
 - Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
 
-Mit der bewussten Anwendung von Domain Driven Design haben wir den Haushaltsplangenerator gezielt auf die Bedürfnisse der Studierendenvertretung zugeschnitten und eine flexible und benutzerfreundliche Lösung für die Haushaltsplanung geschaffen.
-
    ### 2.2 Clean Architecture 
    ### 2.3 Programming Principles 
 
