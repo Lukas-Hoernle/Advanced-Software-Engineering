@@ -71,9 +71,23 @@ Die vorliegende Arbeit gliedert sich in die folgenden Abschnitte:
 Im Rahmen dieser Gliederung wird das Projekt "Haushaltsplangenerator" von der Motivation über die theoretischen Grundlagen bis hin zur praktischen Umsetzung und Evaluation detailliert behandelt.
 
 ## 2. Theoretische Grundlagen
-   ### 2.1 Domain Driven Design (Verwendung begründen)
-   ### 2.2 Clean Architecture (Verwendung begründen)
-   ### 2.3 Programming Principles (Verwendung begründen)
+
+### 2.1 Domain Driven Design
+
+Domain Driven Design (DDD) ist ein Konzept aus der Softwareentwicklung, das sich darauf konzentriert, die Software so zu gestalten, dass sie die Anforderungen des Fachwissens besser widerspiegelt. Im Projekt "Haushaltsplangenerator" haben wir DDD bewusst eingesetzt, um die Haushaltsplanung in der Studierendenvertretung effizienter und benutzerfreundlicher zu gestalten.
+
+Wir haben zuerst eine umfassende Analyse der Fachbegriffe und Konzepte der Haushaltsplanung durchgeführt, um sicherzustellen, dass wir die gleiche Sprache wie die Fachexperten sprechen. Dies hat geholfen, Missverständnisse zu vermeiden und eine klare Verbindung zur Fachdomäne herzustellen.
+
+Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur zu optimieren:
+
+- Value Objects haben wir verwendet, um bestimmte Eigenschaften wie Preise und Budgets als unveränderliche Wertobjekte darzustellen. Beispielsweise haben wir sie bei den Aufwand-Objekten genutzt, um den Aufwand für eine Veranstaltung in Stunden und Minuten zu repräsentieren.
+
+- Entities repräsentieren identifizierbare und veränderbare Objekte im System. Wir haben sie beispielsweise für Veranstaltungen genutzt, da sie eindeutig identifizierbar sind und ihren Zustand ändern können.
+
+- Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
+
+   ### 2.2 Clean Architecture 
+   ### 2.3 Programming Principles 
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
    ### 3.1 Beschreibung des Projektkontexts
