@@ -88,6 +88,7 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 
    ### 2.2 Clean Architecture 
 ### 2.3 Programming Principles
+
 [//]: # (ToDO: statts generische Erklärung so anpassen, dass es die zugehörigen Stellen inm HHPG erklärt.)
 
 In der Entwicklung des "Haushaltsplangenerators" wurden verschiedene grundlegende Programmierprinzipien angewendet, um eine saubere, wartbare und erweiterbare Codebasis zu gewährleisten. Diese Prinzipien sind bewährte Richtlinien, die helfen, qualitativ hochwertigen Code zu schreiben und Softwareprobleme effizient zu lösen.
@@ -110,7 +111,7 @@ Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abz
 
 Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind ein Satz von Entwurfsrichtlinien, die helfen, die Verantwortlichkeiten und Zusammenhänge zwischen Klassen zu definieren. Im "Haushaltsplangenerator" haben wir die GRASP-Prinzipien angewendet, um eine klare und effiziente Strukturierung des Codes zu erreichen.
 
-1. Creator: Objekte sollten nur dann Verantwortung für die Erstellung von anderen Objekten übernehmen, wenn sie eine logische Beziehung zu diesen Objekten haben.
+1. Creator: Objekte sollten nur dann Verantwortung für die Erstellung von anderen Objekten übernehmen, wenn sie eine logische Beziehung zu diesen Objekten haben. Im "Haushaltsplangenerator" wird die Erstellung von Objekten immer durch die `create`-Methode in den entsprechenden Klassen selbst durchgeführt. Beispielsweise ruft die Klasse "Haushaltsposten" als einziges die `create`-Methode der Klasse "Projekt" auf, und die Klasse "Projekt" als einziges die `create`-Methode von "Aufwand" auf.
 
 2. Information Expert: Eine Verantwortlichkeit sollte einem Objekt zugewiesen werden, das über die notwendigen Informationen verfügt, um diese Verantwortung zu erfüllen.
 
