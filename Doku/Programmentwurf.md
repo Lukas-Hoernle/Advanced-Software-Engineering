@@ -92,19 +92,34 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
 
 ### 3.1 Beschreibung des Projektkontexts
-- Einführung in den Hintergrund des Praxisprojekts "Haushaltsplangenerator"
-- Erklärung der Aufgabenstellung und des Zwecks der Software
-- Beschreibung der Zielgruppe und des Anwendungsbereichs
+
+Der "Haushaltsplangenerator" ist ein Praxisprojekt, das entwickelt wurde, um eine leistungsfähige und anwenderfreundliche Softwarelösung zu schaffen. Ziel ist es, Organisationen und Gremien bei der effizienten Erstellung und Verwaltung von Haushaltsplänen zu unterstützen. Die Verwaltung von Haushaltsplänen ist oft eine komplexe Aufgabe, die sorgfältige Planung und Berücksichtigung verschiedener Gremien und Projekte erfordert.
+
+Die Aufgabenstellung des Projekts bestand darin, eine intuitiv bedienbare Benutzeroberfläche zu entwickeln, die es den Benutzern ermöglicht, Haushaltspläne zu erstellen und Projekte effizient zu verwalten. Dabei sollte die Genauigkeit und Transparenz der Budgetierung erhöht werden, um eine fundierte Entscheidungsfindung zu ermöglichen.
+
+Die Zielgruppe des "Haushaltsplangenerators" umfasst staatliche Organisationen, Non-Profit-Organisationen, Bildungseinrichtungen und Unternehmen, die regelmäßig komplexe Haushaltspläne erstellen müssen. Die Software kann flexibel an die spezifischen Anforderungen und Strukturen der einzelnen Organisationen angepasst werden.
 
 ### 3.2 Integration der erlernten Konzepte und Prinzipien
-- Darlegung, wie die im vorherigen Kapitel (2. Theoretische Grundlagen) beschriebenen Konzepte wie Domain Driven Design, Clean Architecture und Programming Principles im Projekt umgesetzt wurden
-- Erklärung, wie die Anwendung der Konzepte zur Verbesserung der Softwarearchitektur und Codequalität beigetragen hat
-- Diskussion, welche Vorteile die Verwendung der Konzepte mit sich gebracht hat und wie sie dazu beitragen, die Projektziele zu erreichen
+
+In der Umsetzung des "Haushaltsplangenerators" wurden verschiedene theoretische Konzepte und Prinzipien integriert, um die Softwarearchitektur und Codequalität zu verbessern.
+
+Domain Driven Design (DDD) wurde angewendet, um eine klare Trennung zwischen Geschäftslogik und technischen Details zu erreichen. Die Strukturierung in Domänen-übergreifende Bounded Contexts sorgte für eine übersichtliche Organisation des Projekts und eine erhöhte Wartbarkeit.
+
+Die Anwendung der Clean Architecture führte zur Schaffung einer flexiblen Schichtenarchitektur, in der Geschäftslogik, Schnittstellen und Datenbankzugriffe klar voneinander getrennt sind. Dadurch wurden die Abhängigkeiten minimiert und die Austauschbarkeit der Technologien verbessert.
+
+Die Berücksichtigung der SOLID-Prinzipien (Single Responsibility Principle, Open/Closed Principle, Liskov Substitution Principle, Interface Segregation Principle und Dependency Inversion Principle) führte zu einem gut strukturierten und wartbaren Code. Die Prinzipien unterstützten die Trennung der Verantwortlichkeiten und reduzierten die Kopplung zwischen den Klassen.
+
+Ebenso wurden die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) angewendet, um klare Verantwortlichkeiten für die einzelnen Klassen zu definieren und eine hohe Kohäsion zu erreichen.
 
 ### 3.3 Herausforderungen und Lösungsansätze
-- Analyse der Herausforderungen, die während der Entwicklung des Haushaltsplangenerators aufgetreten sind
-- Beschreibung der Lösungsansätze, die angewendet wurden, um diese Herausforderungen zu bewältigen
-- Reflexion über die Ergebnisse der Lösungsansätze und Diskussion, wie sie zur Verbesserung des Projekts beigetragen haben
+
+Während der Entwicklung des Haushaltsplangenerators traten verschiedene Herausforderungen auf, die erfolgreich bewältigt wurden.
+
+Eine Herausforderung bestand in der Modellierung der komplexen Budgetierungs- und Ressourcenplanungsprozesse. Durch die Anwendung von Domain Driven Design konnten die Geschäftslogik und -regeln klar definiert und auf verschiedene Bounded Contexts aufgeteilt werden, um die Komplexität zu reduzieren.
+
+Die effiziente Verwaltung von Projekten und Ressourcen war ein weiteres Thema. Hier kam das Creator-Prinzip aus den GRASP-Prinzipien zum Einsatz, um sicherzustellen, dass die Verantwortung für die Erstellung von Objekten immer bei den entsprechenden Klassen selbst liegt. Dadurch wurde die Verwaltung von Projekten und Ressourcen erleichtert und die Abhängigkeiten zwischen den Klassen reduziert.
+
+Die Lösungsansätze und deren Ergebnisse wurden reflektiert, und es wurde festgestellt, dass die Anwendung der Konzepte und Prinzipien wesentlich zur Verbesserung der Softwarearchitektur und Codequalität beigetragen hat. Die klare Trennung der Verantwortlichkeiten und die flexible Schichtenarchitektur ermöglichten es, neue Funktionen hinzuzufügen und Änderungen vorzunehmen, ohne den bestehenden Code zu beeinträchtigen. Dies erhöhte die Wartbarkeit und Skalierbarkeit der Anwendung und trug dazu bei, die Projektziele effektiv zu erreichen.
 
 
 ## 4. Analyse und Design
