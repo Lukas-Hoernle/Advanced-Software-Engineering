@@ -87,6 +87,22 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 - Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
 ### 2.2 Clean Architecture
 ### 2.3 Programming Principles
+In der Entwicklung des "Haushaltsplangenerators" wurden verschiedene grundlegende Programmierprinzipien angewendet, um eine saubere, wartbare und erweiterbare Codebasis zu gewährleisten. Diese Prinzipien sind bewährte Richtlinien, die helfen, qualitativ hochwertigen Code zu schreiben und Softwareprobleme effizient zu lösen.
+
+#### SOLID-Prinzipien
+
+Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abzielen, die Abhängigkeiten zwischen Klassen zu minimieren und die Flexibilität des Codes zu erhöhen. Im "Haushaltsplangenerator" haben wir diese Prinzipien konsequent angewendet, um die Wartbarkeit und Erweiterbarkeit der Software zu verbessern.
+
+1. Single Responsibility Principle (SRP): Jede Klasse sollte nur eine einzige Verantwortung haben und nur für eine spezifische Aufgabe zuständig sein. Dies ermöglicht eine bessere Modularisierung und erleichtert die Wartung des Codes.
+
+2. Open/Closed Principle (OCP): Softwareentitäten sollten offen für Erweiterungen, aber geschlossen für Modifikationen sein. Durch Verwendung von Schnittstellen und abstrakten Klassen können neue Funktionen hinzugefügt werden, ohne den bestehenden Code zu ändern.
+
+3. Liskov Substitution Principle (LSP): Objekte einer abgeleiteten Klasse sollten in einem Programm anstelle von Objekten der Basisklasse verwendet werden können, ohne dass die Funktionalität des Programms beeinträchtigt wird. Dies fördert die Interoperabilität und Austauschbarkeit von Klassen.
+
+4. Interface Segregation Principle (ISP): Klienten sollten nicht von Schnittstellen abhängen, die sie nicht nutzen. Durch die Aufteilung von großen Schnittstellen in spezifischere Teile wird die Kopplung reduziert.
+
+5. Dependency Inversion Principle (DIP): Abhängigkeiten sollten auf abstrakte Klassen und Schnittstellen anstatt auf konkrete Implementierungen basieren. Dadurch wird die Flexibilität des Codes erhöht und die Abhängigkeiten können leichter ausgetauscht werden.
+
 #### GRASP-Prinzipien
 
 Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind ein Satz von Entwurfsrichtlinien, die helfen, die Verantwortlichkeiten und Zusammenhänge zwischen Klassen zu definieren. Im "Haushaltsplangenerator" haben wir die GRASP-Prinzipien angewendet, um eine klare und effiziente Strukturierung des Codes zu erreichen.
