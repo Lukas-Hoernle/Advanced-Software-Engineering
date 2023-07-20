@@ -15,6 +15,18 @@ Dieser Prototyp dient nicht nur als Lösung für meine persönliche Herausforder
 
 Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als Grundlage für zukünftige Entwicklungen und Verfeinerungen festgelegt. Die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems wird nicht nur meine Arbeitsabläufe optimieren, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessern.
 
+  - 1.2 Tech Stack
+
+Aufgrund der aktuellen Zeitprobleme, die durch die anstehende Klausurphase und das Nachholen von Klausuren aufgrund eines Armbruchs entstanden sind, musste für die Entwicklung des "Haushaltsplangenerators" ein effizienter und zeitsparender Techstack gewählt werden. Gleichzeitig befand ich mich in der Endphase meiner Bachelorarbeit, was die Zeitressourcen zusätzlich einschränkte. Dennoch wollte ich die Gelegenheit nutzen, um neue Techniken und Frameworks auszuprobieren, um meinen Horizont zu erweitern.
+
+Die Wahl des Techstacks fiel letztendlich auf Django, ein Python-Framework, das mir von meinem Kommilitonen Marc Gökce empfohlen wurde. Die Entscheidung für Django war motiviert durch dessen Popularität, aktive Community und den Ruf als leistungsfähiges Framework für die Entwicklung von Webanwendungen. Durch die Unterstützung von Django sollte es möglich sein, schnell eine funktionale Webanwendung aufzubauen und den Entwicklungsprozess zu beschleunigen.
+
+Jedoch stieß ich während der Entwicklung auf einen Nachteil von Django, der nicht zu unterschätzen war. Django ist darauf ausgelegt, effizient zu arbeiten und wenig Codezeilen zu produzieren. Da das Projekt jedoch eine Mindestzahl an Codezeilen erforderte, führte dies zu einer unerwünschten Situation, in der unnötiger Code entstand, der lediglich als Mittel zum Zweck diente, um die Anforderung an Codezeilen zu erfüllen. Dies führte zu einem nicht unerheblichen Umfang an Code, der nicht immer der sauberen Architektur entsprach.
+
+Trotz dieser Herausforderung ermöglichte der gewählte Techstack mit Django dennoch eine schnelle Prototypenentwicklung, wodurch der Fokus auf die Implementierung der Kernfunktionen des Haushaltsplangenerators gelegt werden konnte. In Anbetracht der zeitlichen Restriktionen und der Tatsache, dass der Prototyp als Proof-of-Concept diente, wurde die Entscheidung für Django als technologische Basis dennoch als geeignete Kompromisslösung angesehen.
+
+Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als grundlegende Grundlage für zukünftige Entwicklungen und Verfeinerungen festgelegt. Die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems wird nicht nur meine Arbeitsabläufe optimieren, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessern.
+
    - 1.3 Zielsetzung
    - 1.4 Aufbau der Arbeit
 
