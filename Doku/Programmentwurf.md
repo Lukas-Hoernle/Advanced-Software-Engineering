@@ -1,5 +1,6 @@
 
 ## 5. Implementierung
+[//]: # (Etwas konkretere Beispiele in 5)
 
 ### 5.1 Umsetzung der Schichtenarchitektur
 
@@ -25,7 +26,7 @@ Die Geschäftsregeln und -logik wurden in den entsprechenden Klassen der Domain-
 
 Die saubere Trennung zwischen der Domain-Schicht und anderen Schichten erleichterte das Testen der Geschäftslogik und trug zur Entkopplung des Codes bei.
  
-### 5.3 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
+### 5.3 Unit Testing
 
 Unit Tests wurden als zentrales Element für die Qualitätssicherung und Fehlererkennung in der Software eingesetzt. Für jede Schicht wurden separate Tests geschrieben, um sicherzustellen, dass die einzelnen Komponenten korrekt funktionieren.
 
