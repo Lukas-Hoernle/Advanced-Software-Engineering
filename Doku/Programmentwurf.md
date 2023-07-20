@@ -99,11 +99,7 @@ Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind 
 
 4. High Cohesion: Klassen sollten eng zusammenhängende Funktionen haben und nur solche Methoden und Eigenschaften enthalten, die für die Erfüllung ihrer Verantwortlichkeiten relevant sind. Im "Haushaltsplangenerator" hat beispielsweise der Haushaltsplan alle Methoden zum Erhalt von Informationen über die Haushaltsposten und Aufwände, führt aber keine Berechnungen durch, die im Aufgabenbereich der Haushaltsposten oder Aufwände stehen. Jede Klasse konzentriert sich auf ihre spezifischen Aufgaben, was die Wartbarkeit und Lesbarkeit des Codes verbessert.
 
-5. Controller: Ein Controller ist ein zentraler Punkt, der für die Koordination und Steuerung der Interaktionen zwischen verschiedenen Klassen verantwortlich ist.
-
-6. Polymorphism: Im aktuellen Use Case des "Haushaltsplangenerators" wurden keine eigen erstellten Klassen erstellt, die mehrere eigen erstellte Unterklassen haben, da der Use Case dafür nicht besonders geeignet war. Jedoch bietet das Prinzip des Polymorphismus die Möglichkeit, bei einer möglichen zukünftigen Erweiterung für Haushaltspläne anderer Gremien beispielsweise Haushaltsposten und Geschäftsposten als Unterklasse von "Posten" zu implementieren. Dies ermöglicht eine einheitliche Behandlung verschiedener Posten-Typen und erhöht die Flexibilität und Erweiterbarkeit der Software.
-
-7. Pure Fabrication: Wenn keine natürliche Klasse für eine Verantwortung existiert, kann eine künstliche oder "pure fabrication" Klasse erstellt werden, um diese Verantwortung zu übernehmen.
+5. Polymorphism: Im aktuellen Use Case des "Haushaltsplangenerators" wurden keine eigen erstellten Klassen erstellt, die mehrere eigen erstellte Unterklassen haben, da der Use Case dafür nicht besonders geeignet war. Jedoch bietet das Prinzip des Polymorphismus die Möglichkeit, bei einer möglichen zukünftigen Erweiterung für Haushaltspläne anderer Gremien beispielsweise Haushaltsposten und Geschäftsposten als Unterklasse von "Posten" zu implementieren. Dies ermöglicht eine einheitliche Behandlung verschiedener Posten-Typen und erhöht die Flexibilität und Erweiterbarkeit der Software.
 
 Durch die Anwendung der SOLID- und GRASP-Prinzipien haben wir im "Haushaltsplangenerator" eine saubere und gut strukturierte Codebasis geschaffen, die leicht erweiterbar, wartbar und effizient ist. Diese Prinzipien bilden eine solide Grundlage für die Weiterentwicklung und Verbesserung der Software.
 
