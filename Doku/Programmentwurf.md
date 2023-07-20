@@ -42,6 +42,7 @@ In der Infrastruktur-Schicht werden technische Details und die Datenbankanbindun
 ### 4.3 Design Patterns
 
 Im Haushaltsplangenerator wurden verschiedene Design Patterns angewendet, um bestimmte Probleme zu lösen und die Softwarestruktur zu verbessern.
+
 [//]: # (todo actual Auflistung)
 
 
