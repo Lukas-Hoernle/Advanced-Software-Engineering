@@ -22,7 +22,15 @@ class HaushaltsplanExcelGenerator:
         )
         builder.write_headers()
 
-        row_index = 2
+        row_index = 3
+
+        builder.set_haushaltsplan(
+            self.haushaltsplan,
+            row_index
+        )
+        builder.write_haushaltsplan()
+
+        row_index = 9
 
         haushaltsposten_list = self.haushaltsplan.haushaltsposten_liste
 
@@ -73,10 +81,76 @@ class ExcelBuilder:
             )
 
 
+    def set_haushaltsplan(
+            self,
+            haushaltsplan,
+            row_index
+    ):
+        self.haushaltsplan = haushaltsplan
+        self.row_index = row_index
+
+
+    def write_haushaltsplan(self):
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Name:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.plan_name
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Standort:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.standort
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Ersteller:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.author.username
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Startjahr:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.startjahr
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Studierendenanzahl:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.studierendenzahl
+        )
+
+
     def set_haushaltsposten(
             self,
             haushaltsposten,
-            row_index
+            row_index,
     ):
         self.haushaltsposten = haushaltsposten
         self.row_index = row_index
@@ -100,6 +174,11 @@ class ExcelBuilder:
 
 
     def write_projekt(self):
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value=self.projekt.projekt_name
+        )
         self.worksheet.cell(
             row=self.row_index,
             column=2,
