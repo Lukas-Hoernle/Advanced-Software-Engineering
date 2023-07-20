@@ -83,12 +83,12 @@ Im Rahmen dieser Gliederung wird das Projekt "Haushaltsplangenerator" von der Mo
 ## 4. Analyse und Design
    ### 4.1 Anforderungsanalyse
    ### 4.2 Architekturdesign
-      #### 4.2.1 Schichtarchitekturplanung und Begründung
-      #### 4.2.2 Entwurf der Domain-Schicht
-      #### 4.2.3 Entwurf der Infrastruktur-Schicht
+   #### 4.2.1 Schichtarchitekturplanung und Begründung
+   #### 4.2.2 Entwurf der Domain-Schicht
+   #### 4.2.3 Entwurf der Infrastruktur-Schicht
    ### 4.3 Design Patterns
-      #### 4.3.1 Observer Pattern (Einsatz und Begründung)
-      #### 4.3.2 Factory Pattern (Einsatz und Begründung)
+   #### 4.3.1 Observer Pattern (Einsatz und Begründung)
+   #### 4.3.2 Factory Pattern (Einsatz und Begründung)
 
 ## 5. Implementierung
    ### 5.1 Umsetzung der Schichtenarchitektur
