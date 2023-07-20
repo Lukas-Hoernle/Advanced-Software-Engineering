@@ -12,7 +12,9 @@ from HHPG.infrastruktur.aufwand_repository import AufwandRepository
 class ProjektRepository(IProjektRepository):
     @staticmethod
     @receiver(post_save, sender=Projekt)
-    def create(self, sender, instance, **kwargs) -> Projekt:
+    def create(sender, instance, created, **kwargs) -> Projekt | None:
+        if created:
+            return None
         return Projekt.objects.create(**instance)
 
     def save(self, sender, instance, **kwargs) -> None:
