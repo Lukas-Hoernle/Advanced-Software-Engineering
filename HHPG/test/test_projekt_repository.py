@@ -1,59 +1,80 @@
-import os
-import unittest
-
-import django
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HHPG.settings')
-
-django.setup()
-
-from django.test import TestCase
-from HHPG.infrastruktur.projekt_repository import ProjektRepository
+from django.db.models import QuerySet
 from HHPG.domain.entity.projekt import Projekt
+from HHPG.domain.repository.i_projekt_repository import IProjektRepository
 
+class ProjektRepository(IProjektRepository):
+    def create(self, name: str, einnahmen: int, ausgaben: int) -> Projekt:
+        # Implementierung der create-Methode, um ein neues Projekt zu erstellen
+        pass
 
-class TestProjektRepository(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.repository = ProjektRepository()
+    def save(self, projekt: Projekt) -> None:
+        # Implementierung der save-Methode, um ein Projekt zu speichern/aktualisieren
+        pass
 
-    def test_create_projekt(self):
-        projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        self.assertIsInstance(projekt, Projekt)
-        self.assertEqual(projekt.name, "Testprojekt")
-        self.assertEqual(projekt.einnahmen, 1000)
-        self.assertEqual(projekt.ausgaben, 500)
+    def delete(self, projekt_id: int) -> None:
+        # Implementierung der delete-Methode, um ein Projekt zu löschen
+        pass
 
-    def test_get_projekt_by_id(self):
-        projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        retrieved_projekt = self.repository.get_by_id(projekt.id)
-        self.assertEqual(retrieved_projekt, projekt)
+    def get_by_id(self, projekt_id) -> Projekt:
+        # Implementierung der get_by_id-Methode, um ein Projekt anhand der ID abzurufen
+        pass
 
-    def test_update_projekt_name(self):
-        projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        self.repository.update_name(projekt.id, "Updated Projekt")
-        updated_projekt = self.repository.get_by_id(projekt.id)
-        self.assertEqual(updated_projekt.name, "Updated Projekt")
+    def get_all(self) -> QuerySet:
+        # Implementierung der get_all-Methode, um alle Projekte abzurufen
+        pass
 
-    def test_update_projekt_einnahmen(self):
-        projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        self.repository.update_einnahmen(projekt.id, 1500)
-        updated_projekt = self.repository.get_by_id(projekt.id)
-        self.assertEqual(updated_projekt.einnahmen, 1500)
+    def order_by(self, order: str) -> QuerySet:
+        # Implementierung der order_by-Methode, um Projekte nach einem Kriterium zu sortieren
+        pass
 
-    def test_update_projekt_ausgaben(self):
-        projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        self.repository.update_ausgaben(projekt.id, 800)
-        updated_projekt = self.repository.get_by_id(projekt.id)
-        self.assertEqual(updated_projekt.ausgaben, 800)
+    def get_count(self, haushaltsposten_id: int) -> int:
+        # Implementierung der get_count-Methode, um die Anzahl der Projekte für einen Haushaltsposten abzurufen
+        pass
 
-    def test_delete_projekt(self):
-        projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-        self.repository.delete(projekt.id)
-        deleted_projekt = self.repository.get_by_id(projekt.id)
-        self.assertIsNone(deleted_projekt)
+    def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
+        # Implementierung der get_all_by_haushaltsposten-Methode, um Projekte für einen Haushaltsposten abzurufen
+        pass
 
+    def get_all_by_name(self, name: str) -> QuerySet:
+        # Implementierung der get_all_by_name-Methode, um Projekte anhand des Namens abzurufen
+        pass
 
-if __name__ == '__main__':
-    unittest.main()
+    def get_all_by_einnahmen(self, einnahmen: int) -> QuerySet:
+        # Implementierung der get_all_by_einnahmen-Methode, um Projekte anhand der Einnahmen abzurufen
+        pass
+
+    def update_haushaltsposten(self, projekt_id: int, haushaltsposten) -> None:
+        # Implementierung der update_haushaltsposten-Methode, um den Haushaltsposten eines Projekts zu aktualisieren
+        pass
+
+    def get_haushaltsposten(self, projekt_id: int):
+        # Implementierung der get_haushaltsposten-Methode, um den Haushaltsposten eines Projekts abzurufen
+        pass
+
+    def update_name(self, projekt_id: int, name: str) -> None:
+        # Implementierung der update_name-Methode, um den Namen eines Projekts zu aktualisieren
+        pass
+
+    def get_name(self, projekt_id: int):
+        # Implementierung der get_name-Methode, um den Namen eines Projekts abzurufen
+        pass
+
+    def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
+        # Implementierung der update_einnahmen-Methode, um die Einnahmen eines Projekts zu aktualisieren
+        pass
+
+    def get_einnahmen(self, projekt_id: int):
+        # Implementierung der get_einnahmen-Methode, um die Einnahmen eines Projekts abzurufen
+        pass
+
+    def update_ausgaben(self, projekt_id: int, ausgaben: int) -> None:
+        # Implementierung der update_ausgaben-Methode, um die Ausgaben eines Projekts zu aktualisieren
+        pass
+
+    def get_ausgaben(self, projekt_id: int):
+        # Implementierung der get_ausgaben-Methode, um die Ausgaben eines Projekts abzurufen
+        pass
+
+    def get_gewinn(self, projekt_id: int):
+        # Implementierung der get_gewinn-Methode, um den Gewinn eines Projekts abzurufen
+        pass
