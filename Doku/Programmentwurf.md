@@ -86,8 +86,6 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 
 - Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
 
-## 2. Theoretische Grundlagen
-
 ### 2.2 Clean Architecture
 
 Im Projekt "Haushaltsplangenerator" wurde die Softwarearchitektur nach dem Prinzip der Clean Architecture strukturiert, um eine klare Trennung der Verantwortlichkeiten und eine hohe Flexibilität der Software zu erreichen. Die Clean Architecture besteht aus verschiedenen Layern, die jeweils spezifische Aufgaben und Abhängigkeiten haben.
