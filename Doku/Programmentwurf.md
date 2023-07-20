@@ -71,9 +71,9 @@ Die vorliegende Arbeit gliedert sich in die folgenden Abschnitte:
 Im Rahmen dieser Gliederung wird das Projekt "Haushaltsplangenerator" von der Motivation über die theoretischen Grundlagen bis hin zur praktischen Umsetzung und Evaluation detailliert behandelt.
 
 ## 2. Theoretische Grundlagen
-   ### 2.1 Domain Driven Design (Verwendung begründen)
-   ### 2.2 Clean Architecture (Verwendung begründen)
-   ### 2.3 Programming Principles (Verwendung begründen)
+   ### 2.1 Domain Driven Design 
+   ### 2.2 Clean Architecture 
+   ### 2.3 Programming Principles 
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
    ### 3.1 Beschreibung des Projektkontexts
