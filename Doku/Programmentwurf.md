@@ -47,14 +47,70 @@ Im Haushaltsplangenerator wurden verschiedene Design Patterns angewendet, um bes
 
 
 #### 4.3.1 Observer Pattern
-[//]: # (todo: Beispiel)
 
 Das Observer Pattern wird verwendet, um die Kommunikation zwischen den Komponenten des Haushaltsplangenerators zu ermöglichen. Durch das Observer Pattern werden bestimmte Komponenten über Änderungen in anderen Komponenten informiert, ohne dass diese Komponenten direkt miteinander gekoppelt sind. Dies ermöglicht eine flexible und entkoppelte Kommunikation zwischen den verschiedenen Teilen des Systems.
 
 #### 4.3.2 Factory Pattern
-[//]: # (todo Beispiel)
+Im Haushaltsplangenerator wird das Factory Pattern verwendet, um die Erzeugung von Formularen (Forms) und Formsets zu vereinfachen und zu zentralisieren. Hierbei kommt das Abstract Factory Pattern zum Einsatz, um eine abstrakte Klasse `FormFactory` zu definieren, die Methoden zur Erstellung von verschiedenen Formularen und Formsets bereitstellt. Diese abstrakte Klasse dient als Basis für spezifische Implementierungen, wie die Klasse `DefaultFormFactory`.
 
-Das Factory Pattern wird eingesetzt, um die Erzeugung von Objekten zu vereinfachen und zu zentralisieren. Es ermöglicht die Erstellung von Objekten, ohne dass der Client die genaue Klasse kennen muss. Dadurch wird die Flexibilität und Wartbarkeit des Codes verbessert und die Abhängigkeiten reduziert.
+In der Klasse `DefaultFormFactory` werden die abstrakten Methoden der `FormFactory` überschrieben, um konkrete Formulare und Formsets zurückzugeben. Zum Beispiel wird die Methode `create_haushaltsplan_form` überschrieben, um eine Instanz des `HaushaltsplanForm` zu erzeugen, und die Methode `create_projekt_formset` wird überschrieben, um eine Instanz des `ProjektFormSet` zurückzugeben.
+
+Hier ist der relevante Teil des Codes, in dem das Factory Pattern angewendet wird:
+
+```python
+# Abstract Factory Pattern
+class FormFactory:
+    def create_haushaltsplan_form(self, data=None):
+        pass
+
+    def create_haushaltsposten_formset(self, data=None, prefix=None):
+        pass
+
+    def create_projekt_formset(self, data=None, prefix=None):
+        pass
+
+class DefaultFormFactory(FormFactory):
+    def create_haushaltsplan_form(self, data=None):
+        return HaushaltsplanForm(data=data)
+
+    def create_haushaltsposten_formset(self, data=None, prefix=None):
+        return HaushaltspostenFormSet(data=data, prefix=prefix)
+
+    def create_projekt_formset(self, data=None, prefix=None):
+        return ProjektFormSet(data=data, prefix=prefix)
+
+# ... Weitere Klassen ...
+
+class HaushaltsplanView:
+    def __init__(self, form_factory):
+        self.form_factory = form_factory
+
+    # ... Andere Methoden ...
+
+    def handle_get_request(self, request):
+        haushaltsplan_form = self.form_factory.create_haushaltsplan_form()
+        haushaltsposten_formset = self.form_factory.create_haushaltsposten_formset(prefix='haushaltsposten')
+        projekt_formset = self.form_factory.create_projekt_formset(prefix='projekt')
+
+        context = {
+            'haushaltsplan_form': haushaltsplan_form,
+            'haushaltsposten_formset': haushaltsposten_formset,
+            'projekt_formset': projekt_formset,
+        }
+
+        return render(request, 'create_haushaltsplan.html', context)
+
+def create_haushaltsplan(request):
+    form_factory = DefaultFormFactory()
+    view = HaushaltsplanView(form_factory)
+
+    # ... Andere Methoden ...
+
+```
+
+Durch die Anwendung des Factory Patterns wird die Erstellung von Formularen und Formsets zentralisiert und die Abhängigkeiten zwischen den verschiedenen Komponenten reduziert. Dadurch wird der Code flexibler und besser wartbar. Außerdem ermöglicht das Factory Pattern die einfache Erweiterung des Systems um weitere Formulare und Formsets, indem neue Implementierungen der `FormFactory` erstellt werden, ohne den bestehenden Code ändern zu müssen.
+
+[Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/Analyse-und-Design/HHPG/application/create_Haushaltsplan.py)
 
 Die Verwendung dieser Design Patterns trägt dazu bei, die Codequalität zu verbessern und die Wartbarkeit des Haushaltsplangenerators zu erhöhen.
 
