@@ -86,7 +86,30 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 
 - Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
 
-   ### 2.2 Clean Architecture 
+### 2.2 Clean Architecture
+
+Im Projekt "Haushaltsplangenerator" wurde die Softwarearchitektur nach dem Prinzip der Clean Architecture strukturiert, um eine klare Trennung der Verantwortlichkeiten und eine hohe Flexibilität der Software zu erreichen. Die Clean Architecture besteht aus verschiedenen Layern, die jeweils spezifische Aufgaben und Abhängigkeiten haben.
+
+1. **Application Layer:**
+   Der Application Layer stellt die oberste Schicht der Clean Architecture dar und dient als Schnittstelle zur Kommunikation mit der Außenwelt. Hier werden die Benutzereingaben verarbeitet und die Anwendungsfälle umgesetzt. Der Application Layer kommuniziert mit dem Domain Layer, um die entsprechenden Geschäftsregeln auszuführen. (Application Layer: [Link](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/application))
+
+2. **Domain Layer:**
+   Der Domain Layer bildet das Herzstück der Clean Architecture und enthält die Kernlogik der Anwendung. Hier werden die Business-Entities und Value Objects definiert, die das Domänenwissen abbilden. Der Domain Layer ist unabhängig von den anderen Layern und enthält keine Abhängigkeiten zu Frameworks oder Datenbanken. Die Entities und Repositories sind im [domain-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/domain) des Projekts strukturiert. Die Entities befinden sich im [entity-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/domain/entity) und die Repositories im [repository-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/domain/repository).
+
+3. **Infrastructure Layer:**
+   Der Infrastruktur-Layer enthält Implementierungsdetails, die den äußeren Rahmen der Anwendung bilden. Hier werden Datenbankzugriffe, externe Schnittstellen und Framework-spezifische Komponenten behandelt. Der Infrastruktur-Layer kommuniziert mit dem Application Layer und ermöglicht die Persistenz und Datenverwaltung. Die Implementierungen des Infrastruktur-Layers sind im [infrastruktur-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/infrastruktur) des Projekts zu finden.
+
+4. **Migration-Layer:**
+   Der Migration-Layer enthält Datenbankmigrationen, die für die Erstellung und Verwaltung der Datenbankstruktur notwendig sind. Dieser Layer ermöglicht die einfache Aktualisierung der Datenbankstruktur, wenn sich das Datenmodell ändert. Die Migrationen befinden sich im [migrations-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/migrations) des Projekts.
+
+5. **Presentation Layer:**
+   Der Presentation Layer ist für die Darstellung der Benutzeroberfläche verantwortlich. Hier werden die grafischen Elemente und Interaktionen mit dem Benutzer implementiert. Der Presentation Layer des Projekts befindet sich im [presentation-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/presentation).
+
+6. **Tests:**
+   Die Tests haben einen eigenen Ordner im Projekt erhalten, um die Testfälle und Testabdeckung strukturiert zu organisieren. Der [test-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/test) enthält alle Unit-Tests und Integrationstests, die sicherstellen, dass die Funktionalität der Anwendung korrekt und fehlerfrei ist.
+
+Die Clean Architecture ermöglicht eine klare und flexible Strukturierung des Projekts, die eine einfache Wartung und Erweiterbarkeit der Software gewährleistet. Der Mehraufwand bei der Einführung der Clean Architecture war anfangs spürbar, jedoch legte sie eine solide Basis für zukünftige Entwicklungen und Erweiterungen. Besonders bei größeren Softwareprojekten bietet die Clean Architecture den Vorteil einer besseren Skalierbarkeit und Wartbarkeit. Die klare Trennung der Verantwortlichkeiten in den verschiedenen Layern minimiert die Abhängigkeit von externen Frameworks und ermöglicht eine unabhängige Domänenlogik. 
+
    ### 2.3 Programming Principles 
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
