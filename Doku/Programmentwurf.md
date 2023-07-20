@@ -96,6 +96,65 @@ Durch diese Refactoring-Maßnahmen wurde der Code verbessert, ohne dass funktion
 
 Die Refactoring-Maßnahmen wurden im Commit [17d99c0](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/commit/17d99c028741bbf41664ee435aa132f23b1dc510) begonnen.
 
+### Weiteres Refactoring Beispiel:
+
+Vor dem Refactoring:
+```python
+from django.shortcuts import render
+
+def calculate_budget(request):
+    if request.method == 'POST':
+        budget_form = BudgetForm(request.POST)
+        if budget_form.is_valid():
+            income = budget_form.cleaned_data['income']
+            expenses = budget_form.cleaned_data['expenses']
+            budget = income - expenses
+            return render(request, 'budget.html', {'budget': budget})
+
+    else:
+        budget_form = BudgetForm()
+
+    return render(request, 'calculate_budget.html', {'budget_form': budget_form})
+```
+
+Nach dem Refactoring:
+```python
+from django.shortcuts import render
+
+class BudgetCalculator:
+    def __init__(self, request):
+        self.request = request
+        self.budget_form = None
+
+    def calculate_budget(self):
+        if self.request.method == 'POST':
+            self.budget_form = BudgetForm(self.request.POST)
+            if self.budget_form.is_valid():
+                income = self.budget_form.cleaned_data['income']
+                expenses = self.budget_form.cleaned_data['expenses']
+                budget = income - expenses
+                return render(self.request, 'budget.html', {'budget': budget})
+
+        else:
+            self.budget_form = BudgetForm()
+
+        return render(self.request, 'calculate_budget.html', {'budget_form': self.budget_form})
+
+def calculate_budget(request):
+    calculator = BudgetCalculator(request)
+    return calculator.calculate_budget()
+```
+
+### Erklärung der Änderungen im weiteren Refactoring:
+
+Im ursprünglichen Code wurden Berechnung und Verarbeitung innerhalb der Funktion `calculate_budget` durchgeführt. Im refaktorierten Code wurde diese Funktionalität in die Klasse `BudgetCalculator` verschoben, um die Verantwortlichkeiten zu trennen und die Lesbarkeit zu verbessern.
+
+Die Methode `calculate_budget` in der Klasse `BudgetCalculator` verarbeitet die GET- und POST-Anfragen, ähnlich wie im vorherigen Beispiel. Die Funktionsweise der Anwendung bleibt unverändert.
+
+Durch das Refactoring wurde der Code besser strukturiert und die Wartbarkeit verbessert. Die Klasse `BudgetCalculator` behandelt nun die Budgetberechnung, während die ursprüngliche View-Funktion `calculate_budget` nur noch die Initialisierung und Rückgabe des Ergebnisses der Budgetberechnung übernimmt.
+
+Das Refactoring-Beispiel wurde im Commit [d00dabd7](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/commit/d00dabd724533037f52df2010891962bcca59fd9) durchgeführt.
+
 ### 6.4 Code-Qualität 
 
 Die allgemeine Code-Qualität des Haushaltsplangenerator-Projekts wurde durch die durchgeführten Refactoring-Maßnahmen erheblich verbessert. Die Beseitigung von Code Smells führte zu einem saubereren, besser strukturierten Code, der leichter zu warten und zu erweitern ist.
