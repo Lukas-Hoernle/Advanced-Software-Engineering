@@ -331,10 +331,42 @@ Durch die Anwendung des Factory Patterns wird die Erstellung von Formularen und 
 Die Verwendung dieser Design Patterns trägt dazu bei, die Codequalität zu verbessern und die Wartbarkeit des Haushaltsplangenerators zu erhöhen.
 
 ## 5. Implementierung
-   ### 5.1 Umsetzung der Schichtenarchitektur
-   ### 5.2 Implementierung der Domain-Logik
-   ### 5.3 Einbindung von externen Datenquellen
-   ### 5.4 Unit Testing (Einsatz und Begründung von Unit Tests und Mocks)
+[//]: # (Etwas konkretere Beispiele in 5)
+
+### 5.1 Umsetzung der Schichtenarchitektur
+
+Die zuvor geplante Schichtenarchitektur (siehe Kapitel 4.2.1) wurde während der Implementierung praktisch umgesetzt. Jede Schicht wurde klar voneinander getrennt, um die Verantwortlichkeiten zu isolieren und die Wartbarkeit der Software zu verbessern.
+
+#### Interaktion der Schichten
+
+Die Schichten interagieren miteinander über klar definierte Schnittstellen. Ein Beispiel hierfür ist die Datei "HHPG/domain/repository/aufwand_repository.py" Die Präsentationsschicht kommuniziert mit der Anwendungsschicht, indem sie die Anwendungslogik aufruft, um Aktionen des Benutzers zu verarbeiten. Die Anwendungsschicht greift wiederum auf die Domain-Schicht zu, um die Geschäftslogik und -regeln umzusetzen. Die Domain-Schicht enthält die Entities und Repositories des Haushaltsplangenerators. Die Infrastruktur-Schicht kümmert sich um technische Details wie Datenbankanbindung und externe Datenquellen.
+
+Durch diese klare Trennung der Verantwortlichkeiten ist die Architektur gut strukturiert und erleichtert die Wartbarkeit und Erweiterbarkeit des Haushaltsplangenerators.
+
+#### Vorteile und Herausforderungen der Schichtenarchitektur
+
+Die Schichtenarchitektur bietet mehrere Vorteile während der Implementierung. Die klare Trennung der Verantwortlichkeiten ermöglicht es, einzelne Schichten unabhängig voneinander zu entwickeln und zu testen. Dadurch wird der Code besser strukturiert und leichter verständlich. Änderungen in einer Schicht haben weniger Auswirkungen auf andere Schichten, was die Wartbarkeit erhöht.
+
+Die Herausforderungen der Schichtenarchitektur bestehen darin, die Kommunikation zwischen den Schichten effizient zu gestalten. Der Overhead durch die Verwendung von Schnittstellen kann in manchen Fällen die Leistung beeinträchtigen. Es ist wichtig, die Schnittstellen sorgfältig zu gestalten, um die Performance zu optimieren. Beispiele hierfür können in der Infrastruktur-schicht des Projektes gefunden werden. 
+
+### 5.2 Implementierung der Domain-Logik
+
+Die Domain-Logik des Haushaltsplangenerators wurde detailliert umgesetzt. Die Entities repräsentieren die Hauptobjekte des Systems wie Haushaltspläne, Haushaltsposten und Projekte. Repositories bieten eine Schnittstelle zur Datenbank und ermöglichen den Zugriff auf die Entities.
+
+Die Geschäftsregeln und -logik wurden in den entsprechenden Klassen der Domain-Schicht umgesetzt. 
+
+Die saubere Trennung zwischen der Domain-Schicht und anderen Schichten erleichterte das Testen der Geschäftslogik und trug zur Entkopplung des Codes bei.
+ 
+### 5.3 Unit Testing
+
+Unit Tests wurden als zentrales Element für die Qualitätssicherung und Fehlererkennung in der Software eingesetzt. Für jede Schicht wurden separate Tests geschrieben, um sicherzustellen, dass die einzelnen Komponenten korrekt funktionieren.
+
+Die Unit Tests deckten verschiedene Testfälle ab, einschließlich positiver und negativer Szenarien. Sie halfen dabei, Fehler frühzeitig zu erkennen und die Softwarequalität zu verbessern.
+
+Der Einsatz von Unit Tests hatte einen positiven Einfluss auf die Gesamtqualität des Projekts, da die Entwickler mehr Vertrauen in den Code hatten und Änderungen mit größerer Sicherheit vornehmen konnten. Obwohl das Schreiben von Unit Tests zusätzlichen Aufwand erforderte, zahlte es sich durch die Reduzierung von Fehlern und die einfachere Wartung langfristig aus.
+
+Die Implementierung von Unit Tests hat jedoch auch die Entwicklungszeit etwas verlängert. Es war wichtig, einen angemessenen Aufwand für die Testabdeckung festzulegen, um den richtigen Kompromiss zwischen Qualitätssicherung und Entwicklungseffizienz zu finden.
+Tests können im Folder HHPG/test gefunden werden. 
 
 ## 6. Refactoring und Qualitätssicherung
    ### 6.1 Identifikation von Code Smells
