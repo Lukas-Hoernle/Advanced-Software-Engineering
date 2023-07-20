@@ -23,16 +23,30 @@ Um die Code Smells zu beseitigen und die Codequalität zu verbessern, wurden umf
 4. Verbesserung der Benennung: Variablen, Funktionen und Klassen wurden präziser benannt, um ihre Funktion und Bedeutung klarer zu kommunizieren.
 
 ### 6.3 Begründung der angewendeten Refactorings
-- Begründung für die Auswahl der spezifischen Refactoring-Maßnahmen im Haushaltsplangenerator-Projekt
-- Erklärung, warum bestimmte Code Smells als kritisch betrachtet wurden und welche Refactorings notwendig waren, um sie zu beheben
-- Diskussion über die positiven Auswirkungen der durchgeführten Refactorings auf die Codequalität und Wartbarkeit
+[//]: # (Begründung des spezifischen Refactorings)
+
+Die Refactoring-Maßnahmen wurden gezielt durchgeführt, um kritische Code Smells zu beheben, die die Codequalität und Wartbarkeit beeinträchtigten. Längere Methoden wurden aufgeteilt, hohe Komplexität reduziert, und doppelter Code wurde eliminiert.
+
+Die positiven Auswirkungen waren:
+- Verbesserte Lesbarkeit und Verständlichkeit des Codes.
+- Geringeres Fehlerpotenzial und robustere Codebasis.
+- Erhöhte Wartbarkeit und leichtere Weiterentwicklung.
+- Beschleunigte Entwicklung durch effizientere Arbeitsabläufe.
+
+Die Refactorings führten zu einer nachhaltigen und skalierbaren Software mit besserer Codequalität und Wartbarkeit. Code Reviews und gute Entwurfsprinzipien unterstützten den Prozess der Codepflege und -verbesserung.
+Die positiven Auswirkungen waren:
+- Verbesserte Lesbarkeit und Verständlichkeit des Codes.
+- Geringeres Fehlerpotenzial und robustere Codebasis.
+- Erhöhte Wartbarkeit und leichtere Weiterentwicklung.
+- Beschleunigte Entwicklung durch effizientere Arbeitsabläufe.
+
+Die Refactorings führten zu einer nachhaltigen und skalierbaren Software mit besserer Codequalität und Wartbarkeit. Code Reviews und gute Entwurfsprinzipien unterstützten den Prozess der Codepflege und -verbesserung.
 
 ### 6.4 Code-Qualität und Code Reviews
-- Bewertung der allgemeinen Code-Qualität des Haushaltsplangenerator-Projekts
-- Erklärung, wie Code Reviews dazu beigetragen haben, Fehler frühzeitig zu erkennen und die Codequalität zu verbessern
-- Diskussion über die Bedeutung von Code Reviews als Bestandteil des Qualitätssicherungsprozesses und ihre Auswirkungen auf die Entwicklungszeit und das Endprodukt
-- Reflexion über die Herausforderungen und Learnings im Zusammenhang mit dem Refactoring und der Qualitätssicherung während der Entwicklung des Haushaltsplangenerators
 
+Die allgemeine Code-Qualität des Haushaltsplangenerator-Projekts wurde durch die durchgeführten Refactoring-Maßnahmen erheblich verbessert. Die Beseitigung von Code Smells führte zu einem saubereren, besser strukturierten Code, der leichter zu warten und zu erweitern ist.
+
+Während des Refactoring und der Qualitätssicherung traten auch Herausforderungen auf. Die Anpassung bestehender Funktionen und Tests an die neuen Strukturen kann zeitaufwändig sein und erfordert eine sorgfältige Planung. Es war wichtig, die Auswirkungen von Refactorings auf andere Teile des Codes zu berücksichtigen und sicherzustellen, dass keine Funktionalität beeinträchtigt wurde. Dennoch haben diese Bemühungen dazu beigetragen, die langfristige Qualität und Wartbarkeit des Haushaltsplangenerators zu gewährleisten.
 
 ## 7. Zusammenfassung und Ausblick
    ### 7.1 Zusammenfassung der Ergebnisse
