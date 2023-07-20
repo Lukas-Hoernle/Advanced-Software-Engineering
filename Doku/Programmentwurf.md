@@ -86,7 +86,6 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
 
 - Repositories dienen dazu, den Zugriff auf die Datenbank zu ermöglichen und die Domänenlogik von der Datenhaltung zu trennen.
 
-   ### 2.2 Clean Architecture 
 #### GRASP-Prinzipien
 
 Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind ein Satz von Entwurfsrichtlinien, die helfen, die Verantwortlichkeiten und Zusammenhänge zwischen Klassen zu definieren. Im "Haushaltsplangenerator" haben wir die GRASP-Prinzipien angewendet, um eine klare und effiziente Strukturierung des Codes zu erreichen.
@@ -95,7 +94,7 @@ Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind 
 
 2. Information Expert: Eine Verantwortlichkeit sollte einem Objekt zugewiesen werden, das über die notwendigen Informationen verfügt, um diese Verantwortung zu erfüllen. Im "Haushaltsplangenerator" wird das Erstellen von Objekten und deren Zuordnung immer von der übergeordneten Klasse im Haushaltsplan (HHP) übernommen. Die Klasse "Haushaltsplan" hat beispielsweise die notwendigen Informationen, um Haushaltsposten zu erstellen und diesen die entsprechenden Aufwände zuzuordnen.
 
-3. Low Coupling: Klassen sollten möglichst unabhängig voneinander sein, um die Flexibilität und Wartbarkeit des Codes zu erhöhen.
+3. Low Coupling: Klassen sollten möglichst unabhängig voneinander sein, um die Flexibilität und Wartbarkeit des Codes zu erhöhen. Im "Haushaltsplangenerator" haben die Klassen "Aufwand", "Projekt", "Haushaltsposten" und "Haushaltsplan" untereinander Abhängigkeiten. Jedoch sind die Abhängigkeiten so organisiert, dass beispielsweise "Haushaltsposten" und "Aufwand" nicht voneinander abhängig sind, sondern immer nur von der darüber oder darunter liegenden Größenordnung im Haushaltsplan. Dies reduziert die Kopplung zwischen den Klassen und erhöht die Flexibilität der Software.
 
 4. High Cohesion: Klassen sollten eng zusammenhängende Funktionen haben und nur solche Methoden und Eigenschaften enthalten, die für die Erfüllung ihrer Verantwortlichkeiten relevant sind.
 
