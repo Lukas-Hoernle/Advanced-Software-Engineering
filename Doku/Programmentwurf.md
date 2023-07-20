@@ -74,20 +74,15 @@ Im Rahmen dieser Gliederung wird das Projekt "Haushaltsplangenerator" von der Mo
 
 ### 2.1 Domain Driven Design
 
-Domain Driven Design (DDD) ist ein Softwareentwurfsansatz, der darauf abzielt, die Softwareentwicklung stärker an den Anforderungen des fachlichen Domänenwissens auszurichten. 
-Im Rahmen des Projekts "Haushaltsplangenerator" wurde DDD bewusst als Entwurfsmethodik eingesetzt, um die Haushaltsplanung im Rahmen der Studierendenvertretung effizienter und benutzerorientierter zu gestalten.
+Domain Driven Design (DDD) ist ein Softwareentwurfsansatz, der darauf abzielt, die Softwareentwicklung stärker an den Anforderungen des fachlichen Domänenwissens auszurichten. Im Rahmen des Projekts "Haushaltsplangenerator" wurde DDD bewusst als Entwurfsmethodik eingesetzt, um die Haushaltsplanung im Rahmen der Studierendenvertretung effizienter und benutzerorientierter zu gestalten.
 
-Bei der Anwendung von Domain Driven Design wurde zuerst eine umfassende Analyse der "Ubiquitous Language" oder "allgegenwärtigen Sprache" durchgeführt. 
-Diese Sprache bildet das Bindeglied zwischen den Entwicklern und den Fachexperten und ermöglicht eine einheitliche Kommunikation über das Domänenwissen. 
-Die relevanten Fachbegriffe und Konzepte der Haushaltsplanung wurden identifiziert und in der Software einheitlich verwendet, um Missverständnisse zu vermeiden und eine klare Verbindung zur Fachdomäne herzustellen.
+Bei der Anwendung von Domain Driven Design wurde zuerst eine umfassende Analyse der "Ubiquitous Language" oder "allgegenwärtigen Sprache" durchgeführt. Diese Sprache bildet das Bindeglied zwischen den Entwicklern und den Fachexperten und ermöglicht eine einheitliche Kommunikation über das Domänenwissen. Die relevanten Fachbegriffe und Konzepte der Haushaltsplanung wurden identifiziert und in der Software einheitlich verwendet, um Missverständnisse zu vermeiden und eine klare Verbindung zur Fachdomäne herzustellen.
 
 Im Rahmen der Umsetzung des Haushaltsplangenerators wurden verschiedene taktische Muster von DDD eingesetzt, um die Softwarestruktur zu optimieren und die Komplexität zu reduzieren:
 
 - Value Objects wurden genutzt, um bestimmte Eigenschaften wie Preise, Budgets und Datumswerte als unveränderliche Wertobjekte darzustellen. Beispielsweise wurden Value Objects bei Aufwand-Objekten verwendet, um den Aufwand für eine Veranstaltung in Stunden und Minuten zu repräsentieren.
 
-- Entities repräsentieren identifizierbare und veränderbare Objekte im System. Im Haushaltsplangenerator wurden beispielsweise Veranstaltungen und Haushaltspläne als Entities modelliert, da sie eindeutig identifizierbar und in der Lage sind, ihren Zustand zu ändern.
-
-- Aggregates dienen dazu, zusammengehörende Entities zu gruppieren und als Einheit zu behandeln. Im Haushaltsplangenerator wurden Aggregates genutzt, um Veranstaltungen und ihre zugehörigen Einkäufe zu bündeln.
+- Entities repräsentigen identifizierbare und veränderbare Objekte im System. Im Haushaltsplangenerator wurden beispielsweise Veranstaltungen als Entities modelliert, da sie eindeutig identifizierbar und in der Lage sind, ihren Zustand zu ändern.
 
 - Repositories stellen Schnittstellen zur Persistenzschicht dar und ermöglichen den Zugriff auf die Datenbank. Durch die Verwendung von Repositories wurde eine saubere Trennung zwischen Domänenlogik und Datenzugriff erreicht.
 
