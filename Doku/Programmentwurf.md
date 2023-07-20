@@ -2,6 +2,33 @@
 
 ## 1. Einleitung
    - 1.1 Motivation
+## Motivation
+
+Die vorliegende Arbeit fokussiert sich auf die Entwicklung eines Prototyps für den "Haushaltsplangenerator" im Kontext meines ehrenamtlichen Amtes als "Finanzer der Studierendenvertretung" innerhalb der Dualen Hochschule Baden-Württemberg. 
+
+Als verantwortliche Person für die Erstellung und Präsentation regelmäßiger Haushaltspläne vor dem Studierendenparlament bin ich zunehmend erschöpft und entmutigt durch die mühsame Nutzung von Excel als primärem Werkzeug für diese Aufgabe. 
+
+Die Notwendigkeit, komplexe finanzielle Informationen in einer unübersichtlichen Tabellenkalkulation zu verwalten, birgt diverse Herausforderungen, die einen zeit- und ressourcenaufwändigen Prozess darstellen.
+
+Vor diesem Hintergrund zielt diese Arbeit darauf ab, einen innovativen und effizienten Ansatz zu präsentieren, indem ein speziell konzipierter "Haushaltsplangenerator" als alternative Lösung entwickelt wird. 
+
+Die Entscheidung, einen Prototypen mit einem Schwerpunkt auf dem Backend zu erstellen, ist darauf zurückzuführen, dass die Funktionalität und Datenverarbeitung im Backend einen wesentlichen Einfluss auf die Effizienz und Genauigkeit der Haushaltsplanung haben. 
+
+Hierbei wird der Fokus auf die Implementierung einer angenehmen dedizierten Webanwendung gelegt, die eine übersichtliche und benutzerfreundliche Oberfläche zur Verfügung stellt, um den mühsamen Prozess der Haushaltsplanung zu vereinfachen.
+
+Der Wunsch nach einem dedizierten "Haushaltsplangenerator" ergibt sich aus der Notwendigkeit, die Haushaltsplanung zu optimieren und dabei menschliche Fehlerquellen zu minimieren. 
+
+Die Integration von Design Patterns wie dem Observer Pattern und dem Factory Pattern wird dazu beitragen, die Flexibilität, Erweiterbarkeit und Wartbarkeit der Anwendung zu erhöhen, während Domain Driven Design (DDD) und Clean Architecture den klaren Fokus auf eine gut strukturierte und an die Domäne angepasste Softwarearchitektur legen.
+
+Die Anwendung dieses Prototyps als praktische Lösung in meinem ehrenamtlichen Amt soll nicht nur meine persönliche Arbeitsbelastung verringern, sondern auch als Proof-of-Concept dienen, der anderen Studierendenvertretungen oder vergleichbaren Organisationen als Modell dienen kann. 
+
+Dabei werden die Konzepte und Prinzipien der Programmierung sowie der Einsatz von Entwurfsmustern und Unit Tests in einem realen Anwendungskontext verifiziert.
+
+Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" auf eine solide Grundlage gestellt, um in zukünftigen Projekten weiterentwickelt und verfeinert zu werden. 
+
+Durch die Umsetzung eines strukturierten, flexiblen und effizienten Haushaltsplanungssystems werden nicht nur meine Arbeitsabläufe optimiert, sondern auch die Effektivität und Transparenz der finanziellen Ressourcenverwaltung in der Studierendenvertretung erheblich verbessert.
+
+
    - 1.2 Zielsetzung
    - 1.3 Aufbau der Arbeit
 
