@@ -99,7 +99,7 @@ Die SOLID-Prinzipien sind eine Gruppe von fünf Designprinzipien, die darauf abz
 
 3. Liskov Substitution Principle (LSP): Im "Haushaltsplangenerator" können Ausgaben und Einnahmen verändert werden, ohne Änderungen im darüber liegenden Projekt oder im darüber liegenden Haushaltsposten vorzunehmen. Dies bedeutet, dass die Klassen, die die Ausgaben und Einnahmen nutzen, problemlos mit anderen Subtypen von Ausgaben und Einnahmen arbeiten können, ohne dass dies die Funktionalität der Software beeinträchtigt. Dadurch wird die Interoperabilität und Austauschbarkeit von Klassen gefördert.
 
-4. Interface Segregation Principle (ISP): Klienten sollten nicht von Schnittstellen abhängen, die sie nicht nutzen. Durch die Aufteilung von großen Schnittstellen in spezifischere Teile wird die Kopplung reduziert.
+4. Interface Segregation Principle (ISP): Im "Haushaltsplangenerator" kann das gleiche Beispiel wie beim Liskov Substitution Principle angewendet werden, um es zu veranschaulichen. Clienten, die Projekte ändern, benötigen dafür nicht die Klasse "Haushaltsplan". Die Trennung von großen Schnittstellen in spezifischere Teile reduziert die Kopplung und erhöht die Flexibilität des Codes.
 
 5. Dependency Inversion Principle (DIP): Abhängigkeiten sollten auf abstrakte Klassen und Schnittstellen anstatt auf konkrete Implementierungen basieren. Dadurch wird die Flexibilität des Codes erhöht und die Abhängigkeiten können leichter ausgetauscht werden.
 
