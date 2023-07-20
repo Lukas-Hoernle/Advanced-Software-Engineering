@@ -46,11 +46,53 @@ Im Haushaltsplangenerator wurden verschiedene Design Patterns angewendet, um bes
 [//]: # (todo actual Auflistung)
 
 
-#### 4.3.1 Observer Pattern
+#### 4.3.1 Strategy Pattern
 
-Das Observer Pattern wird verwendet, um die Kommunikation zwischen den Komponenten des Haushaltsplangenerators zu ermöglichen. Durch das Observer Pattern werden bestimmte Komponenten über Änderungen in anderen Komponenten informiert, ohne dass diese Komponenten direkt miteinander gekoppelt sind. Dies ermöglicht eine flexible und entkoppelte Kommunikation zwischen den verschiedenen Teilen des Systems.
+Das Strategy Pattern wird im Haushaltsplangenerator verwendet, um verschiedene Strategien für die Verarbeitung von Haushaltsplänen und Haushaltsposten zu implementieren. Es ermöglicht die flexible Auswahl einer bestimmten Strategie zur Laufzeit, je nachdem, welche Aktion vom Benutzer ausgelöst wird.
+
+Die Anwendung des Strategy Patterns ist in der Klasse "HHPG/application/create_Haushaltsplan.py" zu finden. Dort wird die Klasse `HaushaltsplanStrategy` als abstrakte Basisklasse definiert, die eine Methode `handle_post_request` enthält. Diese Methode wird in den konkreten Strategien überschrieben, um spezifische Verarbeitungslogik zu implementieren.
+
+Ein Beispiel für eine konkrete Strategie ist die Klasse `ExcelExportStrategy`. Diese Strategie wird ausgewählt, wenn der Benutzer einen Haushaltsplan in eine Excel-Datei exportieren möchte. In der `handle_post_request`-Methode der `ExcelExportStrategy` wird der `HaushaltsplanExcelGenerator` verwendet, um die Excel-Datei zu generieren und anschließend dem Benutzer eine Erfolgsmeldung anzuzeigen.
+
+Hier ist der relevante Teil des Codes, in dem das Strategy Pattern angewendet wird:
+
+```python
+# Strategy Pattern
+class HaushaltsplanStrategy:
+    def handle_post_request(self, haushaltsplan, haushaltsposten_list):
+        pass
+
+class ExcelExportStrategy(HaushaltsplanStrategy):
+    def handle_post_request(self, haushaltsplan, haushaltsposten_list):
+        excel_generator = HaushaltsplanExcelGenerator(haushaltsplan)
+        excel_generator.generate_excel('haushaltsplan.xlsx')
+        return render(request, 'success.html')
+```
+
+Hier wird die abstrakte Klasse `HaushaltsplanStrategy` definiert, die eine Methode `handle_post_request` enthält. Die konkrete Klasse `ExcelExportStrategy` erbt von `HaushaltsplanStrategy` und überschreibt die `handle_post_request`-Methode, um die spezifische Logik für den Excel-Export zu implementieren.
+
+Im Code der Klasse `HaushaltsplanView` wird das Strategy Pattern verwendet, indem eine Instanz der `ExcelExportStrategy` erstellt wird und diese Strategie dann verwendet wird, um den Excel-Export durchzuführen:
+
+```python
+    def handle_post_request(self, request):
+        # ... Andere Code ...
+
+        if haushaltsplan_form.is_valid() and haushaltsposten_formset.is_valid() and projekt_formset.is_valid():
+            # ... Andere Code ...
+
+            # Strategy Pattern
+            strategy = ExcelExportStrategy()
+            return strategy.handle_post_request(haushaltsplan, haushaltsposten_list)
+```
+
+Hier wird die `ExcelExportStrategy` instanziiert und ihre `handle_post_request`-Methode aufgerufen, um den Excel-Export durchzuführen.
+
+[Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/Analyse-und-Design/HHPG/application/create_Haushaltsplan.py)
+
+Durch die Anwendung des Strategy Patterns wird die Verarbeitungslogik flexibel und austauschbar gestaltet, da verschiedene Strategien je nach Bedarf verwendet werden können, ohne den gesamten Code zu ändern. Dadurch wird die Erweiterbarkeit und Wartbarkeit des Haushaltsplangenerators verbessert.
 
 #### 4.3.2 Factory Pattern
+
 Im Haushaltsplangenerator wird das Factory Pattern verwendet, um die Erzeugung von Formularen (Forms) und Formsets zu vereinfachen und zu zentralisieren. Hierbei kommt das Abstract Factory Pattern zum Einsatz, um eine abstrakte Klasse `FormFactory` zu definieren, die Methoden zur Erstellung von verschiedenen Formularen und Formsets bereitstellt. Diese abstrakte Klasse dient als Basis für spezifische Implementierungen, wie die Klasse `DefaultFormFactory`.
 
 In der Klasse `DefaultFormFactory` werden die abstrakten Methoden der `FormFactory` überschrieben, um konkrete Formulare und Formsets zurückzugeben. Zum Beispiel wird die Methode `create_haushaltsplan_form` überschrieben, um eine Instanz des `HaushaltsplanForm` zu erzeugen, und die Methode `create_projekt_formset` wird überschrieben, um eine Instanz des `ProjektFormSet` zurückzugeben.
