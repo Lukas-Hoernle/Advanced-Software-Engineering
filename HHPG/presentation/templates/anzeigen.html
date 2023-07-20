@@ -15,9 +15,7 @@
             {% for projekt in haushaltsposten.projekte %}
                 <li>projekt: {{ projekt }}</li>
                 <ul>
-                    {% for aufwand in projekt.aufwand %}
-                        <li>aufwand: {{ aufwand }}</li>
-                    {% endfor %}
+                    <li>aufwand: {{ projekt.aufwand }}</li>
                 </ul>
             {% endfor %}
         </ul>
