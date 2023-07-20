@@ -108,8 +108,7 @@ Im Projekt "Haushaltsplangenerator" wurde die Softwarearchitektur nach dem Prinz
 6. **Tests:**
    Die Tests haben einen eigenen Ordner im Projekt erhalten, um die Testfälle und Testabdeckung strukturiert zu organisieren. Der [test-Ordner](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/tree/master/HHPG/test) enthält alle Unit-Tests und Integrationstests, die sicherstellen, dass die Funktionalität der Anwendung korrekt und fehlerfrei ist.
 
-Die Clean Architecture ermöglicht eine klare und flexible Strukturierung des Projekts, die eine einfache Wartung und Erweiterbarkeit der Software gewährleistet. Der Mehraufwand bei der Einführung der Clean Architecture war anfangs spürbar, jedoch legte sie eine solide Basis für zukünftige Entwicklungen und Erweiterungen. Besonders bei größeren Softwareprojekten bietet die Clean Architecture den Vorteil einer besseren Skalierbarkeit und Wartbarkeit. Für den Prototypen hätte auch ein monolithischer Ansatz ohne Clean Architecture gereicht, doch die Clean Architecture ermöglichte eine klarere Struktur und die Trennung der Verantwortlichkeiten, was den Haushaltsplangenerator robust und gut wartbar machte.
-
+Die Clean Architecture ermöglicht eine klare und flexible Strukturierung des Projekts, die eine einfache Wartung und Erweiterbarkeit der Software gewährleistet. Der Mehraufwand bei der Einführung der Clean Architecture war anfangs spürbar, jedoch legte sie eine solide Basis für zukünftige Entwicklungen und Erweiterungen. Besonders bei größeren Softwareprojekten bietet die Clean Architecture den Vorteil einer besseren Skalierbarkeit und Wartbarkeit. Die klare Trennung der Verantwortlichkeiten in den verschiedenen Layern minimiert die Abhängigkeit von externen Frameworks und ermöglicht eine unabhängige Domänenlogik. 
 
    ### 2.3 Programming Principles 
 
