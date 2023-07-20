@@ -1,25 +1,22 @@
-
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
 
 ### 3.1 Beschreibung des Projektkontexts
 
 Der "Haushaltsplangenerator" ist ein Praxisprojekt, das entwickelt wurde, um eine leistungsfähige und anwenderfreundliche Softwarelösung zu schaffen. Ziel ist es, Organisationen und Gremien in der DHBW bei der effizienten Erstellung und Verwaltung von Haushaltsplänen zu unterstützen. Die Verwaltung von Haushaltsplänen ist oft eine komplexe Aufgabe, die sorgfältige Planung und Berücksichtigung verschiedener Gremien und Projekte erfordert.
 
-Die Aufgabenstellung des Projektsprimär darin ein Backend zu entwickelln, das es ermöglicht diese zu generieren und eine Alternative zu Excel bietet. Zusätzlich wurde eine bedienbare Benutzeroberfläche entwickelt, die es den Benutzern ermöglicht, Haushaltspläne zu erstellen und Projekte zu verwalten. Die Oberfläche ist jedoch noch ausbaufähig, da es sich beim umschriebenen Projekt um einen Prototypen handelt. 
+Die Aufgabenstellung des Projekts besteht primär darin, ein Backend zu entwickeln, das es ermöglicht, Haushaltspläne zu generieren und eine Alternative zu Excel zu bieten. Zusätzlich wurde eine bedienbare Benutzeroberfläche entwickelt, die es den Benutzern ermöglicht, Haushaltspläne zu erstellen und Projekte zu verwalten. Die Oberfläche ist jedoch noch ausbaufähig, da es sich beim umschriebenen Projekt um einen Prototypen handelt.
 
-Die Zielgruppe des "Haushaltsplangenerators" umfasst Gremien der DHBW. Im akt uellen Prototypen ist er lediglich für Studierendenvertretungen der verschiedenen Standorte geeignet. Das Projekt kann allerdings für weitere Gremien sowie überregionale Arbeitskreise erweitert werden. 
+Die Zielgruppe des "Haushaltsplangenerators" umfasst Gremien der DHBW. Im aktuellen Prototypen ist er lediglich für Studierendenvertretungen der verschiedenen Standorte geeignet. Das Projekt kann allerdings für weitere Gremien sowie überregionale Arbeitskreise erweitert werden.
 
 ### 3.2 Integration der erlernten Konzepte und Prinzipien
 
-In der Umsetzung des "Haushaltsplangenerators" wurden verschiedene theoretische Konzepte und Prinzipien integriert, um die Softwarearchitektur und Codequalität zu verbessern.
+Im "Haushaltsplangenerator" wurden verschiedene erlernte Konzepte und Prinzipien angewendet, um die Softwarearchitektur und Codequalität zu verbessern.
 
-Domain Driven Design (DDD) wurde angewendet, um eine klare Trennung zwischen Geschäftslogik und technischen Details zu erreichen. Die Strukturierung in Domänen-übergreifende Bounded Contexts sorgte für eine übersichtliche Organisation des Projekts und eine erhöhte Wartbarkeit.
+Die Clean Architecture wurde verwendet, um eine übersichtliche und gut strukturierte Softwarearchitektur zu erreichen. Durch die klare Trennung der Verantwortlichkeiten in verschiedene Layer ist der "Haushaltsplangenerator" leicht erweiterbar und wartbar. Dies ermöglicht es, neue Funktionen hinzuzufügen und bestehende Funktionen anzupassen, ohne dabei unbeabsichtigt andere Teile der Anwendung zu beeinflussen.
 
-Die Anwendung der Clean Architecture führte zur Schaffung einer flexiblen Schichtenarchitektur, in der Geschäftslogik, Schnittstellen und Datenbankzugriffe klar voneinander getrennt sind. Dadurch wurden die Abhängigkeiten minimiert und die Austauschbarkeit der Technologien verbessert.
+Des Weiteren wurden die SOLID-Prinzipien (Single Responsibility Principle, Open/Closed Principle, Liskov Substitution Principle, Interface Segregation Principle und Dependency Inversion Principle) und die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) angewendet, um eine saubere und gut strukturierte Codebasis zu schaffen. Diese Prinzipien unterstützten die Trennung der Verantwortlichkeiten und reduzierten die Kopplung zwischen den Klassen.
 
-Die Berücksichtigung der SOLID-Prinzipien (Single Responsibility Principle, Open/Closed Principle, Liskov Substitution Principle, Interface Segregation Principle und Dependency Inversion Principle) führte zu einem gut strukturierten und wartbaren Code. Die Prinzipien unterstützten die Trennung der Verantwortlichkeiten und reduzierten die Kopplung zwischen den Klassen.
-
-Ebenso wurden die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) angewendet, um klare Verantwortlichkeiten für die einzelnen Klassen zu definieren und eine hohe Kohäsion zu erreichen.
+Domain Driven Design (DDD) wurde ebenfalls berücksichtigt, um eine klare Trennung zwischen Geschäftslogik und technischen Details zu erreichen. Die Strukturierung in Domänen-übergreifende Bounded Contexts sorgte für eine übersichtliche Organisation des Projekts und eine erhöhte Wartbarkeit.
 
 ### 3.3 Herausforderungen und Lösungsansätze
 
@@ -29,8 +26,7 @@ Eine Herausforderung bestand in der Modellierung der komplexen Budgetierungs- un
 
 Die effiziente Verwaltung von Projekten und Ressourcen war ein weiteres Thema. Hier kam das Creator-Prinzip aus den GRASP-Prinzipien zum Einsatz, um sicherzustellen, dass die Verantwortung für die Erstellung von Objekten immer bei den entsprechenden Klassen selbst liegt. Dadurch wurde die Verwaltung von Projekten und Ressourcen erleichtert und die Abhängigkeiten zwischen den Klassen reduziert.
 
-Die Lösungsansätze und deren Ergebnisse wurden reflektiert, und es wurde festgestellt, dass die Anwendung der Konzepte und Prinzipien wesentlich zur Verbesserung der Softwarearchitektur und Codequalität beigetragen hat. Die klare Trennung der Verantwortlichkeiten und die flexible Schichtenarchitektur ermöglichten es, neue Funktionen hinzuzufügen und Änderungen vorzunehmen, ohne den bestehenden Code zu beeinträchtigen. Dies erhöhte die Wartbarkeit und Skalierbarkeit der Anwendung und trug dazu bei, die Projektziele effektiv zu erreichen.
-
+Die Lösungsansätze und deren Ergebnisse wurden reflektiert, und es wurde festgestellt, dass die Anwendung der Konzepte und Prinzipien wesentlich zur Verbesserung der Softwarearchitektur und Codequalität beigetragen hat. Die klare Trennung der Verantwortlichkeiten und die flexible Schichtenarchitektur ermöglichten es, neue Funktionen hinzuzufügen und Änderungen vorzunehmen, ohne den bestehenden Code zu beeinträchtigen. Dies erhöhte die Wartbarkeit und Skalierbarkeit der Anwendung und trug dazu bei, dass die Software den Anforderungen der Benutzer gerecht wird.
 
 ## 4. Analyse und Design
    ### 4.1 Anforderungsanalyse
