@@ -673,12 +673,20 @@ Die allgemeine Code-Qualität des Haushaltsplangenerator-Projekts wurde durch di
 
 
 ## 7. Zusammenfassung und Ausblick
-   ### 7.1 Zusammenfassung der Ergebnisse
-   ### 7.2 Ausblick und mögliche Erweiterungen
 
-## 8. Literaturverzeichnis
+### 7.1 Zusammenfassung der Ergebnisse
+Im Rahmen des Prototyps "Haushaltsplangenerator" wurden wichtige Erfahrungen und Erkenntnisse gesammelt, auch wenn das Projekt nur den Prototypenstatus erreicht hat und noch nicht ganz ausgereift und verfeinert ist. Der Haushaltsplangenerator stellt einen ersten Schritt in Richtung einer benutzerfreundlichen und effizienten Lösung für die Haushaltsplanung der Studierendenvertretung dar.
 
-## 9. Anhang
-   ### 9.1 Glossar
-   ### 9.2 Quellcodebeispiele
-   ### 9.3 Testfallbeschreibungen
+Trotz der Herausforderungen und des begrenzten Erfolgs wurde eine solide Grundlage geschaffen, die die zukünftige Arbeit der Studierendenvertretung erleichtern kann. Der Prototyp ermöglicht das Erstellen von Haushaltsplänen und Haushaltsposten sowie die Zuordnung von Projekten zu den entsprechenden Haushaltsposten und das eintragen von Einnahmen sowie Ausgaben.
+
+Während der Entwicklung wurden Python und Django als Technologien eingesetzt, wodurch wertvolle Kenntnisse in der Webentwicklung gewonnen wurden. Besonders hervorzuheben sind die neu erlernten Konzepte der Clean Architecture und des Domain-Driven Designs (DDD), die eine bessere Strukturierung und Organisation des Codes ermöglichen.
+
+### 7.2 Ausblick und mögliche Erweiterungen
+Trotz des vorliegenden Prototyps gibt es viel Potenzial für zukünftige Entwicklungen und Verbesserungen des Haushaltsplangenerators. Es ist möglich, die gesammelten Erfahrungen zu nutzen und das Projekt kontinuierlich weiterzuentwickeln.
+
+Eine mögliche Erweiterung wäre die Einbindung von Authentifizierung und Benutzerkonten, um die Anwendung sicherer und personalisierter zu gestalten. Dadurch könnten verschiedene Nutzer Zugriff auf ihre eigenen Haushaltspläne erhalten. Oder auch eine Erweiterung für überregionale Gremien wäre möglich.
+
+### 8. Fazit
+Obwohl der Prototyp des "Haushaltsplangenerators" kein ausgefeiltes marktreifes Produkt ist, war das Projekt herausfordernd und lehrreich. Die Auseinandersetzung mit Python und Django sowie die Anwendung der Clean Architecture und des DDD haben wertvolle Kenntnisse vermittelt.
+
+Die gesammelten Erfahrungen und Kenntnisse sind von unschätzbarem Wert und werden das weitere Vorgehen bei der Weiterentwicklung des Haushaltsplangenerators sowie weiterer meiner Projekte positiv beeinflussen. Obwohl es nur ein Prototyp ist, wurde eine solide Grundlage gelegt, die das Potenzial hat, die Arbeit der Studierendenvertretung in Zukunft zu erleichtern und zu optimieren.
