@@ -22,7 +22,7 @@ class HaushaltsplanExcelGenerator:
         )
         builder.write_headers()
 
-        row_index = 2
+        row_index = 3
 
         builder.set_haushaltsplan(
             self.haushaltsplan,
@@ -30,7 +30,7 @@ class HaushaltsplanExcelGenerator:
         )
         builder.write_haushaltsplan()
 
-        row_index = 10
+        row_index = 9
 
         haushaltsposten_list = self.haushaltsplan.haushaltsposten_liste
 
@@ -50,6 +50,7 @@ class HaushaltsplanExcelGenerator:
                     row_index
                 )
                 builder.write_projekt()
+                row_index += 1
 
         workbook.save(file_name)
 
@@ -149,7 +150,7 @@ class ExcelBuilder:
     def set_haushaltsposten(
             self,
             haushaltsposten,
-            row_index
+            row_index,
     ):
         self.haushaltsposten = haushaltsposten
         self.row_index = row_index
@@ -188,5 +189,4 @@ class ExcelBuilder:
             column=3,
             value=self.projekt.aufwand.ausgaben
         )
-        self.row_index += 1
 
