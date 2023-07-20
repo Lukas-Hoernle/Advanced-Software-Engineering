@@ -95,14 +95,46 @@ Im Projekt haben wir verschiedene DDD-Muster angewendet, um die Softwarestruktur
    ### 3.3 Herausforderungen und Lösungsansätze
 
 ## 4. Analyse und Design
-   ### 4.1 Anforderungsanalyse
-   ### 4.2 Architekturdesign
-   #### 4.2.1 Schichtarchitekturplanung und Begründung
-   #### 4.2.2 Entwurf der Domain-Schicht
-   #### 4.2.3 Entwurf der Infrastruktur-Schicht
-   ### 4.3 Design Patterns
-   #### 4.3.1 Observer Pattern (Einsatz und Begründung)
-   #### 4.3.2 Factory Pattern (Einsatz und Begründung)
+
+### 4.1 Anforderungsanalyse
+- Zusammenfassung der Anforderungen an den Haushaltsplangenerator basierend auf den zuvor genannten Use Cases und der Projektkontextbeschreibung (Kapitel 3.1)
+- Beschreibung der funktionalen und nicht-funktionalen Anforderungen
+- Analyse der Prioritäten und Abhängigkeiten der Anforderungen
+
+### 4.2 Architekturdesign
+- Erklärung des gewählten Architekturdesigns für den Haushaltsplangenerator
+- Darlegung der Gründe für die Wahl der Architektur, insbesondere der Schichtarchitektur (Kapitel 4.2.1)
+- Beschreibung der einzelnen Schichten und ihrer Verantwortlichkeiten
+
+#### 4.2.1 Schichtarchitekturplanung und Begründung
+- Erklärung der Schichtarchitektur und ihrer Bedeutung für die Softwarestruktur
+- Begründung, warum die Schichtarchitektur für den Haushaltsplangenerator geeignet ist
+- Darstellung der Aufgaben und Verantwortlichkeiten jeder Schicht
+
+#### 4.2.2 Entwurf der Domain-Schicht
+- Beschreibung der Domain-Schicht, die den Kern der Anwendungslogik enthält
+- Erklärung der Modellierung von Entities, Value Objects und Repositories in der Domain-Schicht
+- Verweis auf die Implementierung der Domain-Schicht (Link zu entsprechendem Code)
+
+#### 4.2.3 Entwurf der Infrastruktur-Schicht
+- Erklärung der Infrastruktur-Schicht, die die technischen Details und die Datenbankanbindung enthält
+- Beschreibung der Integration mit externen Frameworks und Bibliotheken
+- Verweis auf die Implementierung der Infrastruktur-Schicht (Link zu entsprechendem Code)
+
+### 4.3 Design Patterns
+- Vorstellung der verwendeten Design Patterns im Haushaltsplangenerator
+- Begründung für den Einsatz der einzelnen Patterns und ihre Bedeutung für die Softwarestruktur
+
+#### 4.3.1 Observer Pattern
+- Erklärung des Observer Patterns und wie es im Haushaltsplangenerator verwendet wird
+- Beschreibung der Kommunikation zwischen den beteiligten Komponenten durch das Observer Pattern
+- Begründung, warum das Observer Pattern die geeignete Lösung für bestimmte Probleme im Projekt ist
+
+#### 4.3.2 Factory Pattern
+- Erklärung des Factory Patterns und wo es im Haushaltsplangenerator eingesetzt wird
+- Beschreibung der Vorteile der Verwendung des Factory Patterns für die Erzeugung von Objekten
+- Begründung, warum das Factory Pattern die beste Lösung für bestimmte Anwendungsfälle im Projekt ist
+
 
 ## 5. Implementierung
    ### 5.1 Umsetzung der Schichtenarchitektur
