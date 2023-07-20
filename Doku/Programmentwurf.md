@@ -17,7 +17,7 @@ Abschließend wird der angestrebte Prototyp des "Haushaltsplangenerators" als Gr
 
   - 1.2 Tech Stack
 
-Aufgrund der aktuellen Zeitprobleme, die durch die anstehende Klausurphase und das Nachholen von Klausuren aufgrund eines Armbruchs entstanden sind, musste für die Entwicklung des "Haushaltsplangenerators" ein effizienter und zeitsparender Techstack gewählt werden. Gleichzeitig befand ich mich in der Endphase meiner Bachelorarbeit, was die Zeitressourcen zusätzlich einschränkte. Dennoch wollte ich die Gelegenheit nutzen, um neue Techniken und Frameworks auszuprobieren, um meinen Horizont zu erweitern.
+Aufgrund der aktuellen Zeitprobleme, die durch das Nachholen von Klausuren aufgrund eines Armbruchs entstanden sind, musste für die Entwicklung des "Haushaltsplangenerators" ein effizienter und zeitsparender Techstack gewählt werden. Gleichzeitig schreibe ich aktuell meine Bachelorarbeit und verwende meine Ressourcen für diese, was die Zeitressourcen zusätzlich einschränkte. Dennoch wollte ich die Gelegenheit nutzen, um neue Techniken und Frameworks auszuprobieren, um meinen Horizont zu erweitern.
 
 Die Wahl des Techstacks fiel letztendlich auf Django, ein Python-Framework, das mir von meinem Kommilitonen Marc Gökce empfohlen wurde. Die Entscheidung für Django war motiviert durch dessen Popularität, aktive Community und den Ruf als leistungsfähiges Framework für die Entwicklung von Webanwendungen. Durch die Unterstützung von Django sollte es möglich sein, schnell eine funktionale Webanwendung aufzubauen und den Entwicklungsprozess zu beschleunigen.
 
