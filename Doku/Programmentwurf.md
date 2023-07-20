@@ -94,7 +94,7 @@ class ExcelBuilder:
 
 Durch diese Refactoring-Maßnahmen wurde der Code verbessert, ohne dass funktionale Änderungen eingeführt wurden. Die Struktur des Codes wurde klarer und lesbarer gestaltet, und die Nutzung von optimierten Datenbankabfragen trug zur Performance-Optimierung bei. Der Refactoring-Prozess half dabei, die Codequalität zu erhöhen und die Wartbarkeit des Haushaltsplangenerators zu verbessern.
 
-Die Refactoring-Maßnahmen wurden im Commit [17d99c0](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/commit/17d99c028741bbf41664ee435aa132f23b1dc510) durchgeführt.
+Die Refactoring-Maßnahmen wurden im Commit [17d99c0](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/commit/17d99c028741bbf41664ee435aa132f23b1dc510) begonnen.
 
 ### 6.4 Code-Qualität 
 
