@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from HHPG.application.HaushaltsplanExcelGenerator import HaushaltsplanExcelGenerator
-from HHPG.application.buget_berechner import BudgetBerechner
+from HHPG.application.budget_berechner import BudgetBerechner
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
 from HHPG.application.forms.formfactories import HaushaltspostenFormSet
 from HHPG.domain.entity.aufwand import Aufwand

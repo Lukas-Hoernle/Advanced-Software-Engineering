@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import messages
 from django.forms import inlineformset_factory, BaseInlineFormSet
 
-from HHPG.application.buget_berechner import BudgetBerechner
+from HHPG.application.budget_berechner import BudgetBerechner
 from HHPG.application.forms.AufwandForm import AufwandForm
 from HHPG.application.forms.HaushaltspostenForm import HaushaltspostenForm
 from HHPG.application.forms.ProjektForm import ProjektForm
