@@ -143,6 +143,19 @@ Die GRASP-Prinzipien (General Responsibility Assignment Software Patterns) sind 
 
 Durch die Anwendung der SOLID- und GRASP-Prinzipien haben wir im "Haushaltsplangenerator" eine saubere und gut strukturierte Codebasis geschaffen, die leicht erweiterbar, wartbar und effizient ist. Diese Prinzipien bilden eine solide Grundlage für die Weiterentwicklung und Verbesserung der Software.
 
+#### DRY-Prinzip
+
+Das DRY-Prinzip (Don't Repeat Yourself) ist ein weiteres grundlegendes Programmierprinzip, das im "Haushaltsplangenerator" konsequent angewendet wurde. Es zielt darauf ab, Redundanz im Code zu vermeiden und Code-Wiederholungen zu reduzieren.
+
+Im "Haushaltsplangenerator" haben wir das DRY-Prinzip durch die Verwendung von Funktionen und Methoden umgesetzt, die gemeinsame Funktionalitäten kapseln und an mehreren Stellen im Code wiederverwendet werden können.
+
+Beispielhaft können wir die Methode `generate_excel()` im `HaushaltsplanExcelGenerator` betrachten. Diese Methode wird verwendet, um die Informationen eines Haushaltspostens in das Excel-Dokument zu schreiben. Durch die Verwendung dieser Methode anstatt den Code direkt in den Objekten, die geschrieben werden zu schreiben, reduzieren wir Redundanz und verbessern die Lesbarkeit des Codes.
+
+Ebenso haben wir das DRY-Prinzip durch die Verwendung von Klassen und Vererbung umgesetzt. Zum Beispiel könnte bei einer zukünftigen Erweiterung des Projekts, wenn weitere Arten von Posten hinzugefügt werden sollen, eine Basisklasse für Posten erstellt werden, die gemeinsame Eigenschaften und Methoden für alle Posten-Typen enthält. Dadurch können wir Code-Wiederholungen vermeiden und die Effizienz der Entwicklung erhöhen.
+
+Die Anwendung des DRY-Prinzips im "Haushaltsplangenerator" trägt dazu bei, dass der Code schlanker und wartbarer wird, da Änderungen oder Fehlerbehebungen nur an einer zentralen Stelle vorgenommen werden müssen, anstatt an mehreren Stellen mit redundanter Logik.
+
+Insgesamt haben die SOLID-, GRASP- und DRY-Prinzipien dazu beigetragen, dass der "Haushaltsplangenerator" eine robuste und gut strukturierte Codebasis besitzt, die den Entwicklungsprozess erleichtert und die Qualität der Software erhöht. Durch die Anwendung dieser Prinzipien sind wir in der Lage, auf zukünftige Anforderungen und Erweiterungen flexibel zu reagieren und eine nachhaltige Entwicklung zu gewährleisten.
 
 ## 3. Motivation und Einleitung zum Praxisprojekt: Haushaltsplangenerator
 
