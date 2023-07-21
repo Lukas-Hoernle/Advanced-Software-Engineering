@@ -62,14 +62,3 @@ class HaushaltspostenRepository(IHaushaltspostenRepository):
 
         return einnahmen, ausgaben
 
-    def get_aufwaende_by_haushaltsplan(self, haushaltsplan: Haushaltsplan):
-        einnahmen = 0
-        ausgaben = 0
-
-        haushaltsposten_liste = HaushaltspostenRepository().get_all_by_haushaltsplan(haushaltsplan=haushaltsplan)
-        for haushaltsposten in haushaltsposten_liste:
-            _einnahmen, _ausgaben = ProjektRepository().get_aufwaende_of_id(haushaltsposten_id=haushaltsposten.id)
-            einnahmen += _einnahmen
-            ausgaben += _ausgaben
-
-        return einnahmen, ausgaben
