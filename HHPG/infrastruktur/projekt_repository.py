@@ -6,11 +6,16 @@ from django.db.models import QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from HHPG.infrastruktur.aufwand_repository import AufwandRepository
+
 
 class ProjektRepository(IProjektRepository):
     @staticmethod
     @receiver(post_save, sender=Projekt)
-    def create(self, sender, instance, **kwargs) -> Projekt:
+    def create(sender, instance, created, **kwargs) -> Projekt | None:
+        if created:
+            return None
+
         return Projekt.objects.create(**instance)
 
     def save(self, sender, instance, **kwargs) -> None:
@@ -34,6 +39,13 @@ class ProjektRepository(IProjektRepository):
     def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
         return Projekt.objects.filter(haushaltsposten_id=haushaltsposten_id)
 
+    def get_all_by_haushaltsposten_including_children(self, haushaltsposten_id: int) -> QuerySet:
+        projekt_liste = self.get_all_by_haushaltsposten(haushaltsposten_id=haushaltsposten_id)
+        for projekt in projekt_liste:
+            projekt.aufwand = AufwandRepository().get_for_projekt(projekt.id)
+
+        return projekt_liste
+
     def get_all_by_name(self, name: str) -> QuerySet:
         return Projekt.objects.filter(name=name)
 
@@ -51,12 +63,12 @@ class ProjektRepository(IProjektRepository):
 
     def update_name(self, projekt_id: int, name: str) -> None:
         projekt = Projekt.objects.get(id=projekt_id)
-        projekt.name = name
+        projekt.projekt_name = name
         projekt.save()
 
     def get_name(self, projekt_id: int):
         projekt = Projekt.objects.get(id=projekt_id)
-        return projekt.name
+        return projekt.projekt_name
 
     def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
         projekt = Projekt.objects.get(id=projekt_id)

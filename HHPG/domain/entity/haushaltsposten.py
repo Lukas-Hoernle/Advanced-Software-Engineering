@@ -10,11 +10,11 @@ class Haushaltsposten(models.Model):
         on_delete=models.CASCADE,
         null=False
     )
-    name = models.CharField(
+    posten_name = models.CharField(
         blank=False,
         null=False,
         max_length=255
     )
 
     def __str__(self):
-        return self.name
+        return self.posten_name

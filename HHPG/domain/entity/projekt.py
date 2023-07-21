@@ -3,7 +3,7 @@ from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 
 
 class Projekt(models.Model):
-    name = models.CharField(
+    projekt_name = models.CharField(
         blank=False,
         null=False,
         max_length=255
@@ -15,4 +15,4 @@ class Projekt(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.projekt_name

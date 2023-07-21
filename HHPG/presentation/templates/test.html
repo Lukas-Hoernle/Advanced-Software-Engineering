@@ -1,144 +1,150 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <title>Haushaltsplan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-<form id="haushaltsplan-form" method="post">
-    {% csrf_token %}
-    <!-- Haushaltsplan form -->
-    {{ haushaltsplan_form.as_table }}
+{% include 'navbar.html' %}
+<div class="container my-5">
 
-    {{ formset.management_form }}
-    {{ formset.non_form_errors }}
+    <form id="haushaltsplan-form" method="post" class="form-horizontal me-3" role="form">
+        {% csrf_token %}
+        <!-- Haushaltsplan form -->
 
-    <div id="haushaltsposten-container">
-        {% for child_form in formset.forms %}
-            <div class="haushaltsposten-form">
-                {{ child_form.as_table }}
+        <div class="px-3">
+            {% for field in haushaltsplan_form.visible_fields %}
+                <div class="form-group mb-3">
+                    <label class="form-label">
+                        {{ field.label }}
+                    </label>
 
-                {% if child_form.nested %}
-                    {{ child_form.nested.management_form }}
-                    {{ child_form.nested.non_form_errors }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+        </div>
 
-                    <div class="projekt-container">
-                        {% for nested_form in child_form.nested.forms %}
-                            <div class="projekt-form">
-                                {{ nested_form.as_table }}
+        {{ formset.management_form }}
+        {{ formset.non_form_errors }}
 
-                                {% if nested_form.nested %}
-                                    {{ nested_form.nested.management_form }}
-                                    {{ nested_form.nested.non_form_errors }}
+        <div id="haushaltsposten-container">
+            <div class="accordion">
+                {% for child_form in formset.forms %}
+                    <div class="haushaltsposten-form bg-body-tertiary rounded my-4 accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
+                                    aria-controls="collapse{{ forloop.counter }}">
+                                Posten #{{ forloop.counter }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
 
-                                    {% for very_nested_form in nested_form.nested.forms %}
-                                        {{ very_nested_form.as_table }}
-                                    {% endfor %}
+
+                                {% for child_form_field in child_form.visible_fields %}
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">
+                                            {{ child_form_field.label }}
+                                        </label>
+
+                                        {{ child_form_field }}
+                                    </div>
+                                {% endfor %}
+
+                                {% if child_form.nested %}
+                                    {{ child_form.nested.management_form }}
+                                    {{ child_form.nested.non_form_errors }}
+
+                                    <div class="projekt-container">
+                                        {% for nested_form in child_form.nested.forms %}
+                                            <div class="projekt-form p-4 bg-body rounded my-4">
+                                                {% for nested_form_field in nested_form.visible_fields %}
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label">
+                                                            {{ nested_form_field.label }}
+                                                        </label>
+
+                                                        {{ nested_form_field }}
+                                                    </div>
+                                                {% endfor %}
+
+                                                {% if nested_form.nested %}
+                                                    {{ nested_form.nested.management_form }}
+                                                    {{ nested_form.nested.non_form_errors }}
+
+                                                    {% for very_nested_form in nested_form.nested.forms %}
+                                                        {% for very_nested_form_field in very_nested_form.visible_fields %}
+                                                            <div class="form-group mb-3">
+                                                                <label class="form-label">
+                                                                    {{ very_nested_form_field.label }}
+                                                                </label>
+
+                                                                {{ very_nested_form_field }}
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-auto">
+                                                            <button type="button"
+                                                                    class="btn btn-outline-danger delete-projekt-btn">
+                                                                Delete Projekt
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!-- Add Projekt button -->
+
+
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-outline-dark add-projekt-btn">Add
+                                                Projekt
+                                            </button>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="button"
+                                                    class="btn btn-outline-danger delete-haushaltsposten-btn">
+                                                Delete Haushaltsposten
+                                            </button>
+                                        </div>
+                                    </div>
                                 {% endif %}
+
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
-
-                    <!-- Add Projekt button -->
-                    <button type="button" class="add-projekt-btn">Add Projekt</button>
-                {% endif %}
+                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
+        </div>
 
-    <!-- Add Haushaltsposten button -->
-    <button type="button" id="add-haushaltsposten-btn">Add Haushaltsposten</button>
+        <!-- Add Haushaltsposten button -->
 
-    <button type="submit">Submit</button>
-</form>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <button type="button" class="btn btn-outline-dark" id="add-haushaltsposten-btn">Add Haushaltsposten
+                </button>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
 
-<script defer>
-    // Function to update the form's management form data
-    function updateManagementForm() {
-        const totalFormsInput = document.getElementById("id_haushaltsposten_set-TOTAL_FORMS");
-        const haushaltspostenForms = document.querySelectorAll(".haushaltsposten-form");
+    </form>
 
-        totalFormsInput.value = haushaltspostenForms.length;
-    }
-
-    function addProjektForm(element) {
-        let total_count = element.parentElement.querySelector('[id*="TOTAL_FORMS"]')
-        total_count.value = parseInt(total_count.value) + 1;
-
-        let projekte = element.parentElement.querySelector(".projekt-container")
-        console.log(projekte)
-
-        let projekt = projekte.firstElementChild.cloneNode(true)
-
-        const text = projekt.innerHTML;
-        const regex_inner = /projekt_set-(\d+)-/g;
-
-        projekt.innerHTML = text.replace(regex_inner, function(match, prefix, number, suffix) {
-            let incrementedNumber = parseInt(number) + 1;
-            return prefix + incrementedNumber + suffix;
-        });
-
-        projekte.appendChild(projekt);
-    }
-
-
-    function add_total_forms_value() {
-        // Increment the value of "id_haushaltsposten_set-TOTAL_FORMS"
-        const totalFormsInput = document.querySelector('#id_haushaltsposten_set-TOTAL_FORMS');
-        const totalFormsValue = parseInt(totalFormsInput.value);
-        totalFormsInput.value = totalFormsValue + 1;
-        return totalFormsValue;
-    }
-
-    function clone_last_form() {
-        // Get the container element
-        const container = document.getElementById('haushaltsposten-container');
-
-        // Clone the last element
-        const lastElement = container.lastElementChild.cloneNode(true);
-
-        // Increment text occurrences of "_set-(number)-" by one
-        const regex = /_set-(\d+)-/g;
-        const html = lastElement.innerHTML;
-        lastElement.innerHTML = html.replace(regex, function (match, number) {
-            const incrementedNumber = parseInt(number) + 1;
-            return "_set-" + incrementedNumber + "-";
-        });
-
-        // Remove all "projekt-form" from the "projekt-container" except one
-        const projektContainer = lastElement.querySelector('.projekt-container');
-        const projektForms = projektContainer.getElementsByClassName('projekt-form');
-        while (projektForms.length > 1) {
-            projektContainer.removeChild(projektContainer.lastElementChild);
-        }
-
-        // Replace the string "projekt_set-(number)-" with "projekt_set-0-"
-        const text = projektContainer.innerHTML;
-        const regex_inner = /projekt_set-(\d+)-/g;
-
-        projektContainer.innerHTML = text.replace(regex_inner, () => "_set-0-");
-
-        // Append the cloned element to the container
-        container.appendChild(lastElement);
-    }
-
-
-    function addHaushaltspostenForm() {
-        add_total_forms_value();
-        clone_last_form();
-    }
-
-
-    // Add event listener for the "Add Projekt" button
-    document.addEventListener('click', function (event) {
-        if (event.target.matches('.add-projekt-btn')) {
-            addProjektForm(event.target);
-        }
-    });
-
-    // Add event listener for the "Add Haushaltsposten" button
-    document.getElementById('add-haushaltsposten-btn').addEventListener('click', function () {
-        addHaushaltspostenForm();
-    });
-</script>
+    <script defer src="{% static 'static/main.js' %}"></script>
+</div>
 </body>
 </html>

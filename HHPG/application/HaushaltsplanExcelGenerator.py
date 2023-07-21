@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import openpyxl
 
 from HHPG.domain.entity import haushaltsplan
@@ -8,8 +10,10 @@ class HaushaltsplanExcelGenerator:
     def __init__(self, haushaltsplan: haushaltsplan):
         self.haushaltsplan = haushaltsplan
 
+    def generate_excel(self, file_name=None):
+        if file_name is None:
+            file_name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S.xls')
 
-    def generate_excel(self, file_name):
         workbook = openpyxl.Workbook()
         worksheet = workbook.active
 
@@ -22,9 +26,17 @@ class HaushaltsplanExcelGenerator:
         )
         builder.write_headers()
 
-        row_index = 2
+        row_index = 3
 
-        haushaltsposten_list = self.haushaltsplan.haushaltsposten
+        builder.set_haushaltsplan(
+            self.haushaltsplan,
+            row_index
+        )
+        builder.write_haushaltsplan()
+
+        row_index = 9
+
+        haushaltsposten_list = self.haushaltsplan.haushaltsposten_liste
 
         for haushaltsposten in haushaltsposten_list:
             builder.set_haushaltsposten(
@@ -56,10 +68,8 @@ class ExcelBuilder:
         self.projekt = None
         self.row_index = None
 
-
     def set_headers(self, *headers):
         self.headers = headers
-
 
     def write_headers(self):
         for col, header in enumerate(
@@ -72,23 +82,84 @@ class ExcelBuilder:
                 value=header
             )
 
+    def set_haushaltsplan(
+            self,
+            haushaltsplan,
+            row_index
+    ):
+        self.haushaltsplan = haushaltsplan
+        self.row_index = row_index
+
+    def write_haushaltsplan(self):
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Name:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.plan_name
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Standort:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.standort
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Ersteller:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.author.username
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Startjahr:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.startjahr
+        )
+        self.row_index += 1
+        self.worksheet.cell(
+            row=self.row_index,
+            column=1,
+            value="Studierendenanzahl:"
+        )
+        self.worksheet.cell(
+            row=self.row_index,
+            column=2,
+            value=self.haushaltsplan.studierendenzahl
+        )
 
     def set_haushaltsposten(
             self,
             haushaltsposten,
-            row_index
+            row_index,
     ):
         self.haushaltsposten = haushaltsposten
         self.row_index = row_index
-
 
     def write_haushaltsposten(self):
         self.worksheet.cell(
             row=self.row_index,
             column=1,
-            value=self.haushaltsposten.projekt_name
+            value=self.haushaltsposten.posten_name
         )
-
 
     def set_projekt(
             self,
@@ -98,16 +169,19 @@ class ExcelBuilder:
         self.projekt = projekt
         self.row_index = row_index
 
-
     def write_projekt(self):
         self.worksheet.cell(
             row=self.row_index,
+            column=1,
+            value=self.projekt.projekt_name
+        )
+        self.worksheet.cell(
+            row=self.row_index,
             column=2,
-            value=self.projekt.einnahmen
+            value=self.projekt.aufwand.einnahmen
         )
         self.worksheet.cell(
             row=self.row_index,
             column=3,
-            value=self.projekt.ausgaben
+            value=self.projekt.aufwand.ausgaben
         )
-
