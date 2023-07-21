@@ -99,3 +99,16 @@ class ProjektRepository(IProjektRepository):
         if projekt.aufwand is not None:
             return projekt.aufwand.einnahmen - projekt.aufwand.ausgaben
         return 0
+
+    def get_aufwaende_of_id(self, haushaltsposten_id: int):
+        projekte = self.get_all_by_haushaltsposten(haushaltsposten_id=haushaltsposten_id)
+
+        einnahmen = 0
+        ausgaben = 0
+
+        for projekt in projekte:
+            _einnahmen, _ausgaben = AufwandRepository().get_aufwaende_of_id(projekt_id=projekt.id)
+            einnahmen += _einnahmen
+            ausgaben += _ausgaben
+
+        return einnahmen, ausgaben

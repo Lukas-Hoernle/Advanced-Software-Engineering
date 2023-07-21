@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db.models import QuerySet
 
 from .haushaltsposten_repository import HaushaltspostenRepository
+from .projekt_repository import ProjektRepository
 from ..domain.entity.haushaltsplan import Haushaltsplan
 from ..domain.repository.haushaltsplan_repository import IHaushaltsplanRepository
 
@@ -24,6 +25,20 @@ class HaushaltsplanRepository(IHaushaltsplanRepository):
         haushaltsplan.haushaltsposten_liste = HaushaltspostenRepository().get_all_by_haushaltsplan_including_children(
             haushaltsplan=haushaltsplan)
         return haushaltsplan
+
+    def get_aufwaende_of_id(self, haushaltsplan_id: int) -> (int, int):
+        einnahmen = 0
+        ausgaben = 0
+
+        haushaltsplan = self.get_by_id(haushaltsplan_id=haushaltsplan_id)
+        haushaltsposten_liste = HaushaltspostenRepository().get_all_by_haushaltsplan(haushaltsplan=haushaltsplan)
+
+        for haushaltsposten in haushaltsposten_liste:
+            _einnahmen, _ausgaben = ProjektRepository().get_aufwaende_of_id(haushaltsposten_id=haushaltsposten.id)
+            einnahmen += _einnahmen
+            ausgaben += _ausgaben
+
+        return einnahmen, ausgaben
 
     def get_all(self) -> QuerySet:
         return Haushaltsplan.objects.all()

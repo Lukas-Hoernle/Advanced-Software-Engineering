@@ -20,7 +20,7 @@ class AufwandRepository(IAufwandRepository):
     def get_all(self) -> List[Aufwand]:
         return Aufwand.objects.all()
 
-    def get_for_projekt(self, projekt_id: int) -> List[Aufwand]:
+    def get_for_projekt(self, projekt_id: int) -> Aufwand:
         return Aufwand.objects.filter(projekt_id=projekt_id).first()
 
     def update_einnahmen(self, aufwand_id: int, einnahmen: int) -> None:
@@ -39,3 +39,7 @@ class AufwandRepository(IAufwandRepository):
         aufwand = self.get_by_id(aufwand_id)
         if aufwand:
             aufwand.delete()
+
+    def get_aufwaende_of_id(self, projekt_id: int):
+        aufwand = self.get_for_projekt(projekt_id=projekt_id)
+        return aufwand.einnahmen, aufwand.ausgaben
