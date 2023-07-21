@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib import messages
 from django.forms import inlineformset_factory, BaseInlineFormSet
 
+from HHPG.application.buget_berechner import BudgetBerechner
 from HHPG.application.forms.AufwandForm import AufwandForm
 from HHPG.application.forms.HaushaltspostenForm import HaushaltspostenForm
 from HHPG.application.forms.ProjektForm import ProjektForm
@@ -8,9 +10,12 @@ from HHPG.domain.entity.aufwand import Aufwand
 from HHPG.domain.entity.haushaltsplan import Haushaltsplan
 from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 from HHPG.domain.entity.projekt import Projekt
+from HHPG.infrastruktur.aufwand_repository import AufwandRepository
 
 
 class BaseHaushaltspostenFormSet(BaseInlineFormSet):
+    aufwand_repository = AufwandRepository()
+
     def add_fields(self, form, index):
         super(BaseHaushaltspostenFormSet, self).add_fields(form, index)
 
@@ -34,7 +39,7 @@ class BaseHaushaltspostenFormSet(BaseInlineFormSet):
 
         return result
 
-    def save(self, commit=True):
+    def save(self, commit=True, request=None):
 
         result = super(BaseHaushaltspostenFormSet, self).save(commit=commit)
 
@@ -42,6 +47,12 @@ class BaseHaushaltspostenFormSet(BaseInlineFormSet):
             if hasattr(form, 'nested'):
                 if not self._should_delete_form(form):
                     form.nested.save(commit=commit)
+
+        budget, ausgaben = BudgetBerechner(haushaltsplan=self.instance).ist_verlustbehaftet()
+
+        if ausgaben > budget:
+            message = f'ÜBERSCHRITTEN von {budget - ausgaben}€!! BUDGET: {budget}, AUSGABEN:{ausgaben}'
+            messages.warning(request, message)
 
         return result
 

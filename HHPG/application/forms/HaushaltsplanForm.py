@@ -17,6 +17,7 @@ class HaushaltsplanForm(forms.ModelForm):
             'standort',
             'startjahr',
             'author',
-            'studierendenzahl'
+            'studierendenzahl',
+            'studierendenbeitrag'
         ]
 
