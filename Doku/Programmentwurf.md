@@ -343,8 +343,7 @@ Durch die Anwendung des Factory Patterns wird die Erstellung von Formularen und 
 
 Zusätzlich zu den beschriebenen Design Patterns sind diese auch in der UML-Diagramm im Repository erkennbar:
 
-![[UML Design Patterns](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/Doku/uml%20design%20patterns.svg)](uml_design_patterns.svg)
-
+[![UML Design Patterns](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/raw/master/Doku/uml%20design%20patterns.svg)](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/Doku/uml%20design%20patterns.svg)
 Die UML-Diagramm zeigt die Beziehung zwischen den Klassen und die Verwendung des Strategy Patterns und Factory Patterns im Haushaltsplangenerator. Es veranschaulicht die Struktur und die Zusammenhänge der verschiedenen Klassen, die diese Design Patterns verwenden, um die Software flexibel und wartbar zu gestalten.
 
 ## 5. Implementierung
