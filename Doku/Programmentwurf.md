@@ -341,10 +341,13 @@ Durch die Anwendung des Factory Patterns wird die Erstellung von Formularen und 
 
 [Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/HHPG/application/create_Haushaltsplan.py)
 
-Die Verwendung dieser Design Patterns trägt dazu bei, die Codequalität zu verbessern und die Wartbarkeit des Haushaltsplangenerators zu erhöhen.
+Zusätzlich zu den beschriebenen Design Patterns sind diese auch in der UML-Diagramm im Repository erkennbar:
+
+![UML Design Patterns](Doku/uml_design_patterns.svg)
+
+Die UML-Diagramm zeigt die Beziehung zwischen den Klassen und die Verwendung des Strategy Patterns und Factory Patterns im Haushaltsplangenerator. Es veranschaulicht die Struktur und die Zusammenhänge der verschiedenen Klassen, die diese Design Patterns verwenden, um die Software flexibel und wartbar zu gestalten.
 
 ## 5. Implementierung
-[//]: # (Etwas konkretere Beispiele in 5)
 
 ### 5.1 Umsetzung der Schichtenarchitektur
 
