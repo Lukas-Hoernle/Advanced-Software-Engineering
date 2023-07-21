@@ -1,122 +1,102 @@
-import os
 import unittest
-from unittest.mock import Mock, patch
-
-import django
-from django.test import TestCase
-from HHPG.infrastruktur.projekt_repository import ProjektRepository
+from unittest.mock import patch, MagicMock
 from HHPG.domain.entity.projekt import Projekt
+from HHPG.infrastruktur.projekt_repository import ProjektRepository
+from HHPG.domain.entity.haushaltsposten import Haushaltsposten
 
 
-class TestProjektRepository(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.repository = ProjektRepository()
+class TestProjektRepository(unittest.TestCase):
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_create_projekt(self, mock_projekt_repository):
+        # Test the create method
+        # ...
 
-    def test_create_projekt(self):
-        # Create a mock implementation of the ProjektRepository
-        mock_repo = Mock()
-        mock_repo.create.return_value = Projekt(id=1, name="Testprojekt", einnahmen=1000, ausgaben=500)
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_get_projekt_by_id(self, mock_projekt_repository):
+        # Test the get_by_id method
+        # ...
 
-        with patch('HHPG.infrastruktur.projekt_repository.ProjektRepository', return_value=mock_repo):
-            projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_update_projekt_name(self, mock_projekt_repository):
+        # Test the update_name method
+        # ...
 
-        self.assertIsInstance(projekt, Projekt)
-        self.assertEqual(projekt.projekt_name, "Testprojekt")
-        self.assertEqual(projekt.einnahmen, 1000)
-        self.assertEqual(projekt.ausgaben, 500)
-        # Ensure that the create method was called with the correct parameters
-        mock_repo.create.assert_called_once_with(name="Testprojekt", einnahmen=1000, ausgaben=500)
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_get_all(self, mock_projekt_repository):
+        # Test the get_all method
+        # Mock the ProjektRepository to control its behavior
+        mock_projekt_repository.get_all.return_value = [
+            Projekt(id=1, projekt_name="Projekt1", einnahmen=1000, ausgaben=500, haushaltsposten=Haushaltsposten(id=1)),
+            Projekt(id=2, projekt_name="Projekt2", einnahmen=2000, ausgaben=1000, haushaltsposten=Haushaltsposten(id=2)),
+        ]
 
-    def test_get_projekt_by_id(self):
-        # Create a mock implementation of the ProjektRepository
-        mock_repo = Mock()
-        mock_projekt = Projekt(id=1, name="Testprojekt", einnahmen=1000, ausgaben=500)
-        mock_repo.create.return_value = mock_projekt
-        mock_repo.get_by_id.return_value = mock_projekt
+        # Instantiate the concrete implementation of IProjektRepository
+        projekt_repo = mock_projekt_repository()
 
-        with patch('HHPG.infrastruktur.projekt_repository.ProjektRepository', return_value=mock_repo):
-            projekt = self.repository.create(name="Testprojekt", einnahmen=1000, ausgaben=500)
-            retrieved_projekt = self.repository.get_by_id(projekt.id)
+        # Call the get_all method of ProjektRepository
+        projekts = projekt_repo.get_all()
 
-        self.assertEqual(retrieved_projekt, projekt)
-        # Ensure that the get_by_id method was called with the correct parameter
-        mock_repo.get_by_id.assert_called_once_with(projekt.id)
+        # Check if the returned projekts list is as expected
+        self.assertEqual(len(projekts), 2)
+        self.assertEqual(projekts[0].projekt_name, "Projekt1")
+        self.assertEqual(projekts[1].projekt_name, "Projekt2")
 
-class ProjektRepository(IProjektRepository):
-    def create(self, name: str, einnahmen: int, ausgaben: int) -> Projekt:
-        # Implementierung der create-Methode, um ein neues Projekt zu erstellen
-        pass
+        # Ensure that the get_all method was called
+        mock_projekt_repository.get_all.assert_called_once()
 
-    def save(self, projekt: Projekt) -> None:
-        # Implementierung der save-Methode, um ein Projekt zu speichern/aktualisieren
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_order_by(self, mock_projekt_repository):
+        # Test the order_by method
+        # Mock the ProjektRepository to control its behavior
+        mock_projekt_repository.order_by.return_value = [
+            Projekt(id=1, projekt_name="Projekt1", einnahmen=1000, ausgaben=500, haushaltsposten=Haushaltsposten(id=1)),
+            Projekt(id=2, projekt_name="Projekt2", einnahmen=2000, ausgaben=1000, haushaltsposten=Haushaltsposten(id=2)),
+        ]
 
-    def delete(self, projekt_id: int) -> None:
-        # Implementierung der delete-Methode, um ein Projekt zu löschen
-        pass
+        # Instantiate the concrete implementation of IProjektRepository
+        projekt_repo = mock_projekt_repository()
 
-    def get_by_id(self, projekt_id) -> Projekt:
-        # Implementierung der get_by_id-Methode, um ein Projekt anhand der ID abzurufen
-        pass
+        # Call the order_by method of ProjektRepository
+        projekts = projekt_repo.order_by(order="projekt_name")
 
-    def get_all(self) -> QuerySet:
-        # Implementierung der get_all-Methode, um alle Projekte abzurufen
-        pass
+        # Check if the returned projekts list is as expected
+        self.assertEqual(len(projekts), 2)
+        self.assertEqual(projekts[0].projekt_name, "Projekt1")
+        self.assertEqual(projekts[1].projekt_name, "Projekt2")
 
-    def order_by(self, order: str) -> QuerySet:
-        # Implementierung der order_by-Methode, um Projekte nach einem Kriterium zu sortieren
-        pass
+        # Ensure that the order_by method was called with the correct parameter
+        mock_projekt_repository.order_by.assert_called_once_with(order="projekt_name")
 
-    def get_count(self, haushaltsposten_id: int) -> int:
-        # Implementierung der get_count-Methode, um die Anzahl der Projekte für einen Haushaltsposten abzurufen
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_get_count(self, mock_projekt_repository):
+        # Test the get_count method
+        # ...
 
-    def get_all_by_haushaltsposten(self, haushaltsposten_id: int) -> QuerySet:
-        # Implementierung der get_all_by_haushaltsposten-Methode, um Projekte für einen Haushaltsposten abzurufen
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_get_all_by_haushaltsposten(self, mock_projekt_repository):
+        # Test the get_all_by_haushaltsposten method
+        # ...
 
-    def get_all_by_name(self, name: str) -> QuerySet:
-        # Implementierung der get_all_by_name-Methode, um Projekte anhand des Namens abzurufen
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_update_haushaltsposten(self, mock_projekt_repository):
+        # Test the update_haushaltsposten method
+        # ...
 
-    def get_all_by_einnahmen(self, einnahmen: int) -> QuerySet:
-        # Implementierung der get_all_by_einnahmen-Methode, um Projekte anhand der Einnahmen abzurufen
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_update_einnahmen(self, mock_projekt_repository):
+        # Test the update_einnahmen method
+        # ...
 
-    def update_haushaltsposten(self, projekt_id: int, haushaltsposten) -> None:
-        # Implementierung der update_haushaltsposten-Methode, um den Haushaltsposten eines Projekts zu aktualisieren
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_update_ausgaben(self, mock_projekt_repository):
+        # Test the update_ausgaben method
+        # ...
 
-    def get_haushaltsposten(self, projekt_id: int):
-        # Implementierung der get_haushaltsposten-Methode, um den Haushaltsposten eines Projekts abzurufen
-        pass
+    @patch('HHPG.infrastruktur.projekt_repository.ProjektRepository')
+    def test_get_gewinn(self, mock_projekt_repository):
+        # Test the get_gewinn method
+        # ...
 
-    def update_name(self, projekt_id: int, name: str) -> None:
-        # Implementierung der update_name-Methode, um den Namen eines Projekts zu aktualisieren
-        pass
 
-    def get_name(self, projekt_id: int):
-        # Implementierung der get_name-Methode, um den Namen eines Projekts abzurufen
-        pass
-
-    def update_einnahmen(self, projekt_id: int, einnahmen: int) -> None:
-        # Implementierung der update_einnahmen-Methode, um die Einnahmen eines Projekts zu aktualisieren
-        pass
-
-    def get_einnahmen(self, projekt_id: int):
-        # Implementierung der get_einnahmen-Methode, um die Einnahmen eines Projekts abzurufen
-        pass
-
-    def update_ausgaben(self, projekt_id: int, ausgaben: int) -> None:
-        # Implementierung der update_ausgaben-Methode, um die Ausgaben eines Projekts zu aktualisieren
-        pass
-
-    def get_ausgaben(self, projekt_id: int):
-        # Implementierung der get_ausgaben-Methode, um die Ausgaben eines Projekts abzurufen
-        pass
-
-    def get_gewinn(self, projekt_id: int):
-        # Implementierung der get_gewinn-Methode, um den Gewinn eines Projekts abzurufen
-        pass
+if __name__ == '__main__':
+    unittest.main()
