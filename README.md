@@ -2,6 +2,7 @@
 Django-project created for the lecture "Advanced software engineering" 
 
 # How to start
+Read the [Documentation](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/Doku/Programmentwurf.md)
 
 ## Create virtual environment
 ```
