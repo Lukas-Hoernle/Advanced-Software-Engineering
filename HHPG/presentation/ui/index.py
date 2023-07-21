@@ -1,6 +1,8 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from HHPG.application.HaushaltsplanExcelGenerator import HaushaltsplanExcelGenerator
+from HHPG.application.buget_berechner import BudgetBerechner
 from HHPG.application.forms.HaushaltsplanForm import HaushaltsplanForm
 from HHPG.application.forms.formfactories import HaushaltspostenFormSet
 from HHPG.domain.entity.aufwand import Aufwand
@@ -23,7 +25,7 @@ class IndexView:
             formset = HaushaltspostenFormSet(request.POST, instance=haushaltsplan_form.instance)
             if haushaltsplan_form.is_valid() and formset.is_valid():
                 haushaltsplan = haushaltsplan_form.save()
-                formset.save()
+                formset.save(request=request)
                 return redirect('anzeige', haushaltsplan.id)
         else:
             haushaltsplan_form = HaushaltsplanForm()
@@ -38,6 +40,13 @@ class IndexView:
     def anzeige(cls, request, haushaltsplan_id):
         haushaltsplan = cls.haushaltsplan_repository.get_by_id_including_children(haushaltsplan_id=haushaltsplan_id)
 
+        if len(messages.get_messages(request)) < 1:
+            budget, ausgaben = BudgetBerechner(haushaltsplan=haushaltsplan).ist_verlustbehaftet()
+
+            if ausgaben > budget:
+                message = f'ÜBERSCHRITTEN von {budget - ausgaben}€!! BUDGET: {budget}, AUSGABEN:{ausgaben}'
+                messages.warning(request, message)
+
         HaushaltsplanExcelGenerator(haushaltsplan=haushaltsplan).generate_excel("testing.xls")
         context = {
             'haushaltsplan': haushaltsplan,
@@ -48,5 +57,5 @@ class IndexView:
     @classmethod
     def generate_xl(cls, request, haushaltsplan_id):
         # stuff
-        # save excel in folder / file idk
+        # save excel in folder / file
         return  # file path to excel
