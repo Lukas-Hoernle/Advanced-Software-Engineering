@@ -274,7 +274,7 @@ Im Code der Klasse `HaushaltsplanView` wird das Strategy Pattern verwendet, inde
 
 Hier wird die `ExcelExportStrategy` instanziiert und ihre `handle_post_request`-Methode aufgerufen, um den Excel-Export durchzuführen.
 
-[Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/Analyse-und-Design/HHPG/application/create_Haushaltsplan.py)
+[Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/HHPG/application/create_Haushaltsplan.py)
 
 Durch die Anwendung des Strategy Patterns wird die Verarbeitungslogik flexibel und austauschbar gestaltet, da verschiedene Strategien je nach Bedarf verwendet werden können, ohne den gesamten Code zu ändern. Dadurch wird die Erweiterbarkeit und Wartbarkeit des Haushaltsplangenerators verbessert.
 
@@ -339,7 +339,7 @@ def create_haushaltsplan(request):
 
 Durch die Anwendung des Factory Patterns wird die Erstellung von Formularen und Formsets zentralisiert und die Abhängigkeiten zwischen den verschiedenen Komponenten reduziert. Dadurch wird der Code flexibler und besser wartbar. Außerdem ermöglicht das Factory Pattern die einfache Erweiterung des Systems um weitere Formulare und Formsets, indem neue Implementierungen der `FormFactory` erstellt werden, ohne den bestehenden Code ändern zu müssen.
 
-[Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/Analyse-und-Design/HHPG/application/create_Haushaltsplan.py)
+[Link zur Klasse create_Haushaltsplan.py im GitHub-Repository](https://github.com/Lukas-Hoernle/Advanced-Software-Engineering/blob/master/HHPG/application/create_Haushaltsplan.py)
 
 Die Verwendung dieser Design Patterns trägt dazu bei, die Codequalität zu verbessern und die Wartbarkeit des Haushaltsplangenerators zu erhöhen.
 
