@@ -17,7 +17,7 @@ python manage.py migrate
 ## Create a super user
 ```
 DJANGO_SUPERUSER_USERNAME=testuser \
-DJANGO_SUPERUSER_PASSWORD=testpass \
+DJANGO_SUPERUSER_PASSWORD=testpassword \
 DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
 python manage.py createsuperuser --noinput
 ```
